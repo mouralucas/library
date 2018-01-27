@@ -32,9 +32,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.table_publishers = new System.Windows.Forms.DataGridView();
-            this.column_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.column_country = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_search = new System.Windows.Forms.Button();
             this.button_retrieveAll = new System.Windows.Forms.Button();
             this.button_delete = new System.Windows.Forms.Button();
@@ -44,6 +41,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label_publishersCount = new System.Windows.Forms.Label();
             this.box_country = new System.Windows.Forms.ComboBox();
+            this.column_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.column_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.column_country = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.table_publishers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,24 +81,6 @@
             this.table_publishers.Name = "table_publishers";
             this.table_publishers.Size = new System.Drawing.Size(409, 292);
             this.table_publishers.TabIndex = 3;
-            // 
-            // column_id
-            // 
-            this.column_id.HeaderText = "Id";
-            this.column_id.Name = "column_id";
-            this.column_id.Width = 35;
-            // 
-            // column_name
-            // 
-            this.column_name.HeaderText = "Name";
-            this.column_name.Name = "column_name";
-            this.column_name.Width = 165;
-            // 
-            // column_country
-            // 
-            this.column_country.HeaderText = "Country";
-            this.column_country.Name = "column_country";
-            this.column_country.Width = 165;
             // 
             // button_search
             // 
@@ -185,6 +167,25 @@
             this.box_country.TabIndex = 35;
             this.box_country.Text = "Country";
             // 
+            // column_id
+            // 
+            this.column_id.HeaderText = "Id";
+            this.column_id.Name = "column_id";
+            this.column_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.column_id.Width = 35;
+            // 
+            // column_name
+            // 
+            this.column_name.HeaderText = "Name";
+            this.column_name.Name = "column_name";
+            this.column_name.Width = 165;
+            // 
+            // column_country
+            // 
+            this.column_country.HeaderText = "Country";
+            this.column_country.Name = "column_country";
+            this.column_country.Width = 165;
+            // 
             // Form_PublisherRetrieve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,9 +220,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DataGridView table_publishers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn column_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn column_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn column_country;
         private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.Button button_retrieveAll;
         private System.Windows.Forms.Button button_delete;
@@ -231,5 +229,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_publishersCount;
         private System.Windows.Forms.ComboBox box_country;
+        private System.Windows.Forms.DataGridViewTextBoxColumn column_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn column_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn column_country;
     }
 }

@@ -87,8 +87,8 @@ namespace library.Forms_Insert
 
                 if (insertOk)
                 {
-                    text_authorName.Text = "";
-                    text_authorAbout.Text = "";
+                    text_authorName.Clear();
+                    text_authorAbout.Clear();
                     box_country.SelectedIndex = -1;
                     box_country.Text = "Country";
                     box_language.SelectedIndex = -1;
@@ -113,7 +113,8 @@ namespace library.Forms_Insert
                 {
                     box_country.Items.Add(c.CountryName);
                 }
-                box_country.SelectedIndex = 0;
+                box_country.SelectedIndex = -1;
+                box_country.Text = "Country";
             }
         }
 
@@ -127,7 +128,8 @@ namespace library.Forms_Insert
                 {
                     box_language.Items.Add(l.LanguageName);
                 }
-                box_language.SelectedIndex = 0;
+                box_language.SelectedIndex = -1;
+                box_language.Text = "Language";
             }
         }
 

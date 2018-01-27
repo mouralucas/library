@@ -149,6 +149,9 @@
     <EmbeddedResource Include="Forms_Insert\Form_PublisherInsert.resx">
       <DependentUpon>Form_PublisherInsert.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms_Insert\Form_SerieInsert.resx">
+      <DependentUpon>Form_SerieInsert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms_Retrieve\Form_AuthorRetrieve.resx">
       <DependentUpon>Form_AuthorRetrieve.cs</DependentUpon>
     </EmbeddedResource>

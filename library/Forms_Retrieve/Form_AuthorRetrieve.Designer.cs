@@ -45,7 +45,6 @@
             this.button_detail = new System.Windows.Forms.Button();
             this.button_clean = new System.Windows.Forms.Button();
             this.label_authorCount = new System.Windows.Forms.Label();
-            this.check_searchType = new System.Windows.Forms.CheckBox();
             this.button_delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.table_authors)).BeginInit();
             this.SuspendLayout();
@@ -63,20 +62,20 @@
             // 
             this.text_autor_id.Location = new System.Drawing.Point(16, 30);
             this.text_autor_id.Name = "text_autor_id";
-            this.text_autor_id.Size = new System.Drawing.Size(80, 20);
+            this.text_autor_id.Size = new System.Drawing.Size(50, 20);
             this.text_autor_id.TabIndex = 2;
             // 
             // text_authorName
             // 
-            this.text_authorName.Location = new System.Drawing.Point(102, 30);
+            this.text_authorName.Location = new System.Drawing.Point(72, 30);
             this.text_authorName.Name = "text_authorName";
-            this.text_authorName.Size = new System.Drawing.Size(200, 20);
+            this.text_authorName.Size = new System.Drawing.Size(230, 20);
             this.text_authorName.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(102, 12);
+            this.label2.Location = new System.Drawing.Point(69, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 4;
@@ -159,9 +158,9 @@
             // 
             // button_cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(16, 398);
+            this.button_cancel.Location = new System.Drawing.Point(16, 397);
             this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(80, 23);
+            this.button_cancel.Size = new System.Drawing.Size(121, 23);
             this.button_cancel.TabIndex = 10;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
@@ -197,17 +196,6 @@
             this.label_authorCount.TabIndex = 28;
             this.label_authorCount.Text = "-";
             // 
-            // check_searchType
-            // 
-            this.check_searchType.AutoSize = true;
-            this.check_searchType.Location = new System.Drawing.Point(314, 34);
-            this.check_searchType.Name = "check_searchType";
-            this.check_searchType.Size = new System.Drawing.Size(100, 17);
-            this.check_searchType.TabIndex = 29;
-            this.check_searchType.Text = "Match All Fields";
-            this.check_searchType.UseVisualStyleBackColor = true;
-            this.check_searchType.CheckedChanged += new System.EventHandler(this.check_searchType_CheckedChanged);
-            // 
             // button_delete
             // 
             this.button_delete.Enabled = false;
@@ -224,7 +212,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 444);
             this.Controls.Add(this.button_delete);
-            this.Controls.Add(this.check_searchType);
             this.Controls.Add(this.label_authorCount);
             this.Controls.Add(this.button_clean);
             this.Controls.Add(this.button_detail);
@@ -266,7 +253,6 @@
         private System.Windows.Forms.Button button_detail;
         private System.Windows.Forms.Button button_clean;
         private System.Windows.Forms.Label label_authorCount;
-        private System.Windows.Forms.CheckBox check_searchType;
         private System.Windows.Forms.Button button_delete;
     }
 }

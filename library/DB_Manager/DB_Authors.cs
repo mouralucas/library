@@ -20,10 +20,10 @@ namespace library.DB_Manager
         /*----- Others Variables -----*/
         private int count = -1;
 
-        List<Authors> authorList = new List<Authors>();
-        Authors author;
-        Countries country;
-        Languages language;
+        private List<Authors> authorList = new List<Authors>();
+        private Authors author;
+        private Countries country;
+        private Languages language;
 
         public int Count(MySqlConnection conn)
         {
@@ -159,7 +159,7 @@ namespace library.DB_Manager
                 /*----- Retrieve the language from the author -----*/
                 language = new Languages
                 {
-                    Language_id = Convert.IsDBNull(dataRead["languageName"]) ? -1 : Convert.ToInt32(dataRead["language_id"]),
+                    Language_id = Convert.IsDBNull(dataRead["language_id"]) ? -1 : Convert.ToInt32(dataRead["language_id"]),
                     LanguageName = Convert.IsDBNull(dataRead["languageName"]) ? "" : dataRead["languageName"].ToString(),
                     ShowLanguage = Convert.IsDBNull(dataRead["showLanguage"]) ? "" : dataRead["showLanguage"].ToString()
                 };

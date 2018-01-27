@@ -34,6 +34,8 @@ namespace library.Forms_Retrieve
         public Form_AuthorRetrieve()
         {
             InitializeComponent();
+
+            /*---- Open the connection with the database ----*/
             conn.OpenConn();
         }
 
@@ -96,36 +98,6 @@ namespace library.Forms_Retrieve
             }
         }
 
-        private void Form_AuthorRetrieve_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            conn.CloseConn();
-        }
-
-        private void check_searchType_CheckedChanged(object sender, EventArgs e)
-        {
-            if (check_searchType.Checked)
-            {
-                check_searchType.Text = " Match All Fields";
-                //mudar alguma variavel que chama a query correta
-            }
-            else
-            {
-                check_searchType.Text = "Match Any Field";
-            }
-        }
-
-        private void button_clean_Click(object sender, EventArgs e)
-        {
-            text_autor_id.Text = "";
-            text_authorName.Text = "";
-
-        }
-
-        private void button_cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void button_search_Click(object sender, EventArgs e)
         {
             table_authors.Rows.Clear();
@@ -157,5 +129,23 @@ namespace library.Forms_Retrieve
         {
 
         }
+
+        private void button_clean_Click(object sender, EventArgs e)
+        {
+            text_autor_id.Text = "";
+            text_authorName.Text = "";
+
+        }
+
+        private void button_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Form_AuthorRetrieve_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            conn.CloseConn();
+        }
+
     }
 }

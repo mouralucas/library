@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using library.Entities;
 
 namespace library.DB_Manager
 {
@@ -14,11 +15,14 @@ namespace library.DB_Manager
         private string insert;
         private string update;
         private string removeByName;
-        private string retrieveAll;
+        private string retrieve;
         private string countString;
 
         /*----- Others Variables -----*/
         private int count = -1;
+
+        private List<Series> serieList = new List<Series>();
+        private Series serie;
 
         public int Count(MySqlConnection conn)
         {
@@ -66,6 +70,46 @@ namespace library.DB_Manager
                 MessageBox.Show("Error: " + e, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+                /*
+         *Search type:
+         0 - Search All
+         1 - Search for any parameter
+        */
+        public List<Series> SearchSeries(int id, string serieName, string serieType, int searchType, MySqlConnection conn)
+        {
+            if(searchType == 0)
+            {
+                //a principio esta pesquisa não tras os livros relacionados a esta serie
+                retrieve = "SELECT * FROM series";
+            }
+            else
+            {
+
+            }
+
+            MySqlCommand cmd = new MySqlCommand(retrieve, conn);
+            //parametros da pesquisa por campo
+            MySqlDataReader dataRead = cmd.ExecuteReader();
+
+            while (dataRead.Read())
+            {
+                serie = new Series
+                {
+                    Serie_id = Convert.IsDBNull(dataRead["serie_id"]) ? -1 : Convert.ToInt32(dataRead["serie_id"]),
+                    SerieName = Convert.IsDBNull(dataRead["serieName"]) ? "" : (dataRead["serieName"]).ToString(),
+                    SerieVolumes = Convert.IsDBNull(dataRead["serieVolumes"]) ? -1 : Convert.ToInt32(dataRead["serieVolumes"]),
+                    SerieType = Convert.IsDBNull(dataRead["serieType"]) ? "" : dataRead["serieType"].ToString(),
+                    SerieSynopsis = Convert.IsDBNull(dataRead["serieSynopsis"]) ? "" : dataRead["serieSynopsis"].ToString()
+                };
+
+                serieList.Add(serie);
+            }
+
+            dataRead.Close();
+
+            return serieList;
         }
     }
 }

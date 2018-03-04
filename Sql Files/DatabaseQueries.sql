@@ -7,6 +7,8 @@ show columns from languages;
 show columns from countries;
 show columns from genres;
 show columns from users;
+show columns from series;
+show columns from books;
 
 #----- SELECTS *
 select * from countries;
@@ -15,6 +17,7 @@ select * from countries;
 select * from authors;		
 select * from publishers;
 select * from users;
+select * from series;
 
 delete from authors where author_id = 2;
 
@@ -29,7 +32,7 @@ select count(*) from genres;
 #----- JOINS
 select p.*, c.* from publishers p join countries c on p.country_id = c.country_id;
 
-select count(*) from authors;
+select count(*) from authors;	
 select a.authorName, c.countryName, l.languageName from authors a
  join countries c on a.country_id = c.country_id
  join languages l on a.language_id = l.language_id;

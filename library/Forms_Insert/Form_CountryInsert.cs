@@ -8,20 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.Connection;
-using library.DB_Manager;
-using library.Entities;
-using library.Forms_Retrieve;
+using Library.Connection;
+using Library.DB_Manager;
+using Library.Entities;
+using Library.Forms_Retrieve;
 
 
-namespace library.Forms_Insert
+namespace Library.Forms_Insert
 {
     public partial class Form_CountryInsert : Form
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_CountryInsert));
         Conn conn = new Conn();
-        DB_Countries dbc = new DB_Countries();
-        Form_CountryRetrieve returnForm = null;
+        DB_Country dbc = new DB_Country();
+        Form ReturnForm = null;
 
         private bool insertOk = false;
         private bool updateOk = false;
@@ -31,7 +31,7 @@ namespace library.Forms_Insert
         private int currentCountry_id;
         private string oldName;
         private string oldShowCountry;
-        private byte[] flag;
+        private Byte[] flag;
 
         public Form_CountryInsert()
         {
@@ -52,14 +52,14 @@ namespace library.Forms_Insert
         }
 
         /*----- Constructor to Edit Countries ------*/
-        public Form_CountryInsert(Countries country, Form_CountryRetrieve returnForm)
+        public Form_CountryInsert(Country country, Form returnForm)
         {
             InitializeComponent();
 
             button_save.Visible = false;        //
             label_title.Text = "Edit Country";  //indicates that this form is editing.
 
-            this.returnForm = returnForm;       //the form who invoked the edition
+            this.ReturnForm = returnForm;       //the form who invoked the edition
 
             /*---- Old values to check if a change was made ----*/
             currentCountry_id = country.Country_id;
@@ -71,7 +71,29 @@ namespace library.Forms_Insert
             text_id.Text = currentCountry_id.ToString();
             text_countryName.Text = oldName;
             box_showCountry.SelectedItem = oldShowCountry;
+
             picture_flag.Image = Image.FromStream(new MemoryStream(flag));
+
+            /*---- Open the connection with the database ----*/
+            conn.OpenConn();
+        }
+
+        /*----- Constructor From Main Form ------*/
+        public Form_CountryInsert(Form ReturnForm)
+        {
+            InitializeComponent();
+
+            this.ReturnForm = ReturnForm;       //the form who invoked this form
+
+            box_showCountry.SelectedIndex = 0;
+            button_edit.Visible = false;
+            button_delete.Visible = false;
+
+            /*---- Get the default image ----*/
+            MemoryStream ms = new MemoryStream();
+            picture_flag.Image.Save(ms, picture_flag.Image.RawFormat);
+            flagBytes = ms.ToArray();
+            ms.Close();
 
             /*---- Open the connection with the database ----*/
             conn.OpenConn();
@@ -117,7 +139,7 @@ namespace library.Forms_Insert
         private void picture_flag_MouseClick(object sender, MouseEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp"; // image filters  
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp, *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"; // image filters  
 
             if (open.ShowDialog() == DialogResult.OK)
             {
@@ -134,19 +156,18 @@ namespace library.Forms_Insert
         private void button_cancel_Click(object sender, EventArgs e)
         {
             //return to the form who called this form, if there is
-            if (returnForm != null)
+            if (ReturnForm != null)
             {
-                returnForm.Visible = true;
+                ReturnForm.Visible = true;
             }
             this.Close();
         }
 
         private void Form_CountryInsert_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //return to the form who called this form, if there is
-            if (returnForm != null)
+            if (ReturnForm != null)
             {
-                returnForm.Visible = true;
+                ReturnForm.Visible = true;
             }
             conn.CloseConn();
         }

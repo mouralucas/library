@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using library.Entities;
+using Library.Entities;
 using System.Windows.Forms;
 
-namespace library.DB_Manager
+namespace Library.DB_Manager
 {
-    class DB_Countries
+    class DB_Country
     {
 
         /*----- Strings that defines the queries -----*/
@@ -22,8 +22,8 @@ namespace library.DB_Manager
         /*----- Others Variables -----*/
         private int count = -1;
 
-        private List<Countries> countryList = new List<Countries>();
-        private Countries country;
+        private List<Country> countryList = new List<Country>();
+        private Country country;
 
         public int Count(MySqlConnection conn)
         {
@@ -147,16 +147,16 @@ namespace library.DB_Manager
         }
 
         /*----- Search Queries -----*/
-        public List<Countries> SearchAllCountries(MySqlConnection conn)
+        public List<Country> SearchAllCountries(MySqlConnection conn)
         {
-            retrieveAll = "SELECT * FROM countries";
+            retrieveAll = "SELECT * FROM countries ORDER BY countryName";
 
             MySqlCommand cmd = new MySqlCommand(retrieveAll, conn);
             MySqlDataReader dataRead = cmd.ExecuteReader();
 
             while (dataRead.Read())
             {
-                country = new Countries()
+                country = new Country()
                 {
                     Country_id = Convert.IsDBNull(dataRead["country_id"]) ? -1 : Convert.ToInt32(dataRead["country_id"]),
                     CountryName = Convert.IsDBNull(dataRead["countryName"]) ? "" : dataRead["countryName"].ToString(),

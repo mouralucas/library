@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Retrieve
+﻿namespace Library.Forms_Retrieve
 {
     partial class Form_AuthorRetrieve
     {
@@ -107,7 +107,7 @@
             this.button_search.TabIndex = 7;
             this.button_search.Text = "Search";
             this.button_search.UseVisualStyleBackColor = true;
-            this.button_search.Click += new System.EventHandler(this.button_search_Click);
+            this.button_search.Click += new System.EventHandler(this.Button_search_Click);
             // 
             // button_retrieveAll
             // 
@@ -117,7 +117,7 @@
             this.button_retrieveAll.TabIndex = 8;
             this.button_retrieveAll.Text = "Retrieve All";
             this.button_retrieveAll.UseVisualStyleBackColor = true;
-            this.button_retrieveAll.Click += new System.EventHandler(this.button_retrieveAll_Click);
+            this.button_retrieveAll.Click += new System.EventHandler(this.Button_ListAllAuthorsClick);
             // 
             // table_authors
             // 
@@ -164,7 +164,7 @@
             this.button_cancel.TabIndex = 10;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            this.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
             // button_detail
             // 
@@ -175,7 +175,7 @@
             this.button_detail.TabIndex = 11;
             this.button_detail.Text = "See Detail";
             this.button_detail.UseVisualStyleBackColor = true;
-            this.button_detail.Click += new System.EventHandler(this.button_detail_Click);
+            this.button_detail.Click += new System.EventHandler(this.Button_detail_Click);
             // 
             // button_clean
             // 
@@ -185,7 +185,7 @@
             this.button_clean.TabIndex = 12;
             this.button_clean.Text = "Clean";
             this.button_clean.UseVisualStyleBackColor = true;
-            this.button_clean.Click += new System.EventHandler(this.button_clean_Click);
+            this.button_clean.Click += new System.EventHandler(this.Button_clean_Click);
             // 
             // label_authorCount
             // 

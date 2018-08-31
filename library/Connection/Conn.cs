@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
-namespace library.Connection
+namespace Library.Connection
 {
     class Conn
     {
@@ -25,8 +25,9 @@ namespace library.Connection
         {
             //defines the configuration parameters for the connection
             server = "localhost";
-            database = "newlibrary";
-            user = "root";
+            database = "newlibrary_prod";
+            //database = "newlibrary";
+            user = "library";
             password = "rachel";
 
             //set the connection

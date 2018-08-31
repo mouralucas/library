@@ -63,18 +63,22 @@
   <ItemGroup>
     <Compile Include="Connection\Backup.cs" />
     <Compile Include="Connection\Conn.cs" />
-    <Compile Include="DB_Manager\DB_Authors.cs" />
-    <Compile Include="DB_Manager\DB_Countries.cs" />
-    <Compile Include="DB_Manager\DB_Languages.cs" />
-    <Compile Include="DB_Manager\DB_Genres.cs" />
-    <Compile Include="DB_Manager\DB_Publishers.cs" />
-    <Compile Include="DB_Manager\DB_Series.cs" />
-    <Compile Include="Entities\Authors.cs" />
-    <Compile Include="Entities\Countries.cs" />
-    <Compile Include="Entities\Genres.cs" />
-    <Compile Include="Entities\Languages.cs" />
-    <Compile Include="Entities\Publishers.cs" />
-    <Compile Include="Entities\Series.cs" />
+    <Compile Include="DB_Manager\DB_Author.cs" />
+    <Compile Include="DB_Manager\DB_Book.cs" />
+    <Compile Include="DB_Manager\DB_Category.cs" />
+    <Compile Include="DB_Manager\DB_Country.cs" />
+    <Compile Include="DB_Manager\DB_Language.cs" />
+    <Compile Include="DB_Manager\DB_Genre.cs" />
+    <Compile Include="DB_Manager\DB_Publisher.cs" />
+    <Compile Include="DB_Manager\DB_Serie.cs" />
+    <Compile Include="Entities\Author.cs" />
+    <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\Language.cs" />
+    <Compile Include="Entities\Publisher.cs" />
+    <Compile Include="Entities\Serie.cs" />
     <Compile Include="Forms_Insert\Form_AuthorInsert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,16 +157,26 @@
     <Compile Include="Forms_Retrieve\Form_SerieRetrieve.Designer.cs">
       <DependentUpon>Form_SerieRetrieve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Library\Program.cs" />
+    <Compile Include="Form_Information\Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Information\Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Library.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\IsbnVerification.cs" />
     <EmbeddedResource Include="Forms_Insert\Form_AuthorInsert.resx">
       <DependentUpon>Form_AuthorInsert.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_Insert\Form_BookInsert.resx">
       <DependentUpon>Form_BookInsert.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_Insert\Form_PublisherInsert.resx">
       <DependentUpon>Form_PublisherInsert.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_Insert\Form_SerieInsert.resx">
       <DependentUpon>Form_SerieInsert.cs</DependentUpon>
@@ -172,6 +186,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_Insert\Form_CountryInsert.resx">
       <DependentUpon>Form_CountryInsert.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_Retrieve\Form_CountryRetrieve.resx">
       <DependentUpon>Form_CountryRetrieve.cs</DependentUpon>
@@ -193,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms_Retrieve\Form_SerieRetrieve.resx">
       <DependentUpon>Form_SerieRetrieve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Information\Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -227,6 +245,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

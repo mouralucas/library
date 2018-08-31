@@ -7,19 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.DB_Manager;
-using library.Entities;
-using library.Connection;
-using library.Forms_Insert;
+using Library.DB_Manager;
+using Library.Entities;
+using Library.Connection;
+using Library.Forms_Insert;
 
-namespace library.Forms_Retrieve
+namespace Library.Forms_Retrieve
 {
     public partial class Form_GenreRetrieve : Form
     {
-        DB_Genres db_genre = new DB_Genres();
+        DB_Genre db_genre = new DB_Genre();
         Conn conn = new Conn();
 
-        List<Genres> genreList = new List<Genres>();
+        List<Genre> genreList = new List<Genre>();
 
         public Form_GenreRetrieve()
         {
@@ -32,9 +32,9 @@ namespace library.Forms_Retrieve
             table_genres.Rows.Clear();
 
             genreList.Clear();
-            genreList = db_genre.SearchAllGenres(conn.Connection);
+            genreList = db_genre.ListAllGenres(conn.Connection);
 
-            foreach(Genres g in genreList)
+            foreach(Genre g in genreList)
             {
                 table_genres.Rows.Add(g.Genre_id.ToString(), g.GenreName);
             }

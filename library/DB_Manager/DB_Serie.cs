@@ -5,24 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using library.Entities;
+using Library.Entities;
 
-namespace library.DB_Manager
+namespace Library.DB_Manager
 {
-    class DB_Series
+    class DB_Serie
     {
         /*----- Strings that defines the queries -----*/
-        private string insert;
+        private string Insert;
         private string update;
         private string removeByName;
-        private string retrieve;
+        private string Retrieve;
         private string countString;
 
         /*----- Others Variables -----*/
         private int count = -1;
 
-        private List<Series> serieList = new List<Series>();
-        private Series serie;
+        private List<Serie> SerieList = new List<Serie>();
+        private Serie serie;
 
         public int Count(MySqlConnection conn)
         {
@@ -35,14 +35,14 @@ namespace library.DB_Manager
         }
 
         /*----- Insert Query -----*/
-        public bool InsertPublisher(string serieName, int serieVolumes, string serieType, string serieSynopsis, MySqlConnection conn)
+        public bool InsertPublisher(string serieName, int serieVolumes, string serieType, string serieSynopsis, MySqlConnection Conn)
         {
-            insert = "INSERT INTO series (serieName, serieVolumes, serieType, serieSynopsis, serieDateInsert) " +
+            Insert = "INSERT INTO series (serieName, serieVolumes, serieType, serieSynopsis, serieDateInsert) " +
                 "VALUES (@serieName, @serieVolumes, @serieType, @serieSynopsis, current_timestamp())";
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(insert, conn);
+                MySqlCommand cmd = new MySqlCommand(Insert, Conn);
 
                 cmd.Parameters.Add("@serieName", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@serieVolumes", MySqlDbType.Int32);
@@ -72,30 +72,44 @@ namespace library.DB_Manager
             }
         }
 
-                /*
+        /*
          *Search type:
          0 - Search All
          1 - Search for any parameter
         */
-        public List<Series> SearchSeries(int id, string serieName, string serieType, int searchType, MySqlConnection conn)
+        public List<Serie> ListAllSeries(MySqlConnection Conn)
         {
-            if(searchType == 0)
-            {
-                //a principio esta pesquisa não tras os livros relacionados a esta serie
-                retrieve = "SELECT * FROM series";
-            }
-            else
-            {
+            Retrieve = "SELECT * FROM series ORDER BY serieName";
 
-            }
+            MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
+            SetSerieData(Cmd);
+            return SerieList;
+        }
 
-            MySqlCommand cmd = new MySqlCommand(retrieve, conn);
-            //parametros da pesquisa por campo
-            MySqlDataReader dataRead = cmd.ExecuteReader();
+        public List<Serie> ListSeriesByType(String SerieType, MySqlConnection Conn)
+        {
+            Retrieve = "SELECT * FROM series " +
+                "WHERE serieType = @SerieType" +
+                "   or serieType = 'All'";
 
+            MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
+            Cmd.Parameters.Add("@SerieType", MySqlDbType.Enum);
+   
+            Cmd.Parameters["@SerieType"].Value = SerieType;
+
+            SetSerieData(Cmd);
+            return SerieList;
+        }
+
+
+        private void SetSerieData(MySqlCommand Cmd)
+        {
+            MySqlDataReader dataRead = Cmd.ExecuteReader();
+
+            SerieList.Clear();
             while (dataRead.Read())
             {
-                serie = new Series
+                serie = new Serie
                 {
                     Serie_id = Convert.IsDBNull(dataRead["serie_id"]) ? -1 : Convert.ToInt32(dataRead["serie_id"]),
                     SerieName = Convert.IsDBNull(dataRead["serieName"]) ? "" : (dataRead["serieName"]).ToString(),
@@ -104,12 +118,11 @@ namespace library.DB_Manager
                     SerieSynopsis = Convert.IsDBNull(dataRead["serieSynopsis"]) ? "" : dataRead["serieSynopsis"].ToString()
                 };
 
-                serieList.Add(serie);
+                SerieList.Add(serie);
             }
 
             dataRead.Close();
-
-            return serieList;
         }
+
     }
 }

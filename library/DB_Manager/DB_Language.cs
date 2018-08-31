@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using library.Entities;
+using Library.Entities;
 using System.Windows.Forms;
 
-namespace library.DB_Manager
+namespace Library.DB_Manager
 {
-    class DB_Languages
+    class DB_Language
     {
         /*----- Strings that defines the queries -----*/
         private string insert;
@@ -22,8 +22,8 @@ namespace library.DB_Manager
         /*----- Others Variables -----*/
         private int count = -1;
 
-        List<Languages> languageList = new List<Languages>();
-        Languages language;
+        List<Language> languageList = new List<Language>();
+        Language language;
 
         public int Count(MySqlConnection conn)
         {
@@ -140,16 +140,22 @@ namespace library.DB_Manager
         }
 
         /*----- Search Queries -----*/
-        public List<Languages> SearchAllLanguages(MySqlConnection conn)
+        public List<Language> SearchAllLanguages(MySqlConnection conn)
         {
-            retrieveAll = "SELECT * FROM languages";
+            retrieveAll = "SELECT * FROM languages ORDER BY languageName";
 
-            MySqlCommand cmd = new MySqlCommand(retrieveAll, conn);
+            MySqlCommand Cmd = new MySqlCommand(retrieveAll, conn);
+            SetLanguageData(Cmd);
+            return languageList;
+        }
+
+        private void SetLanguageData(MySqlCommand cmd)
+        {
             MySqlDataReader dataRead = cmd.ExecuteReader();
 
             while (dataRead.Read())
             {
-                language = new Languages
+                language = new Language
                 {
                     Language_id = Convert.IsDBNull(dataRead["language_id"]) ? -1 : Convert.ToInt32(dataRead["language_id"]),
                     LanguageName = Convert.IsDBNull(dataRead["languageName"]) ? "" : dataRead["languageName"].ToString(),
@@ -160,8 +166,6 @@ namespace library.DB_Manager
             }
 
             dataRead.Close();
-
-            return languageList;
         }
     }
 }

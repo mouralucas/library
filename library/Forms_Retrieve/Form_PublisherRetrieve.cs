@@ -7,31 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.DB_Manager;
-using library.Connection;
-using library.Entities;
+using Library.DB_Manager;
+using Library.Connection;
+using Library.Entities;
 
-namespace library.Forms_Retrieve
+namespace Library.Forms_Retrieve
 {
     public partial class Form_PublisherRetrieve : Form
     {
-        Conn conn = new Conn();
-        DB_Publishers db_publusher = new DB_Publishers();
-        DB_Countries db_country = new DB_Countries();
+        Conn Conn = new Conn();
+        DB_Publisher db_publusher = new DB_Publisher();
+        DB_Country db_country = new DB_Country();
 
-        private List<Publishers> publisherList = new List<Publishers>();
-        private List<Countries> countryList;
+        private List<Publisher> publisherList = new List<Publisher>();
+        private List<Country> countryList;
 
         public Form_PublisherRetrieve()
         {
             InitializeComponent();
-            conn.OpenConn();
+            Conn.OpenConn();
         }
 
         private void Form_PublisherRetrieve_Load(object sender, EventArgs e)
         {
-            countryList = db_country.SearchAllCountries(conn.Connection);
-            foreach (Countries c in countryList)
+            countryList = db_country.SearchAllCountries(Conn.Connection);
+            foreach (Country c in countryList)
             {
                 if (c.ShowCountry.Equals("Yes"))
                 {
@@ -40,7 +40,7 @@ namespace library.Forms_Retrieve
             }
             box_country.Items.Add("Show All");
 
-            int count = db_publusher.Count(conn.Connection);
+            int count = db_publusher.Count(Conn.Connection);
             if (count > 1)
             {
                 label_publishersCount.Text = "There are " + count + " publishers registered.";
@@ -55,13 +55,13 @@ namespace library.Forms_Retrieve
             }
         }
 
-        private void button_retrieveAll_Click(object sender, EventArgs e)
+        private void Button_RetrieveAll_Click(object sender, EventArgs e)
         {
             table_publishers.Rows.Clear();
             publisherList.Clear();
-            publisherList = db_publusher.SearchAllPublishers(-1, "", -1, 0, conn.Connection);
+            publisherList = db_publusher.ListAllPublishers(Conn.Connection);
 
-            foreach(Publishers p in publisherList)
+            foreach(Publisher p in publisherList)
             {
                 table_publishers.Rows.Add(p.Publisher_id, p.PublisherName, p.PublisherCountry.CountryName);
             }
@@ -75,7 +75,7 @@ namespace library.Forms_Retrieve
 
         private void Form_PublisherRetrieve_FormClosing(object sender, FormClosingEventArgs e)
         {
-            conn.CloseConn();
+            Conn.CloseConn();
         }
     }
 }

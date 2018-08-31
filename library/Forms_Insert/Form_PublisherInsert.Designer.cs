@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Insert
+﻿namespace Library.Forms_Insert
 {
     partial class Form_PublisherInsert
     {
@@ -97,6 +97,7 @@
             this.box_country.Size = new System.Drawing.Size(159, 21);
             this.box_country.TabIndex = 5;
             this.box_country.Text = "Country";
+            this.box_country.SelectionChangeCommitted += new System.EventHandler(this.Box_country_SelectionChangeCommitted);
             // 
             // text_publisherAbout
             // 
@@ -144,7 +145,7 @@
             this.button_save.TabIndex = 10;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            this.button_save.Click += new System.EventHandler(this.Button_save_Click);
             // 
             // Form_PublisherInsert
             // 
@@ -162,7 +163,9 @@
             this.Controls.Add(this.text_id);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picture_logo);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "Form_PublisherInsert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Publisher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_PublisherInsert_FormClosing);
             this.Load += new System.EventHandler(this.Form_PublisherInsert_Load);

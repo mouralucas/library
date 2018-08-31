@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Insert
+﻿namespace Library.Forms_Insert
 {
     partial class Form_BookInsert
     {
@@ -29,463 +29,664 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_BookInsert));
-            this.picture_author = new System.Windows.Forms.PictureBox();
+            this.Book_Cover = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.text_title = new System.Windows.Forms.TextBox();
+            this.Text_Title = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.text_sublTitle = new System.Windows.Forms.TextBox();
-            this.text_OriginalTitle = new System.Windows.Forms.TextBox();
-            this.text_originalSubTitle = new System.Windows.Forms.TextBox();
+            this.Text_SublTitle = new System.Windows.Forms.TextBox();
+            this.Text_OriginalTitle = new System.Windows.Forms.TextBox();
+            this.Text_OriginalSubTitle = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox_sameAsTitle = new System.Windows.Forms.CheckBox();
+            this.CheckBox_SameAsTitle = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.text_isbn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.text_volumes = new System.Windows.Forms.TextBox();
-            this.listBox_authors = new System.Windows.Forms.ListBox();
-            this.box_authors = new System.Windows.Forms.ComboBox();
-            this.text_releaseDate = new System.Windows.Forms.MaskedTextBox();
+            this.ListBox_Authors = new System.Windows.Forms.ListBox();
+            this.Box_Author = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.box_language = new System.Windows.Forms.ComboBox();
+            this.Box_Language = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.text_coverPrice = new System.Windows.Forms.MaskedTextBox();
-            this.box_type = new System.Windows.Forms.ComboBox();
-            this.box_status = new System.Windows.Forms.ComboBox();
-            this.box_readingStatus = new System.Windows.Forms.ComboBox();
-            this.box_publisher = new System.Windows.Forms.ComboBox();
-            this.box_serie = new System.Windows.Forms.ComboBox();
-            this.box_genres = new System.Windows.Forms.ComboBox();
-            this.listBox_genres = new System.Windows.Forms.ListBox();
-            this.button_removeAuthor = new System.Windows.Forms.Button();
-            this.button_removeGenre = new System.Windows.Forms.Button();
-            this.text_edition = new System.Windows.Forms.TextBox();
+            this.Box_Format = new System.Windows.Forms.ComboBox();
+            this.Box_Status = new System.Windows.Forms.ComboBox();
+            this.Box_ReadingStatus = new System.Windows.Forms.ComboBox();
+            this.Box_Publisher = new System.Windows.Forms.ComboBox();
+            this.Box_Serie = new System.Windows.Forms.ComboBox();
+            this.Box_Genre = new System.Windows.Forms.ComboBox();
+            this.ListBox_Genres = new System.Windows.Forms.ListBox();
+            this.Button_RemoveAuthor = new System.Windows.Forms.Button();
+            this.Button_RemoveGenre = new System.Windows.Forms.Button();
+            this.Text_Edition = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.Text_Synopsis = new System.Windows.Forms.RichTextBox();
+            this.Text_Observation = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.button_save = new System.Windows.Forms.Button();
-            this.button_cancel = new System.Windows.Forms.Button();
+            this.Button_Save = new System.Windows.Forms.Button();
+            this.Button_Cancel = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.text_pages = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picture_author)).BeginInit();
+            this.Text_Pages = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.Date_ReleaseDate = new System.Windows.Forms.DateTimePicker();
+            this.Box_Volume = new System.Windows.Forms.ComboBox();
+            this.Text_CoverPrice = new System.Windows.Forms.MaskedTextBox();
+            this.Text_Isbn = new System.Windows.Forms.MaskedTextBox();
+            this.Box_Currency = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.Box_Category = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.Book_Cover)).BeginInit();
             this.SuspendLayout();
             // 
-            // picture_author
+            // Book_Cover
             // 
-            this.picture_author.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picture_author.Image = ((System.Drawing.Image)(resources.GetObject("picture_author.Image")));
-            this.picture_author.InitialImage = null;
-            this.picture_author.Location = new System.Drawing.Point(12, 12);
-            this.picture_author.Name = "picture_author";
-            this.picture_author.Size = new System.Drawing.Size(200, 270);
-            this.picture_author.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picture_author.TabIndex = 2;
-            this.picture_author.TabStop = false;
-            this.picture_author.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picture_author_MouseClick);
+            this.Book_Cover.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Book_Cover.Image = ((System.Drawing.Image)(resources.GetObject("Book_Cover.Image")));
+            this.Book_Cover.InitialImage = null;
+            this.Book_Cover.Location = new System.Drawing.Point(16, 85);
+            this.Book_Cover.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Book_Cover.Name = "Book_Cover";
+            this.Book_Cover.Size = new System.Drawing.Size(298, 413);
+            this.Book_Cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Book_Cover.TabIndex = 2;
+            this.Book_Cover.TabStop = false;
+            this.Book_Cover.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Book_Cover_MouseClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(218, 12);
+            this.label1.Location = new System.Drawing.Point(327, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(38, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Title";
             // 
-            // text_title
+            // Text_Title
             // 
-            this.text_title.Location = new System.Drawing.Point(217, 28);
-            this.text_title.Name = "text_title";
-            this.text_title.Size = new System.Drawing.Size(250, 20);
-            this.text_title.TabIndex = 4;
-            this.text_title.TextChanged += new System.EventHandler(this.text_title_TextChanged);
+            this.Text_Title.Location = new System.Drawing.Point(326, 43);
+            this.Text_Title.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_Title.Name = "Text_Title";
+            this.Text_Title.Size = new System.Drawing.Size(373, 26);
+            this.Text_Title.TabIndex = 4;
+            this.Text_Title.TextChanged += new System.EventHandler(this.Text_Title_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(219, 55);
+            this.label2.Location = new System.Drawing.Point(328, 85);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(95, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Original Title";
             // 
-            // text_sublTitle
+            // Text_SublTitle
             // 
-            this.text_sublTitle.Location = new System.Drawing.Point(473, 28);
-            this.text_sublTitle.Name = "text_sublTitle";
-            this.text_sublTitle.Size = new System.Drawing.Size(250, 20);
-            this.text_sublTitle.TabIndex = 6;
-            this.text_sublTitle.TextChanged += new System.EventHandler(this.text_sublTitle_TextChanged);
+            this.Text_SublTitle.Location = new System.Drawing.Point(710, 43);
+            this.Text_SublTitle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_SublTitle.Name = "Text_SublTitle";
+            this.Text_SublTitle.Size = new System.Drawing.Size(373, 26);
+            this.Text_SublTitle.TabIndex = 6;
+            this.Text_SublTitle.TextChanged += new System.EventHandler(this.Text_SublTitle_TextChanged);
             // 
-            // text_OriginalTitle
+            // Text_OriginalTitle
             // 
-            this.text_OriginalTitle.Location = new System.Drawing.Point(217, 71);
-            this.text_OriginalTitle.Name = "text_OriginalTitle";
-            this.text_OriginalTitle.Size = new System.Drawing.Size(250, 20);
-            this.text_OriginalTitle.TabIndex = 7;
+            this.Text_OriginalTitle.Location = new System.Drawing.Point(326, 109);
+            this.Text_OriginalTitle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_OriginalTitle.Name = "Text_OriginalTitle";
+            this.Text_OriginalTitle.Size = new System.Drawing.Size(373, 26);
+            this.Text_OriginalTitle.TabIndex = 7;
             // 
-            // text_originalSubTitle
+            // Text_OriginalSubTitle
             // 
-            this.text_originalSubTitle.Location = new System.Drawing.Point(473, 71);
-            this.text_originalSubTitle.Name = "text_originalSubTitle";
-            this.text_originalSubTitle.Size = new System.Drawing.Size(250, 20);
-            this.text_originalSubTitle.TabIndex = 8;
+            this.Text_OriginalSubTitle.Location = new System.Drawing.Point(710, 109);
+            this.Text_OriginalSubTitle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_OriginalSubTitle.Name = "Text_OriginalSubTitle";
+            this.Text_OriginalSubTitle.Size = new System.Drawing.Size(373, 26);
+            this.Text_OriginalSubTitle.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(473, 11);
+            this.label3.Location = new System.Drawing.Point(710, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(72, 20);
             this.label3.TabIndex = 9;
             this.label3.Text = "Sub-Title";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(473, 54);
+            this.label4.Location = new System.Drawing.Point(710, 83);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.Size = new System.Drawing.Size(129, 20);
             this.label4.TabIndex = 10;
             this.label4.Text = "Original Sub-Title";
             // 
-            // checkBox_sameAsTitle
+            // CheckBox_SameAsTitle
             // 
-            this.checkBox_sameAsTitle.AutoSize = true;
-            this.checkBox_sameAsTitle.Location = new System.Drawing.Point(729, 30);
-            this.checkBox_sameAsTitle.Name = "checkBox_sameAsTitle";
-            this.checkBox_sameAsTitle.Size = new System.Drawing.Size(117, 17);
-            this.checkBox_sameAsTitle.TabIndex = 11;
-            this.checkBox_sameAsTitle.Text = "This is Original Title";
-            this.checkBox_sameAsTitle.UseVisualStyleBackColor = true;
-            this.checkBox_sameAsTitle.CheckedChanged += new System.EventHandler(this.checkBox_sameAsTitle_CheckedChanged);
+            this.CheckBox_SameAsTitle.AutoSize = true;
+            this.CheckBox_SameAsTitle.Location = new System.Drawing.Point(1100, 43);
+            this.CheckBox_SameAsTitle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CheckBox_SameAsTitle.Name = "CheckBox_SameAsTitle";
+            this.CheckBox_SameAsTitle.Size = new System.Drawing.Size(121, 24);
+            this.CheckBox_SameAsTitle.TabIndex = 11;
+            this.CheckBox_SameAsTitle.Text = "Original Title";
+            this.CheckBox_SameAsTitle.UseVisualStyleBackColor = true;
+            this.CheckBox_SameAsTitle.CheckedChanged += new System.EventHandler(this.CheckBox_SameAsTitle_CheckedChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(730, 55);
+            this.label5.Location = new System.Drawing.Point(1095, 85);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.Size = new System.Drawing.Size(47, 20);
             this.label5.TabIndex = 12;
             this.label5.Text = "ISBN";
-            // 
-            // text_isbn
-            // 
-            this.text_isbn.Location = new System.Drawing.Point(733, 70);
-            this.text_isbn.Name = "text_isbn";
-            this.text_isbn.Size = new System.Drawing.Size(123, 20);
-            this.text_isbn.TabIndex = 13;
-            this.text_isbn.Text = "978-85-99296-94-3";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(521, 98);
+            this.label6.Location = new System.Drawing.Point(1248, 145);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.Size = new System.Drawing.Size(63, 20);
             this.label6.TabIndex = 14;
-            this.label6.Text = "Volumes";
+            this.label6.Text = "Volume";
             // 
-            // text_volumes
+            // ListBox_Authors
             // 
-            this.text_volumes.Location = new System.Drawing.Point(521, 114);
-            this.text_volumes.Name = "text_volumes";
-            this.text_volumes.Size = new System.Drawing.Size(47, 20);
-            this.text_volumes.TabIndex = 15;
+            this.ListBox_Authors.FormattingEnabled = true;
+            this.ListBox_Authors.ItemHeight = 20;
+            this.ListBox_Authors.Location = new System.Drawing.Point(326, 218);
+            this.ListBox_Authors.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ListBox_Authors.Name = "ListBox_Authors";
+            this.ListBox_Authors.Size = new System.Drawing.Size(232, 144);
+            this.ListBox_Authors.TabIndex = 17;
             // 
-            // listBox_authors
+            // Box_Author
             // 
-            this.listBox_authors.FormattingEnabled = true;
-            this.listBox_authors.Location = new System.Drawing.Point(217, 125);
-            this.listBox_authors.Name = "listBox_authors";
-            this.listBox_authors.Size = new System.Drawing.Size(156, 95);
-            this.listBox_authors.TabIndex = 17;
-            // 
-            // box_authors
-            // 
-            this.box_authors.FormattingEnabled = true;
-            this.box_authors.Location = new System.Drawing.Point(217, 98);
-            this.box_authors.Name = "box_authors";
-            this.box_authors.Size = new System.Drawing.Size(156, 21);
-            this.box_authors.TabIndex = 18;
-            this.box_authors.Text = "Author(s)";
-            this.box_authors.SelectedIndexChanged += new System.EventHandler(this.box_authors_SelectedIndexChanged);
-            // 
-            // text_releaseDate
-            // 
-            this.text_releaseDate.Location = new System.Drawing.Point(673, 158);
-            this.text_releaseDate.Mask = "00/00/0000";
-            this.text_releaseDate.Name = "text_releaseDate";
-            this.text_releaseDate.Size = new System.Drawing.Size(77, 20);
-            this.text_releaseDate.TabIndex = 19;
+            this.Box_Author.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Author.FormattingEnabled = true;
+            this.Box_Author.Location = new System.Drawing.Point(326, 174);
+            this.Box_Author.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Author.Name = "Box_Author";
+            this.Box_Author.Size = new System.Drawing.Size(232, 28);
+            this.Box_Author.TabIndex = 18;
+            this.Box_Author.SelectionChangeCommitted += new System.EventHandler(this.Box_Author_SelectionChangeCommitted);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(670, 141);
+            this.label7.Location = new System.Drawing.Point(1014, 217);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.Size = new System.Drawing.Size(107, 20);
             this.label7.TabIndex = 20;
             this.label7.Text = "Release Date";
             // 
-            // box_language
+            // Box_Language
             // 
-            this.box_language.FormattingEnabled = true;
-            this.box_language.Location = new System.Drawing.Point(574, 158);
-            this.box_language.Name = "box_language";
-            this.box_language.Size = new System.Drawing.Size(93, 21);
-            this.box_language.TabIndex = 21;
-            this.box_language.Text = "Language";
+            this.Box_Language.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Language.FormattingEnabled = true;
+            this.Box_Language.Location = new System.Drawing.Point(846, 242);
+            this.Box_Language.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Language.Name = "Box_Language";
+            this.Box_Language.Size = new System.Drawing.Size(162, 28);
+            this.Box_Language.TabIndex = 21;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(753, 141);
+            this.label8.Location = new System.Drawing.Point(1230, 217);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 13);
+            this.label8.Size = new System.Drawing.Size(89, 20);
             this.label8.TabIndex = 22;
             this.label8.Text = "Cover Price";
             // 
-            // text_coverPrice
+            // Box_Format
             // 
-            this.text_coverPrice.Location = new System.Drawing.Point(756, 158);
-            this.text_coverPrice.Name = "text_coverPrice";
-            this.text_coverPrice.Size = new System.Drawing.Size(100, 20);
-            this.text_coverPrice.TabIndex = 23;
-            // 
-            // box_type
-            // 
-            this.box_type.FormattingEnabled = true;
-            this.box_type.Items.AddRange(new object[] {
+            this.Box_Format.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Format.FormattingEnabled = true;
+            this.Box_Format.Items.AddRange(new object[] {
             "Paperback",
             "Hardcover",
             "e-Book"});
-            this.box_type.Location = new System.Drawing.Point(521, 202);
-            this.box_type.Name = "box_type";
-            this.box_type.Size = new System.Drawing.Size(129, 21);
-            this.box_type.TabIndex = 24;
-            this.box_type.Text = "Format";
+            this.Box_Format.Location = new System.Drawing.Point(782, 311);
+            this.Box_Format.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Format.Name = "Box_Format";
+            this.Box_Format.Size = new System.Drawing.Size(192, 28);
+            this.Box_Format.TabIndex = 24;
             // 
-            // box_status
+            // Box_Status
             // 
-            this.box_status.FormattingEnabled = true;
-            this.box_status.Items.AddRange(new object[] {
+            this.Box_Status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Status.FormattingEnabled = true;
+            this.Box_Status.Items.AddRange(new object[] {
             "in Shelf",
             "Wanted",
             "Waiting Deliver",
             "Borrowed"});
-            this.box_status.Location = new System.Drawing.Point(656, 202);
-            this.box_status.Name = "box_status";
-            this.box_status.Size = new System.Drawing.Size(141, 21);
-            this.box_status.TabIndex = 25;
-            this.box_status.Text = "Status";
+            this.Box_Status.Location = new System.Drawing.Point(984, 311);
+            this.Box_Status.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Status.Name = "Box_Status";
+            this.Box_Status.Size = new System.Drawing.Size(248, 28);
+            this.Box_Status.TabIndex = 25;
             // 
-            // box_readingStatus
+            // Box_ReadingStatus
             // 
-            this.box_readingStatus.FormattingEnabled = true;
-            this.box_readingStatus.Items.AddRange(new object[] {
+            this.Box_ReadingStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_ReadingStatus.FormattingEnabled = true;
+            this.Box_ReadingStatus.Items.AddRange(new object[] {
             "Read",
             "Reading",
             "Droped",
             "Eventually"});
-            this.box_readingStatus.Location = new System.Drawing.Point(521, 229);
-            this.box_readingStatus.Name = "box_readingStatus";
-            this.box_readingStatus.Size = new System.Drawing.Size(129, 21);
-            this.box_readingStatus.TabIndex = 26;
-            this.box_readingStatus.Text = "Reading Status";
+            this.Box_ReadingStatus.Location = new System.Drawing.Point(782, 377);
+            this.Box_ReadingStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_ReadingStatus.Name = "Box_ReadingStatus";
+            this.Box_ReadingStatus.Size = new System.Drawing.Size(230, 28);
+            this.Box_ReadingStatus.TabIndex = 26;
             // 
-            // box_publisher
+            // Box_Publisher
             // 
-            this.box_publisher.FormattingEnabled = true;
-            this.box_publisher.Location = new System.Drawing.Point(656, 229);
-            this.box_publisher.Name = "box_publisher";
-            this.box_publisher.Size = new System.Drawing.Size(200, 21);
-            this.box_publisher.TabIndex = 27;
-            this.box_publisher.Text = "Publisher";
+            this.Box_Publisher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Publisher.FormattingEnabled = true;
+            this.Box_Publisher.Location = new System.Drawing.Point(1023, 377);
+            this.Box_Publisher.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Publisher.Name = "Box_Publisher";
+            this.Box_Publisher.Size = new System.Drawing.Size(298, 28);
+            this.Box_Publisher.TabIndex = 27;
             // 
-            // box_serie
+            // Box_Serie
             // 
-            this.box_serie.FormattingEnabled = true;
-            this.box_serie.Items.AddRange(new object[] {
-            "The Hitchhiker\'s Guide to the Galaxy"});
-            this.box_serie.Location = new System.Drawing.Point(574, 113);
-            this.box_serie.Name = "box_serie";
-            this.box_serie.Size = new System.Drawing.Size(282, 21);
-            this.box_serie.TabIndex = 30;
-            this.box_serie.Text = "Serie";
+            this.Box_Serie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Serie.FormattingEnabled = true;
+            this.Box_Serie.Location = new System.Drawing.Point(782, 174);
+            this.Box_Serie.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Serie.Name = "Box_Serie";
+            this.Box_Serie.Size = new System.Drawing.Size(460, 28);
+            this.Box_Serie.TabIndex = 30;
+            this.Box_Serie.SelectionChangeCommitted += new System.EventHandler(this.Box_Serie_SelectionChangeCommitted);
             // 
-            // box_genres
+            // Box_Genre
             // 
-            this.box_genres.FormattingEnabled = true;
-            this.box_genres.Location = new System.Drawing.Point(379, 98);
-            this.box_genres.Name = "box_genres";
-            this.box_genres.Size = new System.Drawing.Size(136, 21);
-            this.box_genres.TabIndex = 31;
-            this.box_genres.Text = "Genre";
+            this.Box_Genre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Genre.FormattingEnabled = true;
+            this.Box_Genre.Location = new System.Drawing.Point(568, 174);
+            this.Box_Genre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Genre.Name = "Box_Genre";
+            this.Box_Genre.Size = new System.Drawing.Size(202, 28);
+            this.Box_Genre.TabIndex = 31;
+            this.Box_Genre.SelectionChangeCommitted += new System.EventHandler(this.Box_Genre_SelectionChangeCommitted);
             // 
-            // listBox_genres
+            // ListBox_Genres
             // 
-            this.listBox_genres.FormattingEnabled = true;
-            this.listBox_genres.Location = new System.Drawing.Point(379, 125);
-            this.listBox_genres.Name = "listBox_genres";
-            this.listBox_genres.Size = new System.Drawing.Size(136, 95);
-            this.listBox_genres.TabIndex = 32;
+            this.ListBox_Genres.FormattingEnabled = true;
+            this.ListBox_Genres.ItemHeight = 20;
+            this.ListBox_Genres.Location = new System.Drawing.Point(568, 218);
+            this.ListBox_Genres.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ListBox_Genres.Name = "ListBox_Genres";
+            this.ListBox_Genres.Size = new System.Drawing.Size(202, 144);
+            this.ListBox_Genres.TabIndex = 32;
             // 
-            // button_removeAuthor
+            // Button_RemoveAuthor
             // 
-            this.button_removeAuthor.Location = new System.Drawing.Point(217, 229);
-            this.button_removeAuthor.Name = "button_removeAuthor";
-            this.button_removeAuthor.Size = new System.Drawing.Size(156, 23);
-            this.button_removeAuthor.TabIndex = 33;
-            this.button_removeAuthor.Text = "Remove Author";
-            this.button_removeAuthor.UseVisualStyleBackColor = true;
-            this.button_removeAuthor.Click += new System.EventHandler(this.button_removeAuthor_Click);
+            this.Button_RemoveAuthor.Location = new System.Drawing.Point(326, 374);
+            this.Button_RemoveAuthor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Button_RemoveAuthor.Name = "Button_RemoveAuthor";
+            this.Button_RemoveAuthor.Size = new System.Drawing.Size(234, 35);
+            this.Button_RemoveAuthor.TabIndex = 33;
+            this.Button_RemoveAuthor.Text = "Remove Author";
+            this.Button_RemoveAuthor.UseVisualStyleBackColor = true;
+            this.Button_RemoveAuthor.Click += new System.EventHandler(this.Button_RemoveAuthor_Click);
             // 
-            // button_removeGenre
+            // Button_RemoveGenre
             // 
-            this.button_removeGenre.Location = new System.Drawing.Point(379, 229);
-            this.button_removeGenre.Name = "button_removeGenre";
-            this.button_removeGenre.Size = new System.Drawing.Size(136, 23);
-            this.button_removeGenre.TabIndex = 34;
-            this.button_removeGenre.Text = "Remove Genre";
-            this.button_removeGenre.UseVisualStyleBackColor = true;
+            this.Button_RemoveGenre.Location = new System.Drawing.Point(568, 374);
+            this.Button_RemoveGenre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Button_RemoveGenre.Name = "Button_RemoveGenre";
+            this.Button_RemoveGenre.Size = new System.Drawing.Size(204, 35);
+            this.Button_RemoveGenre.TabIndex = 34;
+            this.Button_RemoveGenre.Text = "Remove Genre";
+            this.Button_RemoveGenre.UseVisualStyleBackColor = true;
+            this.Button_RemoveGenre.Click += new System.EventHandler(this.Button_RemoveGenre_Click);
             // 
-            // text_edition
+            // Text_Edition
             // 
-            this.text_edition.Location = new System.Drawing.Point(803, 203);
-            this.text_edition.Name = "text_edition";
-            this.text_edition.Size = new System.Drawing.Size(53, 20);
-            this.text_edition.TabIndex = 35;
+            this.Text_Edition.Location = new System.Drawing.Point(1244, 312);
+            this.Text_Edition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_Edition.Name = "Text_Edition";
+            this.Text_Edition.Size = new System.Drawing.Size(78, 26);
+            this.Text_Edition.TabIndex = 35;
+            this.Text_Edition.Text = "1";
+            this.Text_Edition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_edition_KeyPress);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(800, 187);
+            this.label9.Location = new System.Drawing.Point(1239, 286);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.Size = new System.Drawing.Size(58, 20);
             this.label9.TabIndex = 36;
             this.label9.Text = "Edition";
             // 
-            // richTextBox1
+            // Text_Synopsis
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(217, 271);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(639, 130);
-            this.richTextBox1.TabIndex = 37;
-            this.richTextBox1.Text = "";
+            this.Text_Synopsis.Location = new System.Drawing.Point(326, 445);
+            this.Text_Synopsis.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_Synopsis.Name = "Text_Synopsis";
+            this.Text_Synopsis.Size = new System.Drawing.Size(996, 279);
+            this.Text_Synopsis.TabIndex = 37;
+            this.Text_Synopsis.Text = "";
             // 
-            // richTextBox2
+            // Text_Observation
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(12, 305);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(199, 96);
-            this.richTextBox2.TabIndex = 38;
-            this.richTextBox2.Text = "";
+            this.Text_Observation.Location = new System.Drawing.Point(16, 529);
+            this.Text_Observation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_Observation.Name = "Text_Observation";
+            this.Text_Observation.Size = new System.Drawing.Size(296, 195);
+            this.Text_Observation.TabIndex = 38;
+            this.Text_Observation.Text = "";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 289);
+            this.label10.Location = new System.Drawing.Point(18, 505);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 13);
+            this.label10.Size = new System.Drawing.Size(102, 20);
             this.label10.TabIndex = 39;
             this.label10.Text = "Observations";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(219, 255);
+            this.label11.Location = new System.Drawing.Point(328, 414);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 13);
+            this.label11.Size = new System.Drawing.Size(73, 20);
             this.label11.TabIndex = 40;
             this.label11.Text = "Synopsis";
             // 
-            // button_save
+            // Button_Save
             // 
-            this.button_save.Location = new System.Drawing.Point(707, 407);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(149, 23);
-            this.button_save.TabIndex = 42;
-            this.button_save.Text = "Save";
-            this.button_save.UseVisualStyleBackColor = true;
+            this.Button_Save.Location = new System.Drawing.Point(1100, 735);
+            this.Button_Save.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Button_Save.Name = "Button_Save";
+            this.Button_Save.Size = new System.Drawing.Size(224, 35);
+            this.Button_Save.TabIndex = 42;
+            this.Button_Save.Text = "Save";
+            this.Button_Save.UseVisualStyleBackColor = true;
+            this.Button_Save.Click += new System.EventHandler(this.Button_Transaction_Click);
             // 
-            // button_cancel
+            // Button_Cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(552, 407);
-            this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(149, 23);
-            this.button_cancel.TabIndex = 41;
-            this.button_cancel.Text = "Cancel";
-            this.button_cancel.UseVisualStyleBackColor = true;
+            this.Button_Cancel.Location = new System.Drawing.Point(867, 735);
+            this.Button_Cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Button_Cancel.Name = "Button_Cancel";
+            this.Button_Cancel.Size = new System.Drawing.Size(224, 35);
+            this.Button_Cancel.TabIndex = 41;
+            this.Button_Cancel.Text = "Cancel";
+            this.Button_Cancel.UseVisualStyleBackColor = true;
+            this.Button_Cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(521, 141);
+            this.label12.Location = new System.Drawing.Point(782, 217);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(37, 13);
+            this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 43;
             this.label12.Text = "Pages";
             // 
-            // text_pages
+            // Text_Pages
             // 
-            this.text_pages.Location = new System.Drawing.Point(521, 158);
-            this.text_pages.Name = "text_pages";
-            this.text_pages.Size = new System.Drawing.Size(47, 20);
-            this.text_pages.TabIndex = 44;
-            this.text_pages.Text = "9999";
+            this.Text_Pages.Location = new System.Drawing.Point(782, 243);
+            this.Text_Pages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_Pages.Name = "Text_Pages";
+            this.Text_Pages.Size = new System.Drawing.Size(54, 26);
+            this.Text_Pages.TabIndex = 44;
+            this.Text_Pages.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_pages_KeyPress);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(846, 217);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 20);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Language";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(777, 286);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(60, 20);
+            this.label14.TabIndex = 47;
+            this.label14.Text = "Format";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(980, 286);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(56, 20);
+            this.label15.TabIndex = 48;
+            this.label15.Text = "Status";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(783, 352);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(120, 20);
+            this.label16.TabIndex = 49;
+            this.label16.Text = "Reading Status";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(1018, 351);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 20);
+            this.label17.TabIndex = 50;
+            this.label17.Text = "Publisher";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(328, 149);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(75, 20);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "Author(s)";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(568, 148);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(62, 20);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "Genres";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(783, 149);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(46, 20);
+            this.label20.TabIndex = 53;
+            this.label20.Text = "Serie";
+            // 
+            // Date_ReleaseDate
+            // 
+            this.Date_ReleaseDate.CustomFormat = "yyyy/MM/dd";
+            this.Date_ReleaseDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.Date_ReleaseDate.Location = new System.Drawing.Point(1018, 242);
+            this.Date_ReleaseDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Date_ReleaseDate.Name = "Date_ReleaseDate";
+            this.Date_ReleaseDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Date_ReleaseDate.Size = new System.Drawing.Size(122, 26);
+            this.Date_ReleaseDate.TabIndex = 54;
+            this.Date_ReleaseDate.Value = new System.DateTime(2018, 8, 16, 0, 0, 0, 0);
+            // 
+            // Box_Volume
+            // 
+            this.Box_Volume.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Volume.FormattingEnabled = true;
+            this.Box_Volume.Location = new System.Drawing.Point(1252, 174);
+            this.Box_Volume.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Volume.Name = "Box_Volume";
+            this.Box_Volume.Size = new System.Drawing.Size(68, 28);
+            this.Box_Volume.TabIndex = 55;
+            // 
+            // Text_CoverPrice
+            // 
+            this.Text_CoverPrice.Location = new System.Drawing.Point(1228, 240);
+            this.Text_CoverPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_CoverPrice.Name = "Text_CoverPrice";
+            this.Text_CoverPrice.Size = new System.Drawing.Size(92, 26);
+            this.Text_CoverPrice.TabIndex = 23;
+            // 
+            // Text_Isbn
+            // 
+            this.Text_Isbn.Location = new System.Drawing.Point(1100, 109);
+            this.Text_Isbn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Text_Isbn.Mask = "#############";
+            this.Text_Isbn.Name = "Text_Isbn";
+            this.Text_Isbn.Size = new System.Drawing.Size(222, 26);
+            this.Text_Isbn.TabIndex = 56;
+            this.Text_Isbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_isbn_KeyPress);
+            // 
+            // Box_Currency
+            // 
+            this.Box_Currency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Currency.FormattingEnabled = true;
+            this.Box_Currency.Items.AddRange(new object[] {
+            "R$",
+            "$",
+            "₤",
+            "€",
+            "¥"});
+            this.Box_Currency.Location = new System.Drawing.Point(1152, 240);
+            this.Box_Currency.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Currency.Name = "Box_Currency";
+            this.Box_Currency.Size = new System.Drawing.Size(66, 28);
+            this.Box_Currency.TabIndex = 45;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(14, 17);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(73, 20);
+            this.label21.TabIndex = 57;
+            this.label21.Text = "Category";
+            // 
+            // Box_Category
+            // 
+            this.Box_Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Box_Category.FormattingEnabled = true;
+            this.Box_Category.Items.AddRange(new object[] {
+            "Book",
+            "Manga",
+            "Light Novel",
+            "HQ"});
+            this.Box_Category.Location = new System.Drawing.Point(16, 43);
+            this.Box_Category.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Box_Category.Name = "Box_Category";
+            this.Box_Category.Size = new System.Drawing.Size(298, 28);
+            this.Box_Category.TabIndex = 58;
+            this.Box_Category.SelectionChangeCommitted += new System.EventHandler(this.Box_Categary_SelectionChangeCommitted);
             // 
             // Form_BookInsert
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 440);
-            this.Controls.Add(this.text_pages);
+            this.ClientSize = new System.Drawing.Size(1341, 785);
+            this.Controls.Add(this.Box_Category);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.Text_Isbn);
+            this.Controls.Add(this.Box_Volume);
+            this.Controls.Add(this.Date_ReleaseDate);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.Box_Currency);
+            this.Controls.Add(this.Text_Pages);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.button_save);
-            this.Controls.Add(this.button_cancel);
+            this.Controls.Add(this.Button_Save);
+            this.Controls.Add(this.Button_Cancel);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.Text_Observation);
+            this.Controls.Add(this.Text_Synopsis);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.text_edition);
-            this.Controls.Add(this.button_removeGenre);
-            this.Controls.Add(this.button_removeAuthor);
-            this.Controls.Add(this.listBox_genres);
-            this.Controls.Add(this.box_genres);
-            this.Controls.Add(this.box_serie);
-            this.Controls.Add(this.box_publisher);
-            this.Controls.Add(this.box_readingStatus);
-            this.Controls.Add(this.box_status);
-            this.Controls.Add(this.box_type);
-            this.Controls.Add(this.text_coverPrice);
+            this.Controls.Add(this.Text_Edition);
+            this.Controls.Add(this.Button_RemoveGenre);
+            this.Controls.Add(this.Button_RemoveAuthor);
+            this.Controls.Add(this.ListBox_Genres);
+            this.Controls.Add(this.Box_Genre);
+            this.Controls.Add(this.Box_Serie);
+            this.Controls.Add(this.Box_Publisher);
+            this.Controls.Add(this.Box_ReadingStatus);
+            this.Controls.Add(this.Box_Status);
+            this.Controls.Add(this.Box_Format);
+            this.Controls.Add(this.Text_CoverPrice);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.box_language);
+            this.Controls.Add(this.Box_Language);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.text_releaseDate);
-            this.Controls.Add(this.box_authors);
-            this.Controls.Add(this.listBox_authors);
-            this.Controls.Add(this.text_volumes);
+            this.Controls.Add(this.Box_Author);
+            this.Controls.Add(this.ListBox_Authors);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.text_isbn);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.checkBox_sameAsTitle);
+            this.Controls.Add(this.CheckBox_SameAsTitle);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.text_originalSubTitle);
-            this.Controls.Add(this.text_OriginalTitle);
-            this.Controls.Add(this.text_sublTitle);
+            this.Controls.Add(this.Text_OriginalSubTitle);
+            this.Controls.Add(this.Text_OriginalTitle);
+            this.Controls.Add(this.Text_SublTitle);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.text_title);
+            this.Controls.Add(this.Text_Title);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.picture_author);
+            this.Controls.Add(this.Book_Cover);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form_BookInsert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_BookInsert";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_BookInsert_FormClosing);
             this.Load += new System.EventHandler(this.Form_BookInsert_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picture_author)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Book_Cover)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,45 +694,56 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox picture_author;
+        private System.Windows.Forms.PictureBox Book_Cover;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox text_title;
+        private System.Windows.Forms.TextBox Text_Title;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox text_sublTitle;
-        private System.Windows.Forms.TextBox text_OriginalTitle;
-        private System.Windows.Forms.TextBox text_originalSubTitle;
+        private System.Windows.Forms.TextBox Text_SublTitle;
+        private System.Windows.Forms.TextBox Text_OriginalTitle;
+        private System.Windows.Forms.TextBox Text_OriginalSubTitle;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox_sameAsTitle;
+        private System.Windows.Forms.CheckBox CheckBox_SameAsTitle;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox text_isbn;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox text_volumes;
-        private System.Windows.Forms.ListBox listBox_authors;
-        private System.Windows.Forms.ComboBox box_authors;
-        private System.Windows.Forms.MaskedTextBox text_releaseDate;
+        private System.Windows.Forms.ListBox ListBox_Authors;
+        private System.Windows.Forms.ComboBox Box_Author;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox box_language;
+        private System.Windows.Forms.ComboBox Box_Language;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.MaskedTextBox text_coverPrice;
-        private System.Windows.Forms.ComboBox box_type;
-        private System.Windows.Forms.ComboBox box_status;
-        private System.Windows.Forms.ComboBox box_readingStatus;
-        private System.Windows.Forms.ComboBox box_publisher;
-        private System.Windows.Forms.ComboBox box_serie;
-        private System.Windows.Forms.ComboBox box_genres;
-        private System.Windows.Forms.ListBox listBox_genres;
-        private System.Windows.Forms.Button button_removeAuthor;
-        private System.Windows.Forms.Button button_removeGenre;
-        private System.Windows.Forms.TextBox text_edition;
+        private System.Windows.Forms.ComboBox Box_Format;
+        private System.Windows.Forms.ComboBox Box_Status;
+        private System.Windows.Forms.ComboBox Box_ReadingStatus;
+        private System.Windows.Forms.ComboBox Box_Publisher;
+        private System.Windows.Forms.ComboBox Box_Serie;
+        private System.Windows.Forms.ComboBox Box_Genre;
+        private System.Windows.Forms.ListBox ListBox_Genres;
+        private System.Windows.Forms.Button Button_RemoveAuthor;
+        private System.Windows.Forms.Button Button_RemoveGenre;
+        private System.Windows.Forms.TextBox Text_Edition;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox Text_Synopsis;
+        private System.Windows.Forms.RichTextBox Text_Observation;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button_save;
-        private System.Windows.Forms.Button button_cancel;
+        private System.Windows.Forms.Button Button_Save;
+        private System.Windows.Forms.Button Button_Cancel;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox text_pages;
+        private System.Windows.Forms.TextBox Text_Pages;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DateTimePicker Date_ReleaseDate;
+        private System.Windows.Forms.ComboBox Box_Volume;
+        private System.Windows.Forms.MaskedTextBox Text_CoverPrice;
+        private System.Windows.Forms.MaskedTextBox Text_Isbn;
+        public System.Windows.Forms.ComboBox Box_Currency;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox Box_Category;
     }
 }

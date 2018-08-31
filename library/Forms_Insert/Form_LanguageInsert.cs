@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.DB_Manager;
-using library.Connection;
-using library.Entities;
-using library.Forms_Retrieve;
+using Library.DB_Manager;
+using Library.Connection;
+using Library.Entities;
+using Library.Forms_Retrieve;
 
-namespace library.Forms_Insert
+namespace Library.Forms_Insert
 {
     public partial class Form_LanguageInsert : Form
     {
         Conn conn = new Conn();
-        DB_Languages dbl = new DB_Languages();
-        Form_LanguageRetrieve returnForm = null;
+        DB_Language dbl = new DB_Language();
+        Form ReturnForm = null;
 
         private bool insertOk = false;
 
@@ -32,15 +32,26 @@ namespace library.Forms_Insert
         }
 
         /*----- Constructor to Edit Language ------*/
-        public Form_LanguageInsert(Languages language, Form_LanguageRetrieve returnForm)
+        public Form_LanguageInsert(Language language, Form ReturnForm)
         {
             InitializeComponent();
             conn.OpenConn();
 
-            this.returnForm = returnForm;
+            this.ReturnForm = ReturnForm;
 
             text_languageName.Text = language.LanguageName;
             box_showLanguage.SelectedItem = language.ShowLanguage;
+        }
+
+        /*----- Constructor From Main Form ------*/
+        public Form_LanguageInsert(Form ReturnForm)
+        {
+            InitializeComponent();
+            box_showLanguage.SelectedIndex = 0;
+
+            this.ReturnForm = ReturnForm;       //the form who invoked this form
+
+            conn.OpenConn();
         }
 
         private void button_saveLanguage_Click(object sender, EventArgs e)
@@ -64,9 +75,9 @@ namespace library.Forms_Insert
         private void Form_LanguageInsert_FormClosing(object sender, FormClosingEventArgs e)
         {
             //return to the form who called this form, if there is
-            if (returnForm != null)
+            if (ReturnForm != null)
             {
-                returnForm.Visible = true;
+                ReturnForm.Visible = true;
             }
             conn.CloseConn();
         }
@@ -74,9 +85,9 @@ namespace library.Forms_Insert
         private void button_cancel_Click(object sender, EventArgs e)
         {
             //return to the form who called this form, if there is
-            if (returnForm != null)
+            if (ReturnForm != null)
             {
-                returnForm.Visible = true;
+                ReturnForm.Visible = true;
             }
             this.Close();
         }

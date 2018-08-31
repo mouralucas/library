@@ -7,24 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.Connection;
-using library.DB_Manager;
-using library.Entities;
+using Library.Connection;
+using Library.DB_Manager;
+using Library.Entities;
 
-namespace library.Forms_Retrieve
+namespace Library.Forms_Retrieve
 {
     public partial class Form_SerieRetrieve : Form
     {
         Conn conn = new Conn();
-        DB_Series db_serie = new DB_Series();
+        DB_Serie db_serie = new DB_Serie();
 
-        private List<Series> serieList = new List<Series>();
+        private List<Serie> serieList = new List<Serie>();
 
         public Form_SerieRetrieve()
         {
             InitializeComponent();
-
-            /*---- Open the connection with the database ----*/
             conn.OpenConn();
         }
 
@@ -45,13 +43,13 @@ namespace library.Forms_Retrieve
             }
         }
 
-        private void button_retrieveAll_Click(object sender, EventArgs e)
+        private void Button_retrieveAll_Click(object sender, EventArgs e)
         {
             table_serie.Rows.Clear();
             serieList.Clear();
-            serieList = db_serie.SearchSeries(-1, "", "", 0, conn.Connection);
+            serieList = db_serie.ListAllSeries(conn.Connection);
 
-            foreach(Series s in serieList)
+            foreach(Serie s in serieList)
             {
                 table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieType);
             }
@@ -63,6 +61,18 @@ namespace library.Forms_Retrieve
                 button_delete.Enabled = true;
             }
 
+        }
+
+        private void Button_Search_Click(object sender, EventArgs e)
+        {
+            table_serie.Rows.Clear();
+            serieList.Clear();
+            serieList = db_serie.ListSeriesByType(box_serieType.SelectedItem.ToString(), conn.Connection);
+
+            foreach (Serie s in serieList)
+            {
+                table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieType);
+            }
         }
 
         private void Form_SerieRetrieve_FormClosing(object sender, FormClosingEventArgs e)

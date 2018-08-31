@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Insert
+﻿namespace Library.Forms_Insert
 {
     partial class Form_CountryInsert
     {
@@ -176,6 +176,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.text_countryName);
             this.Name = "Form_CountryInsert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Country";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_CountryInsert_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picture_flag)).EndInit();

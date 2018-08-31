@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Insert
+﻿namespace Library.Forms_Insert
 {
     partial class Form_LanguageInsert
     {
@@ -117,6 +117,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form_LanguageInsert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Language";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_LanguageInsert_FormClosing);
             this.ResumeLayout(false);

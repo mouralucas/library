@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Insert
+﻿namespace Library.Forms_Insert
 {
     partial class Form_SerieInsert
     {
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.text_id = new System.Windows.Forms.TextBox();
             this.text_serieName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.text_serieSynopsis = new System.Windows.Forms.RichTextBox();
@@ -39,6 +38,7 @@
             this.button_delete = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.box_volumes = new System.Windows.Forms.ComboBox();
+            this.text_id = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -49,15 +49,6 @@
             this.label1.Size = new System.Drawing.Size(16, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Id";
-            // 
-            // text_id
-            // 
-            this.text_id.Enabled = false;
-            this.text_id.Location = new System.Drawing.Point(13, 30);
-            this.text_id.Name = "text_id";
-            this.text_id.ReadOnly = true;
-            this.text_id.Size = new System.Drawing.Size(50, 20);
-            this.text_id.TabIndex = 1;
             // 
             // text_serieName
             // 
@@ -133,7 +124,7 @@
             this.button_save.TabIndex = 12;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            this.button_save.Click += new System.EventHandler(this.Button_save_Click);
             // 
             // box_volumes
             // 
@@ -143,6 +134,15 @@
             this.box_volumes.Size = new System.Drawing.Size(65, 21);
             this.box_volumes.TabIndex = 13;
             this.box_volumes.Text = "Volumes";
+            // 
+            // text_id
+            // 
+            this.text_id.Enabled = false;
+            this.text_id.Location = new System.Drawing.Point(13, 30);
+            this.text_id.Name = "text_id";
+            this.text_id.ReadOnly = true;
+            this.text_id.Size = new System.Drawing.Size(50, 20);
+            this.text_id.TabIndex = 1;
             // 
             // Form_SerieInsert
             // 
@@ -161,6 +161,7 @@
             this.Controls.Add(this.text_id);
             this.Controls.Add(this.label1);
             this.Name = "Form_SerieInsert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Series";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_SerieInsert_FormClosing);
             this.Load += new System.EventHandler(this.Form_SerieInsert_Load);
@@ -172,7 +173,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox text_id;
         private System.Windows.Forms.TextBox text_serieName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox text_serieSynopsis;
@@ -182,5 +182,6 @@
         private System.Windows.Forms.Button button_delete;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.ComboBox box_volumes;
+        private System.Windows.Forms.TextBox text_id;
     }
 }

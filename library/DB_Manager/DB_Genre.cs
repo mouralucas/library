@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using library.Entities;
+using Library.Entities;
 using System.Windows.Forms;
 
-namespace library.DB_Manager
+namespace Library.DB_Manager
 {
-    class DB_Genres
+    class DB_Genre
     {
         
         /*----- Strings that defines the queries -----*/
@@ -21,8 +21,8 @@ namespace library.DB_Manager
         /*----- Others Variables -----*/
         private int count = -1;
 
-        List<Genres> genreList = new List<Genres>();
-        Genres genre;
+        List<Genre> GenreList = new List<Genre>();
+        Genre genre;
 
         public int Count(MySqlConnection conn)
         {
@@ -95,28 +95,31 @@ namespace library.DB_Manager
         }
 
         /*----- Search Queries -----*/
-        public List<Genres> SearchAllGenres(MySqlConnection conn)
+        public List<Genre> ListAllGenres(MySqlConnection conn)
         {
-            retrieveAll = "SELECT * FROM genres";
+            retrieveAll = "SELECT * FROM genres ORDER BY genreName";
 
-            MySqlCommand cmd = new MySqlCommand(retrieveAll, conn);
-            MySqlDataReader dataRead = cmd.ExecuteReader();
+            MySqlCommand Cmd = new MySqlCommand(retrieveAll, conn);
+            SetGenreData(Cmd);
+            return GenreList;
+        }
 
+        private void SetGenreData(MySqlCommand Cmd)
+        {
+            MySqlDataReader dataRead = Cmd.ExecuteReader();
             while (dataRead.Read())
             {
 
-                genre = new Genres()
+                genre = new Genre()
                 {
                     Genre_id = Convert.IsDBNull(dataRead["genre_id"]) ? -1 : Convert.ToInt32(dataRead["genre_id"]),
                     GenreName = Convert.IsDBNull(dataRead["genreName"]) ? "" : dataRead["genreName"].ToString()
                 };
 
-                genreList.Add(genre);
+                GenreList.Add(genre);
             }
 
             dataRead.Close();
-
-            return genreList;
         }
     }
 }

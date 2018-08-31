@@ -8,133 +8,445 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.Entities;
-using library.Connection;
-using library.DB_Manager;
+using Library.Entities;
+using Library.Connection;
+using Library.DB_Manager;
 
-namespace library.Forms_Insert
+namespace Library.Forms_Insert
 {
     public partial class Form_BookInsert : Form
     {
-        Conn conn = new Conn();
-        DB_Authors db_author = new DB_Authors();
-        DB_Languages db_language = new DB_Languages();
-        DB_Publishers db_publisher = new DB_Publishers();
+        Conn Conn = new Conn();
 
-        List<Authors> authorList = new List<Authors>();
-        List<Languages> languageList = new List<Languages>();
-        List<Publishers> publisherList = new List<Publishers>();
+        /*---- This call the default image in the AuthorPhoto ----*/
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_BookInsert));
 
-        private byte[] imageBytes;
+        DB_Author DB_Author = new DB_Author();
+        DB_Language DB_Language = new DB_Language();
+        DB_Publisher DB_Publisher = new DB_Publisher();
+        DB_Genre DB_Genre = new DB_Genre();
+        DB_Book DB_Book = new DB_Book();
+        DB_Serie DB_Serie = new DB_Serie();
+        DB_Category DB_Category = new DB_Category();
+
+        Form ReturnGeneric;
+
+        List<Author> AuthorList = new List<Author>();
+        List<Language> LanguageList = new List<Language>();
+        List<Publisher> PublisherList = new List<Publisher>();
+        List<Genre> GenreList = new List<Genre>();
+        List<Serie> SerieList = new List<Serie>();
+        List<Category> CategoryList = new List<Category>();
+
+        List<int> SelectedAuthors = new List<int>();
+        List<int> SelectedGenres = new List<int>();
+
+        private bool InsertOk = false;
+        private byte[] ImageBytes;
+
+        /*
+        O = insert
+        1 = update
+        */
+        private int transactionType = 0;
 
         public Form_BookInsert()
         {
             InitializeComponent();
-            /*---- Open the connection with the database ----*/
-            conn.OpenConn();
+            Conn.OpenConn();
+
+            Box_Category.SelectedIndex = 0;
 
             /*---- Get the default image ----*/
             MemoryStream ms = new MemoryStream();
-            picture_author.Image.Save(ms, picture_author.Image.RawFormat);
-            imageBytes = ms.ToArray();
+            Book_Cover.Image.Save(ms, Book_Cover.Image.RawFormat);
+            ImageBytes = ms.ToArray();
             ms.Close();
+
+            /*Criar um construtor para cada tipo de midia (livro, manga, hq) quando for chamado define as series 
+              baseado no tipo */
+
+        }
+
+        /*----- Constructor From Main Form ------*/
+        public Form_BookInsert(Form ReturnGeneric)
+        {
+            InitializeComponent();
+            Conn.OpenConn();
+
+            Box_Category.SelectedIndex = 0;
+            this.ReturnGeneric = ReturnGeneric;      
+
+            /*---- Get the default image ----*/
+            MemoryStream ms = new MemoryStream();
+            Book_Cover.Image.Save(ms, Book_Cover.Image.RawFormat);
+            ImageBytes = ms.ToArray();
+            ms.Close();
+
+            /*Criar um construtor para cada tipo de midia (livro, manga, hq) quando for chamado define as series 
+              baseado no tipo */
+
         }
 
         private void Form_BookInsert_Load(object sender, EventArgs e)
         {
-            authorList = db_author.SearchAllAuthors(-1, "", -1, -1, 0, conn.Connection);
-            foreach (Authors a in authorList)
-            {
-                box_authors.Items.Add(a.AuthorName);
-            }
 
-            languageList = db_language.SearchAllLanguages(conn.Connection);
-            foreach (Languages l in languageList)
-            {
-                if (l.ShowLanguage.Equals("Yes"))
-                {
-                    box_language.Items.Add(l.LanguageName);
-                }
-            }
-            box_language.Items.Add("Show All");
+            UpdateAuthorBox();
+            UpdateLanguageBox();
+            UpdatePublisherBox();
+            UpdateGenreBox();
 
-            publisherList = db_publisher.SearchAllPublishers(-1, "", -1, 0, conn.Connection);
-            foreach (Publishers p in publisherList)
+            SerieList = DB_Serie.ListSeriesByType(Box_Category.SelectedItem.ToString(), Conn.Connection);
+            var item = SerieList.Find(x => x.Serie_id == 1);
+            SerieList.Remove(item);
+            SerieList.Insert(0, item);
+            Box_Serie.DataSource = SerieList;
+            Box_Serie.ValueMember = "Serie_id";
+            Box_Serie.DisplayMember = "SerieName";
+
+            Box_Volume.Items.Add(1);
+            Box_Volume.SelectedIndex = 0;
+        }
+
+        private void Button_Transaction_Click(object sender, EventArgs e)
+        {
+            if (transactionType == 0)
             {
-                box_publisher.Items.Add(p.PublisherName);
+                SaveTransaction();
             }
         }
 
-        private void checkBox_sameAsTitle_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_SameAsTitle_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_sameAsTitle.Checked)
+            if (CheckBox_SameAsTitle.Checked)
             {
-                text_OriginalTitle.Text = text_title.Text;
-                text_originalSubTitle.Text = text_sublTitle.Text;
+                Text_OriginalTitle.Text = Text_Title.Text;
+                Text_OriginalSubTitle.Text = Text_SublTitle.Text;
+
+                Text_OriginalTitle.Enabled = false;
+                Text_OriginalSubTitle.Enabled = false;
             }
             else
             {
-                text_OriginalTitle.Text = "";
-                text_originalSubTitle.Text = "";
+                Text_OriginalTitle.Text = "";
+                Text_OriginalSubTitle.Text = "";
+
+                Text_OriginalTitle.Enabled = true;
+                Text_OriginalSubTitle.Enabled = true;
             }
         }
 
 
-        private void text_title_TextChanged(object sender, EventArgs e)
+        private void Text_Title_TextChanged(object sender, EventArgs e)
         {
-            if (checkBox_sameAsTitle.Checked)
+            if (CheckBox_SameAsTitle.Checked)
             {
-                text_OriginalTitle.Text = text_title.Text;
+                Text_OriginalTitle.Text = Text_Title.Text;
             }
         }
 
-        private void text_sublTitle_TextChanged(object sender, EventArgs e)
+        private void Text_SublTitle_TextChanged(object sender, EventArgs e)
         {
-            if (checkBox_sameAsTitle.Checked)
+            if (CheckBox_SameAsTitle.Checked)
             {
-                text_originalSubTitle.Text = text_sublTitle.Text;
+                Text_OriginalSubTitle.Text = Text_SublTitle.Text;
             }
         }
 
-        private void box_authors_SelectedIndexChanged(object sender, EventArgs e)
+        private void Box_Serie_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (listBox_authors.FindStringExact(box_authors.SelectedItem.ToString()) == -1)
+            int selectedSerie = (int)Box_Serie.SelectedValue;
+            Box_Volume.Items.Clear();
+            int v = SerieList.Find(x => x.Serie_id == selectedSerie).SerieVolumes;
+            for (int i = 1; i <= v; i++)
             {
-                listBox_authors.Items.Add(box_authors.SelectedItem);
+                Box_Volume.Items.Add(i);
+            }
+            Box_Volume.SelectedIndex = 0;
+
+        }
+
+        private void Box_Categary_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SerieList = DB_Serie.ListSeriesByType(Box_Category.SelectedItem.ToString(), Conn.Connection);
+
+            var item = SerieList.Find(x => x.Serie_id == 1);
+            SerieList.Remove(item);
+            SerieList.Insert(0, item);
+
+            Box_Serie.DataSource = null;
+            Box_Serie.DataSource = SerieList;
+            Box_Serie.ValueMember = "Serie_id";
+            Box_Serie.DisplayMember = "SerieName";
+            Box_Serie.SelectedIndex = 0;
+        }
+
+        private void Box_Author_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int SelectedAuthorId = (int)Box_Author.SelectedValue;
+            String SelectedAuthorName = AuthorList.Find(x => x.Author_id == SelectedAuthorId).AuthorName;
+
+            if (SelectedAuthorId == 0)
+            {
+                return;
+            }
+
+            if (SelectedAuthorId == 50000)
+            {
+                Form_AuthorInsert authorInsert = new Form_AuthorInsert(this) { Visible = true };
+                return;
+            }
+
+            else if (!SelectedAuthors.Contains(SelectedAuthorId))
+            {
+                ListBox_Authors.Items.Add(SelectedAuthorName);
+                SelectedAuthors.Add(SelectedAuthorId);
+                Console.WriteLine();
             }
             else
             {
                 MessageBox.Show("You Already Selected This Author");
-                
+
             }
         }
 
-
-
-        
-
-        private void button_removeAuthor_Click(object sender, EventArgs e)
+        private void Button_RemoveAuthor_Click(object sender, EventArgs e)
         {
-            listBox_authors.Items.Remove(listBox_authors.SelectedItem);
+            int i = ListBox_Authors.SelectedIndex;
+            if (i != -1)
+            {
+                ListBox_Authors.Items.RemoveAt(i);
+                SelectedAuthors.RemoveAt(i);
+            }
         }
 
-        private void picture_author_MouseClick(object sender, MouseEventArgs e)
+        private void Box_Genre_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int SelectedGenreId = (int)Box_Genre.SelectedValue;
+            String SelectedGenreName = GenreList.Find(x => x.Genre_id == SelectedGenreId).GenreName;
+
+            if (SelectedGenreId == 0)
+            {
+                return;
+            }
+
+            if (SelectedGenreId == 50000)
+            {
+
+                Form_GenreInsert fgi = new Form_GenreInsert(this) { Visible = true};
+                return;
+            }
+
+            if (!SelectedGenres.Contains(SelectedGenreId))
+            {
+                ListBox_Genres.Items.Add(SelectedGenreName);
+                SelectedGenres.Add(SelectedGenreId);
+            }
+            else
+            {
+                MessageBox.Show("You Already Selected This Author");
+
+            }
+        }
+
+        private void Button_RemoveGenre_Click(object sender, EventArgs e)
+        {
+            int i = ListBox_Genres.SelectedIndex;
+            if (i != -1)
+            {
+                ListBox_Genres.Items.RemoveAt(i);
+                SelectedGenres.RemoveAt(i);
+            }
+        }
+
+        private void Book_Cover_MouseClick(object sender, MouseEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp"; // image filters  
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png) | *.jpg; *.jpeg; *.gif; *.bmp; *.png"; // image filters  
 
             if (open.ShowDialog() == DialogResult.OK)
             {
-                picture_author.Image = Image.FromFile(open.FileName);                // display image in picture box 
+                Book_Cover.Image = Image.FromFile(open.FileName);                // display image in picture box 
 
                 /*---- Convert the image to a byte array ----*/
                 MemoryStream ms = new MemoryStream();
-                picture_author.Image.Save(ms, picture_author.Image.RawFormat);
-                imageBytes = ms.ToArray();
+                Book_Cover.Image.Save(ms, Book_Cover.Image.RawFormat);
+                ImageBytes = ms.ToArray();
                 ms.Close();
             }
         }
 
+        private void Form_BookInsert_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
+            if (ReturnGeneric != null)
+            {
+                ReturnGeneric.Visible = true;
+            }
+            Conn.CloseConn();
+        }
+
+        private void Button_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /*** Transações com DB ***/
+        private void SaveTransaction()
+        {
+            if (Text_Title.Text.Equals(""))
+            {
+                MessageBox.Show("You Must Enter a Title for the Book!", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (!Box_Format.SelectedItem.ToString().Equals("e-Book") && Text_Isbn.Text.Equals(""))
+            {
+                MessageBox.Show("You Must Enter the ISBN for this format of Book!", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (ListBox_Authors.Items.Count == 0)
+            {
+                MessageBox.Show("You Must Enter the Author of the Book!", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (Text_Pages.Text.Equals(""))
+            {
+                MessageBox.Show("You Must Enter the Pages Number", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                double coverPrice = Text_CoverPrice.Text.Equals("") ? 0.00 : Convert.ToDouble(Text_CoverPrice.Text.Replace(",", "."));
+
+                InsertOk = DB_Book.InsertBook(
+                    Box_Category.SelectedItem.ToString(), Text_Title.Text, Text_SublTitle.Text, Text_OriginalTitle.Text, Text_OriginalSubTitle.Text, Text_Isbn.Text,
+                    Convert.ToInt32(Text_Pages.Text), (int)Box_Publisher.SelectedValue, (int)Box_Language.SelectedValue, Box_Format.SelectedItem.ToString(),
+                    (int)Box_Serie.SelectedValue, Convert.ToInt32(Box_Volume.SelectedItem.ToString()), Date_ReleaseDate.Text, Box_Currency.SelectedItem.ToString(),
+                    coverPrice, Convert.ToInt32(Text_Edition.Text), Box_Status.SelectedItem.ToString(), Box_ReadingStatus.SelectedItem.ToString(), 
+                    Text_Observation.Text.ToString(), Text_Synopsis.Text.ToString(), ImageBytes, SelectedAuthors, SelectedGenres, Conn.Connection);
+
+                if (InsertOk)
+                {
+                    //Box_Category.SelectedIndex = 0;
+                    Text_Title.Text = "";
+                    Text_SublTitle.Text = "";
+                    Text_OriginalTitle.Text = "";
+                    Text_OriginalSubTitle.Text = "";
+                    Text_Isbn.Text = "";
+                    Text_Pages.Text = "";
+                    Box_Publisher.SelectedIndex = 0;
+                    Box_Language.SelectedIndex = 0;
+                    Box_Format.SelectedIndex = 0;
+                    Box_Serie.SelectedIndex = 0;
+                    Box_Volume.SelectedIndex = 0;
+                    Date_ReleaseDate.Value = DateTime.Now;
+                    Box_Currency.SelectedIndex = 0;
+                    Text_CoverPrice.Text = "";
+                    Text_Edition.Text = "1";
+                    Box_Status.SelectedIndex = 0;
+                    Box_ReadingStatus.SelectedIndex = 0;
+                    Text_Observation.Text = "";
+                    Text_Synopsis.Text = "";
+                    Book_Cover.Image = ((System.Drawing.Image)(resources.GetObject("Book_Cover.Image")));
+
+                    Box_Author.SelectedIndex = 0;
+                    Box_Genre.SelectedIndex = 0;
+                    ListBox_Authors.Items.Clear();
+                    ListBox_Genres.Items.Clear();
+                    SelectedAuthors.Clear();
+                    SelectedGenres.Clear();
+                }
+            }
+        }
+
+        private void UpdateTransaction()
+        {
+
+        }
+
+        /*** Validadores dos campos ***/
+        private void Text_edition_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != 8;
+        }
+
+        private void Text_pages_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != 8;
+        }
+
+        private void Text_isbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != 8;
+        }
+
+        /*** ***/
+        public void UpdateGenreBox()
+        {
+            GenreList.Clear();
+            GenreList = DB_Genre.ListAllGenres(Conn.Connection);
+            GenreList.Insert(0, new Genre() { Genre_id = 0, GenreName = "Genre" });
+            GenreList.Add(new Genre { Genre_id = 50000, GenreName = "Adicionar novo gênero" });
+
+            Box_Genre.DataSource = null;
+            Box_Genre.DataSource = GenreList;
+            Box_Genre.ValueMember = "Genre_id";
+            Box_Genre.DisplayMember = "GenreName";
+
+            Box_Genre.SelectedIndex = 0;
+        }
+
+        public void UpdateAuthorBox()
+        {
+            AuthorList.Clear();
+            AuthorList = DB_Author.ListAllAuthors(Conn.Connection);
+            AuthorList.Insert(0, new Author() { Author_id = 0, AuthorName = "Author" });
+            AuthorList.Add(new Author() { Author_id = 50000, AuthorName = "Adicionar novo autor" });
+
+            Box_Author.DataSource = null;
+            Box_Author.DataSource = AuthorList;
+            Box_Author.ValueMember = "Author_id";
+            Box_Author.DisplayMember = "AuthorName";
+
+            Box_Author.SelectedIndex = 0;
+        }
+
+        public void UpdateLanguageBox()
+        {
+            LanguageList.Clear();
+            LanguageList = DB_Language.SearchAllLanguages(Conn.Connection);
+            var item = LanguageList.Find(x => x.Language_id == 1);
+            LanguageList.Remove(item);
+            LanguageList.Insert(0, item);
+            LanguageList.Add(new Language() { Language_id = 50000, LanguageName = "Adicionar novo idioma"});
+
+            Box_Language.DataSource = null;
+            Box_Language.DataSource = LanguageList;
+            Box_Language.ValueMember = "Language_id";
+            Box_Language.DisplayMember = "LanguageName";
+
+            Box_Language.SelectedIndex = 0;
+        }
+
+        public void UpdatePublisherBox()
+        {
+            PublisherList.Clear();
+            PublisherList = DB_Publisher.ListAllPublishers(Conn.Connection);
+            PublisherList.Add(new Publisher() { Publisher_id = 50000, PublisherName = "Adicionar nova editora"});
+
+            Box_Publisher.DataSource = null;
+            Box_Publisher.DataSource = PublisherList;
+            Box_Publisher.ValueMember = "Publisher_Id";
+            Box_Publisher.DisplayMember = "PublisherName";
+
+            Box_Publisher.SelectedIndex = 0;
+        }
+
+        public void UpdateCategoryBox()
+        {
+            CategoryList.Clear();
+            CategoryList = DB_Category.ListAllCategories(Conn.Connection);
+
+            Box_Category.DataSource = null;
+            Box_Category.DataSource = PublisherList;
+            Box_Category.ValueMember = "Publisher_Id";
+            Box_Category.DisplayMember = "PublisherName";
+        }
     }
 }

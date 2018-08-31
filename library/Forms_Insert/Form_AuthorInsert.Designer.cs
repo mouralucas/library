@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Insert
+﻿namespace Library.Forms_Insert
 {
     partial class Form_AuthorInsert
     {
@@ -35,7 +35,7 @@
             this.box_language = new System.Windows.Forms.ComboBox();
             this.box_country = new System.Windows.Forms.ComboBox();
             this.text_authorAbout = new System.Windows.Forms.RichTextBox();
-            this.button_save = new System.Windows.Forms.Button();
+            this.button_transaction = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picture_author)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             this.picture_author.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picture_author.TabIndex = 1;
             this.picture_author.TabStop = false;
-            this.picture_author.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picture_author_MouseClick);
+            this.picture_author.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Picture_author_MouseClick);
             // 
             // label1
             // 
@@ -77,6 +77,7 @@
             this.box_language.Size = new System.Drawing.Size(149, 21);
             this.box_language.TabIndex = 6;
             this.box_language.Text = "Language";
+            this.box_language.SelectionChangeCommitted += new System.EventHandler(this.Box_language_SelectionChangeCommitted);
             // 
             // box_country
             // 
@@ -86,6 +87,7 @@
             this.box_country.Size = new System.Drawing.Size(149, 21);
             this.box_country.TabIndex = 5;
             this.box_country.Text = "Country";
+            this.box_country.SelectionChangeCommitted += new System.EventHandler(this.Box_country_SelectionChangeCommitted);
             // 
             // text_authorAbout
             // 
@@ -95,15 +97,15 @@
             this.text_authorAbout.TabIndex = 8;
             this.text_authorAbout.Text = "";
             // 
-            // button_save
+            // button_transaction
             // 
-            this.button_save.Location = new System.Drawing.Point(347, 219);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(149, 23);
-            this.button_save.TabIndex = 10;
-            this.button_save.Text = "Save";
-            this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            this.button_transaction.Location = new System.Drawing.Point(347, 219);
+            this.button_transaction.Name = "button_transaction";
+            this.button_transaction.Size = new System.Drawing.Size(149, 23);
+            this.button_transaction.TabIndex = 10;
+            this.button_transaction.Text = "Save";
+            this.button_transaction.UseVisualStyleBackColor = true;
+            this.button_transaction.Click += new System.EventHandler(this.Button_save_Click);
             // 
             // button_cancel
             // 
@@ -113,14 +115,14 @@
             this.button_cancel.TabIndex = 9;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            this.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
             // Form_AuthorInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(503, 251);
-            this.Controls.Add(this.button_save);
+            this.Controls.Add(this.button_transaction);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.text_authorAbout);
             this.Controls.Add(this.box_language);
@@ -129,6 +131,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picture_author);
             this.Name = "Form_AuthorInsert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Author";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_AuthorIns_FormClosing);
             this.Load += new System.EventHandler(this.Form_AuthorIns_Load);
@@ -145,7 +148,7 @@
         private System.Windows.Forms.ComboBox box_language;
         private System.Windows.Forms.ComboBox box_country;
         private System.Windows.Forms.RichTextBox text_authorAbout;
-        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_transaction;
         private System.Windows.Forms.Button button_cancel;
     }
 }

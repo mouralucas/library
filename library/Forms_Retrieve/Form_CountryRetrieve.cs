@@ -7,19 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.Connection;
-using library.DB_Manager;
-using library.Entities;
-using library.Forms_Insert;
+using Library.Connection;
+using Library.DB_Manager;
+using Library.Entities;
+using Library.Forms_Insert;
 
-namespace library.Forms_Retrieve
+namespace Library.Forms_Retrieve
 {
     public partial class Form_CountryRetrieve : Form
     {
-        DB_Countries db_country = new DB_Countries();
+        DB_Country db_country = new DB_Country();
         Conn conn = new Conn();
 
-        private List<Countries> countryList = new List<Countries>();
+        private List<Country> countryList = new List<Country>();
 
         public Form_CountryRetrieve()
         {
@@ -39,7 +39,7 @@ namespace library.Forms_Retrieve
             countryList.Clear();
             countryList = db_country.SearchAllCountries(conn.Connection);
 
-            foreach(Countries c in countryList)
+            foreach(Country c in countryList)
             {
                 table_countries.Rows.Add(c.Country_id, c.CountryName, c.ShowCountry);
             }
@@ -75,7 +75,8 @@ namespace library.Forms_Retrieve
 
             if(selectedRow < countryList.Count)
             {
-                countryInsert = new Form_CountryInsert(countryList[selectedRow], this) { Visible = true };
+                Country c = countryList.Find(x => x.Country_id.ToString() == table_countries.Rows[table_countries.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                countryInsert = new Form_CountryInsert(c, this) { Visible = true };
                 this.Visible = false;
             }
             else

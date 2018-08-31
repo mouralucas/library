@@ -5,26 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using library.Entities;
+using Library.Entities;
 
-namespace library.DB_Manager
+namespace Library.DB_Manager
 {
-    class DB_Publishers
+    class DB_Publisher
     {
         /*----- Strings that defines the queries -----*/
         private string insert;
         private string update;
         private string removeByName;
-        private string retrieveAll;
+        private string Retrieve;
         private string countString;
 
 
         /*----- Others Variables -----*/
         private int count = -1;
 
-        private List<Publishers> publisherList = new List<Publishers>();
-        private Publishers publisher;
-        private Countries country;
+        private List<Publisher> PublisherList = new List<Publisher>();
+        private Publisher publisher;
+        private Country country;
 
         public int Count(MySqlConnection conn)
         {
@@ -74,52 +74,47 @@ namespace library.DB_Manager
             }
         }
 
-        public List<Publishers> SearchAllPublishers(int publisher_id, string publisherName, int country_id, int searchType, MySqlConnection conn)
+        public List<Publisher> ListAllPublishers(MySqlConnection Conn)
         {
-            if (searchType == 0)
-            {
-                retrieveAll = "SELECT p.*, c.* FROM publishers p " +
-                    "LEFT JOIN countries c ON p.country_id = c.country_id " +
-                    "ORDER BY publisherName";
-            }
-            else
-            {
-                //query de busca por campo
-            }
+            Retrieve = "SELECT p.*, c.* FROM publishers p " 
+                + "LEFT JOIN countries c ON p.country_id = c.country_id " 
+                + "ORDER BY publisherName";
 
+            MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
+            SetPublisherData(Cmd);
+            return PublisherList;
+        }
 
-            MySqlCommand cmd = new MySqlCommand(retrieveAll, conn);
-            //parametros do busca por campos
-            MySqlDataReader dataRead = cmd.ExecuteReader();
+        private void SetPublisherData(MySqlCommand Cmd)
+        {
+            MySqlDataReader DataRead = Cmd.ExecuteReader();
 
-            while (dataRead.Read())
+            while (DataRead.Read())
             {
 
                 /*----- Retrieve the country from the author -----*/
-                country = new Countries
+                country = new Country
                 {
-                    Country_id = Convert.IsDBNull(dataRead["country_id"]) ? -1 : Convert.ToInt32(dataRead["country_id"]),
-                    CountryName = Convert.IsDBNull(dataRead["countryName"]) ? "" : dataRead["countryName"].ToString(),
-                    ShowCountry = Convert.IsDBNull(dataRead["showCountry"]) ? "" : dataRead["showCountry"].ToString()
+                    Country_id = Convert.IsDBNull(DataRead["country_id"]) ? -1 : Convert.ToInt32(DataRead["country_id"]),
+                    CountryName = Convert.IsDBNull(DataRead["countryName"]) ? "" : DataRead["countryName"].ToString(),
+                    ShowCountry = Convert.IsDBNull(DataRead["showCountry"]) ? "" : DataRead["showCountry"].ToString()
                 };
 
                 /*----- Retrieve the publisher itself-----*/
-                publisher = new Publishers()
+                publisher = new Publisher()
                 {
-                    Publisher_id = Convert.IsDBNull(dataRead["publisher_id"]) ? -1 : Convert.ToInt32(dataRead["publisher_id"]),
-                    PublisherName = Convert.IsDBNull(dataRead["publisherName"]) ? "" : dataRead["publisherName"].ToString(),
-                    PublisherAbout = Convert.IsDBNull(dataRead["publisherAbout"]) ? "" : dataRead["publisherAbout"].ToString(),
+                    Publisher_id = Convert.IsDBNull(DataRead["publisher_id"]) ? -1 : Convert.ToInt32(DataRead["publisher_id"]),
+                    PublisherName = Convert.IsDBNull(DataRead["publisherName"]) ? "" : DataRead["publisherName"].ToString(),
+                    PublisherAbout = Convert.IsDBNull(DataRead["publisherAbout"]) ? "" : DataRead["publisherAbout"].ToString(),
                     PublisherCountry = country,
-                    PublisherLogo = Convert.IsDBNull(dataRead["publisherLogo"]) ? null: (byte[])dataRead["publisherLogo"],
+                    PublisherLogo = Convert.IsDBNull(DataRead["publisherLogo"]) ? null : (byte[])DataRead["publisherLogo"],
                     //PublisherDateInsert = Convert.IsDBNull(dataRead["publisherLogo"]) ? 0000 - 00 - 00 00:00:00 : (DateTime)dataRead["publisherLogo"]
                 };
 
-                publisherList.Add(publisher);
+                PublisherList.Add(publisher);
             }
 
-            dataRead.Close();
-
-            return publisherList;
+            DataRead.Close();
         }
     }
 }

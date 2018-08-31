@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Retrieve
+﻿namespace Library.Forms_Retrieve
 {
     partial class Form_PublisherRetrieve
     {
@@ -99,7 +99,7 @@
             this.button_retrieveAll.TabIndex = 5;
             this.button_retrieveAll.Text = "Retrieve All";
             this.button_retrieveAll.UseVisualStyleBackColor = true;
-            this.button_retrieveAll.Click += new System.EventHandler(this.button_retrieveAll_Click);
+            this.button_retrieveAll.Click += new System.EventHandler(this.Button_RetrieveAll_Click);
             // 
             // button_delete
             // 

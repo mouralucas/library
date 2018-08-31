@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace library.Entities
+namespace Library.Entities
 {
-    public class Languages
+    public class Language
     {
         public int Language_id { set; get; }
         public string LanguageName { set; get; }

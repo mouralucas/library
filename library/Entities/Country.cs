@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace library.Entities
+namespace Library.Entities
 {
-    public class Countries
+    public class Country
     {
         public int Country_id { set; get; }
         public string CountryName { set; get; }

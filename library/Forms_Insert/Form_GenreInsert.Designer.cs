@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Insert
+﻿namespace Library.Forms_Insert
 {
     partial class Form_GenreInsert
     {
@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button_saveGenre = new System.Windows.Forms.Button();
+            this.Button_Save = new System.Windows.Forms.Button();
             this.text_genreName = new System.Windows.Forms.TextBox();
             this.label_genreName = new System.Windows.Forms.Label();
             this.button_cancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button_saveGenre
+            // Button_Save
             // 
-            this.button_saveGenre.Location = new System.Drawing.Point(141, 94);
-            this.button_saveGenre.Name = "button_saveGenre";
-            this.button_saveGenre.Size = new System.Drawing.Size(124, 23);
-            this.button_saveGenre.TabIndex = 0;
-            this.button_saveGenre.Text = "Save";
-            this.button_saveGenre.UseVisualStyleBackColor = true;
-            this.button_saveGenre.Click += new System.EventHandler(this.button1_Click);
+            this.Button_Save.Location = new System.Drawing.Point(141, 94);
+            this.Button_Save.Name = "Button_Save";
+            this.Button_Save.Size = new System.Drawing.Size(124, 23);
+            this.Button_Save.TabIndex = 0;
+            this.Button_Save.Text = "Save";
+            this.Button_Save.UseVisualStyleBackColor = true;
+            this.Button_Save.Click += new System.EventHandler(this.Button_Save_Click);
             // 
             // text_genreName
             // 
@@ -69,7 +69,7 @@
             this.button_cancel.TabIndex = 4;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            this.button_cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
             // label1
             // 
@@ -90,11 +90,11 @@
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.label_genreName);
             this.Controls.Add(this.text_genreName);
-            this.Controls.Add(this.button_saveGenre);
+            this.Controls.Add(this.Button_Save);
             this.Name = "Form_GenreInsert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Genres";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_GenreInsert_FormClosing);
-            this.Load += new System.EventHandler(this.Form_GenreInsert_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,7 +102,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button_saveGenre;
+        private System.Windows.Forms.Button Button_Save;
         private System.Windows.Forms.TextBox text_genreName;
         private System.Windows.Forms.Label label_genreName;
         private System.Windows.Forms.Button button_cancel;

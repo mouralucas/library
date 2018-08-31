@@ -7,16 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.Connection;
-using library.DB_Manager;
-using library.Entities;
+using Library.Connection;
+using Library.DB_Manager;
+using Library.Entities;
 
-namespace library.Forms_Insert
+namespace Library.Forms_Insert
 {
     public partial class Form_SerieInsert : Form
     {
         Conn conn = new Conn();
-        DB_Series db_serie = new DB_Series();
+        DB_Serie db_serie = new DB_Serie();
+
+        Form ReturnForm;
 
         private bool insertOk = false;
 
@@ -24,7 +26,18 @@ namespace library.Forms_Insert
         {
             InitializeComponent();
 
-            /*---- Open the connection with the database ----*/
+            conn.OpenConn();
+
+            box_serieType.SelectedIndex = 0;
+        }
+
+        /*----- Constructor From Main Form ------*/
+        public Form_SerieInsert(Form ReturnForm)
+        {
+            InitializeComponent();
+
+            this.ReturnForm = ReturnForm;       //the form who invoked this form
+
             conn.OpenConn();
 
             box_serieType.SelectedIndex = 0;
@@ -32,13 +45,13 @@ namespace library.Forms_Insert
 
         private void Form_SerieInsert_Load(object sender, EventArgs e)
         {
-            for(int i = 0; i < 35; i++)
+            for(int i = 1; i < 35; i++)
             {
                 box_volumes.Items.Add(i);
             }
         }
 
-        private void button_save_Click(object sender, EventArgs e)
+        private void Button_save_Click(object sender, EventArgs e)
         {
             if (text_serieName.Text.Equals(""))
             {
@@ -54,7 +67,7 @@ namespace library.Forms_Insert
                     box_serieType.SelectedItem.ToString(),
                     text_serieSynopsis.Text, conn.Connection);
 
-                if (!insertOk)
+                if (insertOk)
                 {
                     text_serieName.Clear();
                     box_volumes.SelectedIndex = -1;
@@ -72,6 +85,10 @@ namespace library.Forms_Insert
 
         private void Form_SerieInsert_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (ReturnForm != null)
+            {
+                ReturnForm.Visible = true;
+            }
             conn.CloseConn();
         }
 

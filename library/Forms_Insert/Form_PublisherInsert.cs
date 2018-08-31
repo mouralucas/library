@@ -8,21 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.Connection;
-using library.Entities;
-using library.DB_Manager;
+using Library.Connection;
+using Library.Entities;
+using Library.DB_Manager;
 
-namespace library.Forms_Insert
+namespace Library.Forms_Insert
 {
     public partial class Form_PublisherInsert : Form
     {
         /*---- This call the default image in the publisher logo ----*/
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_PublisherInsert));
         Conn conn = new Conn();
-        DB_Countries db_country = new DB_Countries();
-        DB_Publishers db_publisher = new DB_Publishers();
+        DB_Country db_country = new DB_Country();
+        DB_Publisher db_publisher = new DB_Publisher();
 
-        private List<Countries> countryList;
+        Form returnForm;
+
+        private List<Country> countryList;
 
         private bool insertOk = false;
         private bool updateOk = false;
@@ -42,10 +44,27 @@ namespace library.Forms_Insert
             conn.OpenConn();
         }
 
+        /*----- Constructor From Main Form ------*/
+        public Form_PublisherInsert(Form returnForm)
+        {
+            InitializeComponent();
+
+            this.returnForm = returnForm;       //the form who invoked this form
+
+            /*---- Get the default image ----*/
+            MemoryStream ms = new MemoryStream();
+            picture_logo.Image.Save(ms, picture_logo.Image.RawFormat);
+            logoBytes = ms.ToArray();
+            ms.Close();
+
+            /*---- Open the connection with the database ----*/
+            conn.OpenConn();
+        }
+
         private void Form_PublisherInsert_Load(object sender, EventArgs e)
         {
             countryList = db_country.SearchAllCountries(conn.Connection);
-            foreach (Countries c in countryList)
+            foreach (Country c in countryList)
             {
                 if (c.ShowCountry.Equals("Yes"))
                 {
@@ -58,7 +77,7 @@ namespace library.Forms_Insert
         private void picture_logo_MouseClick(object sender, MouseEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp"; // image filters  
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp, *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"; // image filters  
 
             if (open.ShowDialog() == DialogResult.OK)
             {
@@ -72,7 +91,23 @@ namespace library.Forms_Insert
             }
         }
 
-        private void button_save_Click(object sender, EventArgs e)
+        private void Box_country_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (box_country.SelectedIndex == box_country.Items.Count - 1)
+            {
+                box_country.Items.Clear();
+                box_country.Items.Add("Country");
+                foreach (Country c in countryList)
+                {
+                    box_country.Items.Add(c.CountryName);
+                }
+                box_country.Items.Add("--");
+                box_country.SelectedIndex = -1;
+                box_country.Text = "Country";
+            }
+        }
+
+        private void Button_save_Click(object sender, EventArgs e)
         {
             if (text_publisherName.Equals(""))
             {
@@ -84,9 +119,10 @@ namespace library.Forms_Insert
             }
             else
             {
-                insertOk = db_publisher.InsertPublisher(text_publisherName.Text, 
+                insertOk = db_publisher.InsertPublisher(text_publisherName.Text,
                     text_publisherAbout.Text,
-                    countryList[box_country.SelectedIndex].Country_id, 
+                    countryList.Find(x => x.CountryName.Equals(box_country.SelectedItem)).Country_id,
+                    //countryList[box_country.SelectedIndex].Country_id, 
                     logoBytes,
                     conn.Connection);
 
@@ -108,7 +144,12 @@ namespace library.Forms_Insert
 
         private void Form_PublisherInsert_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (returnForm != null)
+            {
+                returnForm.Visible = true;
+            }
             conn.CloseConn();
         }
+
     }
 }

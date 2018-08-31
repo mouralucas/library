@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
-namespace library.Connection
+namespace Library.Connection
 {
     class Backup
     {

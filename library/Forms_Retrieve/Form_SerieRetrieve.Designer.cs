@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Retrieve
+﻿namespace Library.Forms_Retrieve
 {
     partial class Form_SerieRetrieve
     {
@@ -38,8 +38,8 @@
             this.text_serie_id = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.box_serieType = new System.Windows.Forms.ComboBox();
-            this.button_search = new System.Windows.Forms.Button();
-            this.button_retrieveAll = new System.Windows.Forms.Button();
+            this.Button_Search = new System.Windows.Forms.Button();
+            this.Rutton_RetrieveAll = new System.Windows.Forms.Button();
             this.button_delete = new System.Windows.Forms.Button();
             this.button_clean = new System.Windows.Forms.Button();
             this.button_detail = new System.Windows.Forms.Button();
@@ -128,24 +128,25 @@
             this.box_serieType.Size = new System.Drawing.Size(121, 21);
             this.box_serieType.TabIndex = 9;
             // 
-            // button_search
+            // Button_Search
             // 
-            this.button_search.Location = new System.Drawing.Point(304, 52);
-            this.button_search.Name = "button_search";
-            this.button_search.Size = new System.Drawing.Size(121, 23);
-            this.button_search.TabIndex = 10;
-            this.button_search.Text = "Search";
-            this.button_search.UseVisualStyleBackColor = true;
+            this.Button_Search.Location = new System.Drawing.Point(304, 52);
+            this.Button_Search.Name = "Button_Search";
+            this.Button_Search.Size = new System.Drawing.Size(121, 23);
+            this.Button_Search.TabIndex = 10;
+            this.Button_Search.Text = "Search";
+            this.Button_Search.UseVisualStyleBackColor = true;
+            this.Button_Search.Click += new System.EventHandler(this.Button_Search_Click);
             // 
-            // button_retrieveAll
+            // Rutton_RetrieveAll
             // 
-            this.button_retrieveAll.Location = new System.Drawing.Point(228, 52);
-            this.button_retrieveAll.Name = "button_retrieveAll";
-            this.button_retrieveAll.Size = new System.Drawing.Size(70, 23);
-            this.button_retrieveAll.TabIndex = 11;
-            this.button_retrieveAll.Text = "Retrieve All";
-            this.button_retrieveAll.UseVisualStyleBackColor = true;
-            this.button_retrieveAll.Click += new System.EventHandler(this.button_retrieveAll_Click);
+            this.Rutton_RetrieveAll.Location = new System.Drawing.Point(228, 52);
+            this.Rutton_RetrieveAll.Name = "Rutton_RetrieveAll";
+            this.Rutton_RetrieveAll.Size = new System.Drawing.Size(70, 23);
+            this.Rutton_RetrieveAll.TabIndex = 11;
+            this.Rutton_RetrieveAll.Text = "Retrieve All";
+            this.Rutton_RetrieveAll.UseVisualStyleBackColor = true;
+            this.Rutton_RetrieveAll.Click += new System.EventHandler(this.Button_retrieveAll_Click);
             // 
             // button_delete
             // 
@@ -204,8 +205,8 @@
             this.Controls.Add(this.button_detail);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_delete);
-            this.Controls.Add(this.button_retrieveAll);
-            this.Controls.Add(this.button_search);
+            this.Controls.Add(this.Rutton_RetrieveAll);
+            this.Controls.Add(this.Button_Search);
             this.Controls.Add(this.box_serieType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.text_serieName);
@@ -234,8 +235,8 @@
         private System.Windows.Forms.TextBox text_serie_id;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox box_serieType;
-        private System.Windows.Forms.Button button_search;
-        private System.Windows.Forms.Button button_retrieveAll;
+        private System.Windows.Forms.Button Button_Search;
+        private System.Windows.Forms.Button Rutton_RetrieveAll;
         private System.Windows.Forms.Button button_delete;
         private System.Windows.Forms.Button button_clean;
         private System.Windows.Forms.Button button_detail;

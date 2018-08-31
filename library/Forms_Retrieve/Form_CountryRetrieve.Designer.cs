@@ -1,4 +1,4 @@
-﻿namespace library.Forms_Retrieve
+﻿namespace Library.Forms_Retrieve
 {
     partial class Form_CountryRetrieve
     {

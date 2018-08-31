@@ -7,24 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.Connection;
-using library.DB_Manager;
-using library.Entities;
+using Library.Connection;
+using Library.DB_Manager;
+using Library.Entities;
 
 
-namespace library.Forms_Retrieve
+namespace Library.Forms_Retrieve
 {
     public partial class Form_AuthorRetrieve : Form
     {
-        DB_Authors db_author = new DB_Authors();
-        DB_Countries db_country = new DB_Countries();
-        DB_Languages db_language = new DB_Languages();
-        DB_Authors dba = new DB_Authors();
+        DB_Author db_author = new DB_Author();
+        DB_Country db_country = new DB_Country();
+        DB_Language db_language = new DB_Language();
+        DB_Author dba = new DB_Author();
         Conn conn = new Conn();
 
-        private List<Countries> countryList;
-        private List<Languages> languageList;
-        private List<Authors> authorList = new List<Authors>();
+        private List<Country> countryList;
+        private List<Language> languageList;
+        private List<Author> authorList = new List<Author>();
 
         private int search_id;
         private string searchName;
@@ -34,15 +34,13 @@ namespace library.Forms_Retrieve
         public Form_AuthorRetrieve()
         {
             InitializeComponent();
-
-            /*---- Open the connection with the database ----*/
             conn.OpenConn();
         }
 
         private void Form_AuthorRetrieve_Load(object sender, EventArgs e)
         {
             countryList = db_country.SearchAllCountries(conn.Connection);
-            foreach (Countries c in countryList)
+            foreach (Country c in countryList)
             {
                 if (c.ShowCountry.Equals("Yes"))
                 {
@@ -52,7 +50,7 @@ namespace library.Forms_Retrieve
             box_country.Items.Add("Show All");
 
             languageList = db_language.SearchAllLanguages(conn.Connection);
-            foreach (Languages l in languageList)
+            foreach (Language l in languageList)
             {
                 if (l.ShowLanguage.Equals("Yes"))
                 {
@@ -78,14 +76,14 @@ namespace library.Forms_Retrieve
 
         }
 
-        private void button_retrieveAll_Click(object sender, EventArgs e)
+        private void Button_ListAllAuthorsClick(object sender, EventArgs e)
         {
             table_authors.Rows.Clear();
             authorList.Clear();
-            authorList = db_author.SearchAllAuthors(-1, "", -1, -1, 0, conn.Connection);
+            authorList = db_author.ListAllAuthors(conn.Connection);
 
             //fills the table
-            foreach(Authors a in authorList)
+            foreach(Author a in authorList)
             {
                 table_authors.Rows.Add(a.Author_id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
             }
@@ -98,7 +96,7 @@ namespace library.Forms_Retrieve
             }
         }
 
-        private void button_search_Click(object sender, EventArgs e)
+        private void Button_search_Click(object sender, EventArgs e)
         {
             table_authors.Rows.Clear();
             authorList.Clear();
@@ -108,9 +106,9 @@ namespace library.Forms_Retrieve
             searchCountry = (box_country.SelectedItem == null) ? -1 : countryList[box_country.SelectedIndex].Country_id;
             searchLanguage = (box_language.SelectedItem == null) ? -1 : languageList[box_language.SelectedIndex].Language_id;
 
-            authorList = db_author.SearchAllAuthors(search_id, searchName, searchCountry, searchLanguage, 1, conn.Connection);
+            authorList = db_author.ListAuthorByAnyField(search_id, searchName, searchCountry, searchLanguage, conn.Connection);
 
-            foreach (Authors a in authorList)
+            foreach (Author a in authorList)
             {
                 table_authors.Rows.Add(a.Author_id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
             }
@@ -125,19 +123,19 @@ namespace library.Forms_Retrieve
             }
         }
 
-        private void button_detail_Click(object sender, EventArgs e)
+        private void Button_detail_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button_clean_Click(object sender, EventArgs e)
+        private void Button_clean_Click(object sender, EventArgs e)
         {
             text_autor_id.Text = "";
             text_authorName.Text = "";
 
         }
 
-        private void button_cancel_Click(object sender, EventArgs e)
+        private void Button_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

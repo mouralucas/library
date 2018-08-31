@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace library.Entities
+namespace Library.Entities
 {
-    class Series
+    class Serie
     {
         public int Serie_id { set; get; }
         public string SerieName { set; get; }

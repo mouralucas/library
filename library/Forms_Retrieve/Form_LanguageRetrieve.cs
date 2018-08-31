@@ -7,19 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using library.DB_Manager;
-using library.Entities;
-using library.Connection;
-using library.Forms_Insert;
+using Library.DB_Manager;
+using Library.Entities;
+using Library.Connection;
+using Library.Forms_Insert;
 
-namespace library.Forms_Retrieve
+namespace Library.Forms_Retrieve
 {
     public partial class Form_LanguageRetrieve : Form
     {
-        DB_Languages db_language = new DB_Languages();
+        DB_Language db_language = new DB_Language();
         Conn conn = new Conn();
 
-        List<Languages> languageList = new List<Languages>();
+        List<Language> languageList = new List<Language>();
 
 
         public Form_LanguageRetrieve()
@@ -36,7 +36,7 @@ namespace library.Forms_Retrieve
             languageList.Clear();
             languageList = db_language.SearchAllLanguages(conn.Connection);
 
-            foreach(Languages l in languageList)
+            foreach(Language l in languageList)
             {
                 table_languages.Rows.Add(l.Language_id, l.LanguageName, l.ShowLanguage);
             }

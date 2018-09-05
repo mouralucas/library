@@ -21,9 +21,10 @@ namespace Library.DB_Manager
         private int count = -1;
 
         private List<Author> AuthorList = new List<Author>();
-        private Author author;
-        private Country country;
-        private Language language;
+        private Author Author;
+        private Country Country;
+        private Language Language;
+        private Category Category;
 
         public int Count(MySqlConnection conn)
         {
@@ -37,11 +38,11 @@ namespace Library.DB_Manager
         }
 
         /*----- Insert Query -----*/
-        public bool InsertAuthor(string AuthorName, string AuthorAbout, int Country_id, int Language_id, byte[] AuthorPhoto, MySqlConnection Conn)
+        public bool InsertAuthor(string AuthorName, string AuthorAbout, int Country_id, int Language_id, int Category_Id, byte[] AuthorPhoto, MySqlConnection Conn)
         {
 
-            Insert = "INSERT INTO authors (authorName, authorAbout, country_id, language_id, authorPhoto, authorDateInsert) " +
-                "VALUES (@name, @about, @country, @language, @photo, current_timestamp())";
+            Insert = "INSERT INTO authors (authorName, authorAbout, country_id, language_id, category_id, authorPhoto, authorDateInsert) " +
+                "VALUES (@name, @about, @country, @language, @category, @photo, current_timestamp())";
 
             try
             {
@@ -51,12 +52,14 @@ namespace Library.DB_Manager
                 cmd.Parameters.Add("@about", MySqlDbType.MediumText);
                 cmd.Parameters.Add("@country", MySqlDbType.Int32, 11);
                 cmd.Parameters.Add("@language", MySqlDbType.Int32, 11);
+                cmd.Parameters.Add("@category", MySqlDbType.Int32, 11);
                 cmd.Parameters.Add("@photo", MySqlDbType.MediumBlob);
 
                 cmd.Parameters["@name"].Value = AuthorName;
                 cmd.Parameters["@about"].Value = AuthorAbout;
                 cmd.Parameters["@country"].Value = Country_id;
                 cmd.Parameters["@language"].Value = Language_id;
+                cmd.Parameters["@category"].Value = Category_Id;
                 cmd.Parameters["@photo"].Value = AuthorPhoto;
 
                 if (cmd.ExecuteNonQuery() > 0)
@@ -139,10 +142,14 @@ namespace Library.DB_Manager
 
         public List<Author> ListAllAuthors(MySqlConnection Conn)
         {
-            Retrieve = "SELECT a.*, c.*, l.* FROM authors a " +
-                   "LEFT JOIN countries c on a.country_id = c.country_id " +
-                   "LEFT JOIN languages l on a.language_id = l.language_id " +
-                   "ORDER BY authorName";
+            Retrieve = "SELECT a.*, c.*, l.*, cat.* FROM authors a "
+                    + "LEFT JOIN countries c "
+                    + "    on a.country_id = c.country_id "
+                    + "LEFT JOIN languages l "
+                    + "    on a.language_id = l.language_id "
+                    + "LEFT JOIN category cat "
+                    + "     ON a.category_id = cat.category_id "    
+                    + "ORDER BY authorName";
 
             MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
             SetAuthorData(Cmd);
@@ -156,34 +163,39 @@ namespace Library.DB_Manager
 
             while (DataRead.Read())
             {
-                /*----- Retrieve the country from the author -----*/
-                country = new Country
+                Country = new Country
                 {
-                    Country_id = Convert.IsDBNull(DataRead["country_id"]) ? -1 : Convert.ToInt32(DataRead["country_id"]),
+                    Country_Id = Convert.IsDBNull(DataRead["country_id"]) ? -1 : Convert.ToInt32(DataRead["country_id"]),
                     CountryName = Convert.IsDBNull(DataRead["countryName"]) ? "" : DataRead["countryName"].ToString(),
                     ShowCountry = Convert.IsDBNull(DataRead["showCountry"]) ? "" : DataRead["showCountry"].ToString()
                 };
 
-                /*----- Retrieve the language from the author -----*/
-                language = new Language
+                Language = new Language
                 {
                     Language_id = Convert.IsDBNull(DataRead["language_id"]) ? -1 : Convert.ToInt32(DataRead["language_id"]),
                     LanguageName = Convert.IsDBNull(DataRead["languageName"]) ? "" : DataRead["languageName"].ToString(),
                     ShowLanguage = Convert.IsDBNull(DataRead["showLanguage"]) ? "" : DataRead["showLanguage"].ToString()
                 };
 
-                /*----- Retrieve the author itself-----*/
-                author = new Author
+                Category = new Category()
+                {
+                    Category_Id = Convert.IsDBNull(DataRead["category_id"]) ? -1 : Convert.ToInt32(DataRead["category_id"]),
+                    CategoryName = Convert.IsDBNull(DataRead["category"]) ? "" : DataRead["category"].ToString(),
+                    Description = Convert.IsDBNull(DataRead["description"]) ? "" : DataRead["description"].ToString()
+                };
+
+                Author = new Author
                 {
                     Author_id = Convert.IsDBNull(DataRead["author_id"]) ? -1 : Convert.ToInt32(DataRead["author_id"]),
                     AuthorName = Convert.IsDBNull(DataRead["authorName"]) ? "" : DataRead["authorName"].ToString(),
                     AuthorAbout = Convert.IsDBNull(DataRead["authorAbout"]) ? "" : DataRead["authorAbout"].ToString(),
-                    AuthorCountry = country,
-                    AuthorLanguage = language,
+                    AuthorCountry = Country,
+                    AuthorLanguage = Language,
+                    AuthorCategory = Category,
                     AuthorPhoto = Convert.IsDBNull(DataRead["authorPhoto"]) ? null : (byte[])DataRead["authorPhoto"]
                 };
 
-                AuthorList.Add(author);
+                AuthorList.Add(Author);
             }
 
             DataRead.Close();

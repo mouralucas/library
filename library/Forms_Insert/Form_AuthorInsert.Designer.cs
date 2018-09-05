@@ -32,11 +32,12 @@
             this.picture_author = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.text_authorName = new System.Windows.Forms.TextBox();
-            this.box_language = new System.Windows.Forms.ComboBox();
-            this.box_country = new System.Windows.Forms.ComboBox();
+            this.Box_Language = new System.Windows.Forms.ComboBox();
+            this.Box_Country = new System.Windows.Forms.ComboBox();
             this.text_authorAbout = new System.Windows.Forms.RichTextBox();
             this.button_transaction = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
+            this.Box_Category = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture_author)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,25 +70,25 @@
             this.text_authorName.Size = new System.Drawing.Size(300, 20);
             this.text_authorName.TabIndex = 4;
             // 
-            // box_language
+            // Box_Language
             // 
-            this.box_language.FormattingEnabled = true;
-            this.box_language.Location = new System.Drawing.Point(343, 55);
-            this.box_language.Name = "box_language";
-            this.box_language.Size = new System.Drawing.Size(149, 21);
-            this.box_language.TabIndex = 6;
-            this.box_language.Text = "Language";
-            this.box_language.SelectionChangeCommitted += new System.EventHandler(this.Box_language_SelectionChangeCommitted);
+            this.Box_Language.FormattingEnabled = true;
+            this.Box_Language.Location = new System.Drawing.Point(299, 55);
+            this.Box_Language.Name = "Box_Language";
+            this.Box_Language.Size = new System.Drawing.Size(98, 21);
+            this.Box_Language.TabIndex = 6;
+            this.Box_Language.Text = "Language";
+            this.Box_Language.SelectionChangeCommitted += new System.EventHandler(this.Box_Language_SelectionChangeCommitted);
             // 
             // box_country
             // 
-            this.box_country.FormattingEnabled = true;
-            this.box_country.Location = new System.Drawing.Point(192, 55);
-            this.box_country.Name = "box_country";
-            this.box_country.Size = new System.Drawing.Size(149, 21);
-            this.box_country.TabIndex = 5;
-            this.box_country.Text = "Country";
-            this.box_country.SelectionChangeCommitted += new System.EventHandler(this.Box_country_SelectionChangeCommitted);
+            this.Box_Country.FormattingEnabled = true;
+            this.Box_Country.Location = new System.Drawing.Point(192, 55);
+            this.Box_Country.Name = "box_country";
+            this.Box_Country.Size = new System.Drawing.Size(101, 21);
+            this.Box_Country.TabIndex = 5;
+            this.Box_Country.Text = "Country";
+            this.Box_Country.SelectionChangeCommitted += new System.EventHandler(this.Box_Country_SelectionChangeCommitted);
             // 
             // text_authorAbout
             // 
@@ -105,7 +106,7 @@
             this.button_transaction.TabIndex = 10;
             this.button_transaction.Text = "Save";
             this.button_transaction.UseVisualStyleBackColor = true;
-            this.button_transaction.Click += new System.EventHandler(this.Button_save_Click);
+            this.button_transaction.Click += new System.EventHandler(this.Button_Save_Click);
             // 
             // button_cancel
             // 
@@ -117,16 +118,25 @@
             this.button_cancel.UseVisualStyleBackColor = true;
             this.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
+            // Box_Category
+            // 
+            this.Box_Category.FormattingEnabled = true;
+            this.Box_Category.Location = new System.Drawing.Point(403, 55);
+            this.Box_Category.Name = "Box_Category";
+            this.Box_Category.Size = new System.Drawing.Size(88, 21);
+            this.Box_Category.TabIndex = 11;
+            // 
             // Form_AuthorInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(503, 251);
+            this.Controls.Add(this.Box_Category);
             this.Controls.Add(this.button_transaction);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.text_authorAbout);
-            this.Controls.Add(this.box_language);
-            this.Controls.Add(this.box_country);
+            this.Controls.Add(this.Box_Language);
+            this.Controls.Add(this.Box_Country);
             this.Controls.Add(this.text_authorName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picture_author);
@@ -134,7 +144,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Author";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_AuthorIns_FormClosing);
-            this.Load += new System.EventHandler(this.Form_AuthorIns_Load);
+            this.Load += new System.EventHandler(this.Form_AuthorInsert_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picture_author)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -145,10 +155,11 @@
         private System.Windows.Forms.PictureBox picture_author;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox text_authorName;
-        private System.Windows.Forms.ComboBox box_language;
-        private System.Windows.Forms.ComboBox box_country;
+        private System.Windows.Forms.ComboBox Box_Language;
+        private System.Windows.Forms.ComboBox Box_Country;
         private System.Windows.Forms.RichTextBox text_authorAbout;
         private System.Windows.Forms.Button button_transaction;
         private System.Windows.Forms.Button button_cancel;
+        private System.Windows.Forms.ComboBox Box_Category;
     }
 }

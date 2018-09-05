@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Library.Entities
 {
-    class Category
+    public class Category
     {
-        public int Category_id { set; get; }
+        public int Category_Id { set; get; }
         public String CategoryName { set; get; }
         public String Description { set; get; }
     }

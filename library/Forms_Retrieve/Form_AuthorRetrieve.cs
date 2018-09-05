@@ -103,7 +103,7 @@ namespace Library.Forms_Retrieve
 
             search_id = (text_autor_id.Text.Equals("")) ? -1 : Convert.ToInt32(text_autor_id.Text);
             searchName = text_authorName.Text;
-            searchCountry = (box_country.SelectedItem == null) ? -1 : countryList[box_country.SelectedIndex].Country_id;
+            searchCountry = (box_country.SelectedItem == null) ? -1 : countryList[box_country.SelectedIndex].Country_Id;
             searchLanguage = (box_language.SelectedItem == null) ? -1 : languageList[box_language.SelectedIndex].Language_id;
 
             authorList = db_author.ListAuthorByAnyField(search_id, searchName, searchCountry, searchLanguage, conn.Connection);

@@ -62,7 +62,7 @@ namespace Library.Forms_Insert
             this.ReturnForm = returnForm;       //the form who invoked the edition
 
             /*---- Old values to check if a change was made ----*/
-            currentCountry_id = country.Country_id;
+            currentCountry_id = country.Country_Id;
             oldName = country.CountryName;
             oldShowCountry = country.ShowCountry;
             flag = country.CountryFlag;

@@ -35,10 +35,10 @@ namespace Library.DB_Manager
         }
 
         /*----- Insert Query -----*/
-        public bool InsertPublisher(string serieName, int serieVolumes, string serieType, string serieSynopsis, MySqlConnection Conn)
+        public bool InsertPublisher(string serieName, int serieVolumes, int category_id, string serieSynopsis, MySqlConnection Conn)
         {
-            Insert = "INSERT INTO series (serieName, serieVolumes, serieType, serieSynopsis, serieDateInsert) " +
-                "VALUES (@serieName, @serieVolumes, @serieType, @serieSynopsis, current_timestamp())";
+            Insert = "INSERT INTO series (serieName, serieVolumes, category_id, serieSynopsis, serieDateInsert) " +
+                "VALUES (@serieName, @serieVolumes, @category_id, @serieSynopsis, current_timestamp())";
 
             try
             {
@@ -46,12 +46,12 @@ namespace Library.DB_Manager
 
                 cmd.Parameters.Add("@serieName", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@serieVolumes", MySqlDbType.Int32);
-                cmd.Parameters.Add("@serieType", MySqlDbType.Enum);
+                cmd.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
                 cmd.Parameters.Add("@serieSynopsis", MySqlDbType.MediumText);
 
                 cmd.Parameters["@serieName"].Value = serieName;
                 cmd.Parameters["@serieVolumes"].Value = serieVolumes;
-                cmd.Parameters["@serieType"].Value = serieType;
+                cmd.Parameters["@category_id"].Value = category_id;
                 cmd.Parameters["@serieSynopsis"].Value = serieSynopsis;
 
                 if (cmd.ExecuteNonQuery() > 0)
@@ -86,16 +86,16 @@ namespace Library.DB_Manager
             return SerieList;
         }
 
-        public List<Serie> ListSeriesByType(String SerieType, MySqlConnection Conn)
+        public List<Serie> ListSeriesByCategory(int Category_Id, MySqlConnection Conn)
         {
             Retrieve = "SELECT * FROM series " +
-                "WHERE serieType = @SerieType" +
-                "   or serieType = 'All'";
+                "WHERE category_id = @category_id" +
+                "   or category_id = 1";
 
             MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
-            Cmd.Parameters.Add("@SerieType", MySqlDbType.Enum);
+            Cmd.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
    
-            Cmd.Parameters["@SerieType"].Value = SerieType;
+            Cmd.Parameters["@category_id"].Value = Category_Id;
 
             SetSerieData(Cmd);
             return SerieList;
@@ -114,7 +114,8 @@ namespace Library.DB_Manager
                     Serie_id = Convert.IsDBNull(dataRead["serie_id"]) ? -1 : Convert.ToInt32(dataRead["serie_id"]),
                     SerieName = Convert.IsDBNull(dataRead["serieName"]) ? "" : (dataRead["serieName"]).ToString(),
                     SerieVolumes = Convert.IsDBNull(dataRead["serieVolumes"]) ? -1 : Convert.ToInt32(dataRead["serieVolumes"]),
-                    SerieType = Convert.IsDBNull(dataRead["serieType"]) ? "" : dataRead["serieType"].ToString(),
+                    SerieCategory = Convert.IsDBNull(dataRead["serieCategory"]) ? "" : dataRead["serieCategory"].ToString(),
+                    SerieCategory_id = Convert.IsDBNull(dataRead["category_id"]) ? -1 : Convert.ToInt32(dataRead["category_id"]),
                     SerieSynopsis = Convert.IsDBNull(dataRead["serieSynopsis"]) ? "" : dataRead["serieSynopsis"].ToString()
                 };
 

@@ -15,8 +15,12 @@ namespace Library.Forms_Insert
 {
     public partial class Form_SerieInsert : Form
     {
-        Conn conn = new Conn();
+        Conn Conn = new Conn();
+
         DB_Serie db_serie = new DB_Serie();
+        DB_Category DB_Category = new DB_Category();
+
+        List<Category> CategoryList = new List<Category>();
 
         Form ReturnForm;
 
@@ -26,9 +30,7 @@ namespace Library.Forms_Insert
         {
             InitializeComponent();
 
-            conn.OpenConn();
-
-            box_serieType.SelectedIndex = 0;
+            Conn.OpenConn();
         }
 
         /*----- Constructor From Main Form ------*/
@@ -38,9 +40,7 @@ namespace Library.Forms_Insert
 
             this.ReturnForm = ReturnForm;       //the form who invoked this form
 
-            conn.OpenConn();
-
-            box_serieType.SelectedIndex = 0;
+            Conn.OpenConn();
         }
 
         private void Form_SerieInsert_Load(object sender, EventArgs e)
@@ -49,9 +49,11 @@ namespace Library.Forms_Insert
             {
                 box_volumes.Items.Add(i);
             }
+
+            UpdateCategoryBox();
         }
 
-        private void Button_save_Click(object sender, EventArgs e)
+        private void Button_Save_Click(object sender, EventArgs e)
         {
             if (text_serieName.Text.Equals(""))
             {
@@ -64,8 +66,8 @@ namespace Library.Forms_Insert
             {
                 insertOk = db_serie.InsertPublisher(text_serieName.Text, 
                     Convert.ToInt32(box_volumes.SelectedItem.ToString()), 
-                    box_serieType.SelectedItem.ToString(),
-                    text_serieSynopsis.Text, conn.Connection);
+                    (int)Box_Category.SelectedValue,
+                    text_serieSynopsis.Text, Conn.Connection);
 
                 if (insertOk)
                 {
@@ -73,12 +75,12 @@ namespace Library.Forms_Insert
                     box_volumes.SelectedIndex = -1;
                     box_volumes.Text = "Volumes";
                     text_serieSynopsis.Clear();
-                    box_serieType.SelectedIndex = 0;
+                    Box_Category.SelectedIndex = 0;
                 }
             }
         }
 
-        private void button_cancel_Click(object sender, EventArgs e)
+        private void Button_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -89,9 +91,22 @@ namespace Library.Forms_Insert
             {
                 ReturnForm.Visible = true;
             }
-            conn.CloseConn();
+            Conn.CloseConn();
         }
 
+        /*** ***/
+        public void UpdateCategoryBox()
+        {
+            CategoryList.Clear();
+            CategoryList = DB_Category.ListAllCategories(Conn.Connection);
+
+            Box_Category.DataSource = null;
+            Box_Category.DataSource = CategoryList;
+            Box_Category.ValueMember = "Category_Id";
+            Box_Category.DisplayMember = "CategoryName";
+
+            Box_Category.SelectedIndex = 0;
+        }
 
     }
 }

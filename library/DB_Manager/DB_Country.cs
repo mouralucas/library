@@ -158,7 +158,7 @@ namespace Library.DB_Manager
             {
                 country = new Country()
                 {
-                    Country_id = Convert.IsDBNull(dataRead["country_id"]) ? -1 : Convert.ToInt32(dataRead["country_id"]),
+                    Country_Id = Convert.IsDBNull(dataRead["country_id"]) ? -1 : Convert.ToInt32(dataRead["country_id"]),
                     CountryName = Convert.IsDBNull(dataRead["countryName"]) ? "" : dataRead["countryName"].ToString(),
                     ShowCountry = Convert.IsDBNull(dataRead["showCountry"]) ? "" : dataRead["showCountry"].ToString(),
                     CountryFlag = Convert.IsDBNull(dataRead["countryFlag"]) ? null : (byte[])dataRead["countryFlag"]

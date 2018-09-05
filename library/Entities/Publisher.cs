@@ -12,6 +12,7 @@ namespace Library.Entities
         public string PublisherName { set; get; }
         public string PublisherAbout { set; get; }
         public Country PublisherCountry { set; get; }
+        public Category PublisherCategory { set; get; }
         public byte[] PublisherLogo { set; get; }
         public DateTime PublisherDateInsert { set; get; }
         public DateTime PublisherDateUpdate { set; get; }

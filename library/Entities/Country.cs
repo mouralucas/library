@@ -8,7 +8,7 @@ namespace Library.Entities
 {
     public class Country
     {
-        public int Country_id { set; get; }
+        public int Country_Id { set; get; }
         public string CountryName { set; get; }
         public string ShowCountry { set; get; }
         public byte[] CountryFlag { set; get; }

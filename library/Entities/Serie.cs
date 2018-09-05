@@ -11,7 +11,8 @@ namespace Library.Entities
         public int Serie_id { set; get; }
         public string SerieName { set; get; }
         public int SerieVolumes { set; get; }
-        public string SerieType { set; get; }
+        public string SerieCategory { set; get; }
+        public int SerieCategory_id { set; get; }
         public string SerieSynopsis { set; get; }
     }
 }

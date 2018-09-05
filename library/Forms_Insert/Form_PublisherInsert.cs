@@ -121,7 +121,7 @@ namespace Library.Forms_Insert
             {
                 insertOk = db_publisher.InsertPublisher(text_publisherName.Text,
                     text_publisherAbout.Text,
-                    countryList.Find(x => x.CountryName.Equals(box_country.SelectedItem)).Country_id,
+                    countryList.Find(x => x.CountryName.Equals(box_country.SelectedItem)).Country_Id,
                     //countryList[box_country.SelectedIndex].Country_id, 
                     logoBytes,
                     conn.Connection);

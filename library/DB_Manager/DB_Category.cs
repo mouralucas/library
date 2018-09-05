@@ -48,13 +48,15 @@ namespace Library.DB_Manager
             {
                 category = new Category()
                 {
-                    Category_id = Convert.IsDBNull(DataRead["category_id"]) ? -1 : Convert.ToInt32(DataRead["country_id"]),
+                    Category_Id = Convert.IsDBNull(DataRead["category_id"]) ? -1 : Convert.ToInt32(DataRead["category_id"]),
                     CategoryName = Convert.IsDBNull(DataRead["category"]) ? "" : DataRead["category"].ToString(),
                     Description = Convert.IsDBNull(DataRead["description"]) ? "" : DataRead["description"].ToString()
                 };
 
                 CategoryList.Add(category);
             }
+
+            DataRead.Close();
         }
     }
 }

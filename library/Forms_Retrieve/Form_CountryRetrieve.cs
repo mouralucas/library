@@ -41,7 +41,7 @@ namespace Library.Forms_Retrieve
 
             foreach(Country c in countryList)
             {
-                table_countries.Rows.Add(c.Country_id, c.CountryName, c.ShowCountry);
+                table_countries.Rows.Add(c.Country_Id, c.CountryName, c.ShowCountry);
             }
 
             if (countryList.Count != 0)
@@ -75,7 +75,7 @@ namespace Library.Forms_Retrieve
 
             if(selectedRow < countryList.Count)
             {
-                Country c = countryList.Find(x => x.Country_id.ToString() == table_countries.Rows[table_countries.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                Country c = countryList.Find(x => x.Country_Id.ToString() == table_countries.Rows[table_countries.CurrentCell.RowIndex].Cells[0].Value.ToString());
                 countryInsert = new Form_CountryInsert(c, this) { Visible = true };
                 this.Visible = false;
             }

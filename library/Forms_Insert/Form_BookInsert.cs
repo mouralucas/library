@@ -41,6 +41,8 @@ namespace Library.Forms_Insert
         List<int> SelectedAuthors = new List<int>();
         List<int> SelectedGenres = new List<int>();
 
+        Serie volumeUnico;
+
         private bool InsertOk = false;
         private byte[] ImageBytes;
 
@@ -54,8 +56,6 @@ namespace Library.Forms_Insert
         {
             InitializeComponent();
             Conn.OpenConn();
-
-            Box_Category.SelectedIndex = 0;
 
             /*---- Get the default image ----*/
             MemoryStream ms = new MemoryStream();
@@ -72,40 +72,29 @@ namespace Library.Forms_Insert
         public Form_BookInsert(Form ReturnGeneric)
         {
             InitializeComponent();
-            Conn.OpenConn();
+            this.ReturnGeneric = ReturnGeneric;
+            LoadContents();
+        }
 
-            Box_Category.SelectedIndex = 0;
-            this.ReturnGeneric = ReturnGeneric;      
+        private void LoadContents()
+        {
+            Conn.OpenConn();
 
             /*---- Get the default image ----*/
             MemoryStream ms = new MemoryStream();
             Book_Cover.Image.Save(ms, Book_Cover.Image.RawFormat);
             ImageBytes = ms.ToArray();
             ms.Close();
-
-            /*Criar um construtor para cada tipo de midia (livro, manga, hq) quando for chamado define as series 
-              baseado no tipo */
-
         }
 
         private void Form_BookInsert_Load(object sender, EventArgs e)
         {
-
-            UpdateAuthorBox();
-            UpdateLanguageBox();
-            UpdatePublisherBox();
-            UpdateGenreBox();
-
-            SerieList = DB_Serie.ListSeriesByType(Box_Category.SelectedItem.ToString(), Conn.Connection);
-            var item = SerieList.Find(x => x.Serie_id == 1);
-            SerieList.Remove(item);
-            SerieList.Insert(0, item);
-            Box_Serie.DataSource = SerieList;
-            Box_Serie.ValueMember = "Serie_id";
-            Box_Serie.DisplayMember = "SerieName";
-
-            Box_Volume.Items.Add(1);
-            Box_Volume.SelectedIndex = 0;
+            GetCategoryInfo();
+            GetAuthorInfo();
+            GetGenreInfo();
+            GetLanguageInfo();
+            GetPublisherInfo();            
+            GetSerieInfo();           
         }
 
         private void Button_Transaction_Click(object sender, EventArgs e)
@@ -135,8 +124,7 @@ namespace Library.Forms_Insert
                 Text_OriginalSubTitle.Enabled = true;
             }
         }
-
-
+        
         private void Text_Title_TextChanged(object sender, EventArgs e)
         {
             if (CheckBox_SameAsTitle.Checked)
@@ -155,9 +143,9 @@ namespace Library.Forms_Insert
 
         private void Box_Serie_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            int selectedSerie = (int)Box_Serie.SelectedValue;
+            //int selectedSerie = (int)Box_Serie.SelectedValue;
             Box_Volume.Items.Clear();
-            int v = SerieList.Find(x => x.Serie_id == selectedSerie).SerieVolumes;
+            int v = SerieList.Find(x => x.Serie_id == (int)Box_Serie.SelectedValue).SerieVolumes;
             for (int i = 1; i <= v; i++)
             {
                 Box_Volume.Items.Add(i);
@@ -168,17 +156,9 @@ namespace Library.Forms_Insert
 
         private void Box_Categary_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SerieList = DB_Serie.ListSeriesByType(Box_Category.SelectedItem.ToString(), Conn.Connection);
-
-            var item = SerieList.Find(x => x.Serie_id == 1);
-            SerieList.Remove(item);
-            SerieList.Insert(0, item);
-
-            Box_Serie.DataSource = null;
-            Box_Serie.DataSource = SerieList;
-            Box_Serie.ValueMember = "Serie_id";
-            Box_Serie.DisplayMember = "SerieName";
-            Box_Serie.SelectedIndex = 0;
+            SetSerieBox();
+            SetAuthorBox();
+            SetPublisherBox();
         }
 
         private void Box_Author_SelectionChangeCommitted(object sender, EventArgs e)
@@ -286,7 +266,7 @@ namespace Library.Forms_Insert
             Conn.CloseConn();
         }
 
-        private void Button_cancel_Click(object sender, EventArgs e)
+        private void Button_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -310,12 +290,16 @@ namespace Library.Forms_Insert
             {
                 MessageBox.Show("You Must Enter the Pages Number", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else if ((int)Box_Publisher.SelectedValue == 0)
+            {
+                MessageBox.Show("Select a Publisher", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
             {
                 double coverPrice = Text_CoverPrice.Text.Equals("") ? 0.00 : Convert.ToDouble(Text_CoverPrice.Text.Replace(",", "."));
 
                 InsertOk = DB_Book.InsertBook(
-                    Box_Category.SelectedItem.ToString(), Text_Title.Text, Text_SublTitle.Text, Text_OriginalTitle.Text, Text_OriginalSubTitle.Text, Text_Isbn.Text,
+                    (int)Box_Category.SelectedValue, Text_Title.Text, Text_SublTitle.Text, Text_OriginalTitle.Text, Text_OriginalSubTitle.Text, Text_Isbn.Text,
                     Convert.ToInt32(Text_Pages.Text), (int)Box_Publisher.SelectedValue, (int)Box_Language.SelectedValue, Box_Format.SelectedItem.ToString(),
                     (int)Box_Serie.SelectedValue, Convert.ToInt32(Box_Volume.SelectedItem.ToString()), Date_ReleaseDate.Text, Box_Currency.SelectedItem.ToString(),
                     coverPrice, Convert.ToInt32(Text_Edition.Text), Box_Status.SelectedItem.ToString(), Box_ReadingStatus.SelectedItem.ToString(), 
@@ -376,11 +360,16 @@ namespace Library.Forms_Insert
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != 8;
         }
 
-        /*** ***/
-        public void UpdateGenreBox()
+        /*** Combobox Operations ***/
+        public void GetGenreInfo()
         {
             GenreList.Clear();
             GenreList = DB_Genre.ListAllGenres(Conn.Connection);
+            SetGenreBox();       
+        }
+
+        private void SetGenreBox()
+        {
             GenreList.Insert(0, new Genre() { Genre_id = 0, GenreName = "Genre" });
             GenreList.Add(new Genre { Genre_id = 50000, GenreName = "Adicionar novo gênero" });
 
@@ -392,29 +381,34 @@ namespace Library.Forms_Insert
             Box_Genre.SelectedIndex = 0;
         }
 
-        public void UpdateAuthorBox()
+        public void GetAuthorInfo()
         {
             AuthorList.Clear();
             AuthorList = DB_Author.ListAllAuthors(Conn.Connection);
-            AuthorList.Insert(0, new Author() { Author_id = 0, AuthorName = "Author" });
-            AuthorList.Add(new Author() { Author_id = 50000, AuthorName = "Adicionar novo autor" });
+            SetAuthorBox();
 
-            Box_Author.DataSource = null;
-            Box_Author.DataSource = AuthorList;
-            Box_Author.ValueMember = "Author_id";
-            Box_Author.DisplayMember = "AuthorName";
-
-            Box_Author.SelectedIndex = 0;
         }
 
-        public void UpdateLanguageBox()
+        private void SetAuthorBox()
+        {
+            List<Author> aux = AuthorList.FindAll(x => x.AuthorCategory.Category_Id == (int)Box_Category.SelectedValue);
+            aux.Insert(0, new Author() { Author_id = 0, AuthorName = "Author" });
+            aux.Add(new Author() { Author_id = 50000, AuthorName = "Add new" });
+
+            Box_Author.DataSource = aux;
+            Box_Author.ValueMember = "Author_id";
+            Box_Author.DisplayMember = "AuthorName";
+        }
+
+        public void GetLanguageInfo()
         {
             LanguageList.Clear();
             LanguageList = DB_Language.SearchAllLanguages(Conn.Connection);
+
             var item = LanguageList.Find(x => x.Language_id == 1);
             LanguageList.Remove(item);
             LanguageList.Insert(0, item);
-            LanguageList.Add(new Language() { Language_id = 50000, LanguageName = "Adicionar novo idioma"});
+            LanguageList.Add(new Language() { Language_id = 50000, LanguageName = "Add New"});
 
             Box_Language.DataSource = null;
             Box_Language.DataSource = LanguageList;
@@ -424,29 +418,63 @@ namespace Library.Forms_Insert
             Box_Language.SelectedIndex = 0;
         }
 
-        public void UpdatePublisherBox()
+        public void GetPublisherInfo()
         {
             PublisherList.Clear();
             PublisherList = DB_Publisher.ListAllPublishers(Conn.Connection);
-            PublisherList.Add(new Publisher() { Publisher_id = 50000, PublisherName = "Adicionar nova editora"});
+            SetPublisherBox();
+            
+        }
 
-            Box_Publisher.DataSource = null;
-            Box_Publisher.DataSource = PublisherList;
+        private void SetPublisherBox()
+        {
+            List<Publisher> aux = PublisherList.FindAll(x => x.PublisherCategory.Category_Id == (int)Box_Category.SelectedValue);
+            aux.Insert(0, new Publisher() { Publisher_id = 0, PublisherName = "Publisher" });
+            aux.Add(new Publisher() { Publisher_id = 50000, PublisherName = "Add new" });
+
+            //Box_Publisher.DataSource = null;
+            Box_Publisher.DataSource = aux;
             Box_Publisher.ValueMember = "Publisher_Id";
             Box_Publisher.DisplayMember = "PublisherName";
 
             Box_Publisher.SelectedIndex = 0;
         }
 
-        public void UpdateCategoryBox()
+        public void GetCategoryInfo()
         {
             CategoryList.Clear();
             CategoryList = DB_Category.ListAllCategories(Conn.Connection);
 
+            var Item = CategoryList.Find(x => x.Category_Id == 2);
+            CategoryList.Remove(Item);
+            CategoryList.Insert(0, Item);
+
             Box_Category.DataSource = null;
-            Box_Category.DataSource = PublisherList;
-            Box_Category.ValueMember = "Publisher_Id";
-            Box_Category.DisplayMember = "PublisherName";
+            Box_Category.DataSource = CategoryList;
+            Box_Category.ValueMember = "Category_Id";
+            Box_Category.DisplayMember = "CategoryName";
+
+            Box_Category.SelectedIndex = 0;
         }
+
+        public void GetSerieInfo()
+        {
+            SerieList.Clear();
+            SerieList = DB_Serie.ListAllSeries(Conn.Connection);
+            volumeUnico = SerieList.Find(x => x.SerieCategory_id == 1);
+            SetSerieBox();
+
+        }
+
+        private void SetSerieBox()
+        {
+            List<Serie> aux = SerieList.FindAll(x => x.SerieCategory_id == (int)Box_Category.SelectedValue);
+            aux.Insert(0, volumeUnico);
+
+            Box_Serie.DataSource = aux;
+            Box_Serie.ValueMember = "Serie_id";
+            Box_Serie.DisplayMember = "SerieName";
+        }
+
     }
 }

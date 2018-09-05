@@ -51,7 +51,7 @@ namespace Library.Forms_Retrieve
 
             foreach(Serie s in serieList)
             {
-                table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieType);
+                table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieCategory);
             }
 
             //Enables the button to view and delete an author
@@ -67,11 +67,11 @@ namespace Library.Forms_Retrieve
         {
             table_serie.Rows.Clear();
             serieList.Clear();
-            serieList = db_serie.ListSeriesByType(box_serieType.SelectedItem.ToString(), conn.Connection);
+            serieList = db_serie.ListSeriesByCategory(1, conn.Connection);
 
             foreach (Serie s in serieList)
             {
-                table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieType);
+                table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieCategory);
             }
         }
 

@@ -13,6 +13,7 @@ namespace Library.Entities
         public string AuthorAbout { set; get; }
         public Country AuthorCountry { set; get; }
         public Language AuthorLanguage { set; get; }
+        public Category AuthorCategory { set; get; }
         public byte[] AuthorPhoto { set; get; }
         public DateTime AuthorDateInsert { set; get; }
         public DateTime AuthorDateUpdate{ set; get; }

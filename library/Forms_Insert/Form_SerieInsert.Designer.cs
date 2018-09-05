@@ -32,7 +32,7 @@
             this.text_serieName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.text_serieSynopsis = new System.Windows.Forms.RichTextBox();
-            this.box_serieType = new System.Windows.Forms.ComboBox();
+            this.Box_Category = new System.Windows.Forms.ComboBox();
             this.button_cancel = new System.Windows.Forms.Button();
             this.button_edit = new System.Windows.Forms.Button();
             this.button_delete = new System.Windows.Forms.Button();
@@ -74,17 +74,13 @@
             this.text_serieSynopsis.TabIndex = 6;
             this.text_serieSynopsis.Text = "";
             // 
-            // box_serieType
+            // Box_Category
             // 
-            this.box_serieType.FormattingEnabled = true;
-            this.box_serieType.Items.AddRange(new object[] {
-            "Book",
-            "Manga",
-            "HQ"});
-            this.box_serieType.Location = new System.Drawing.Point(84, 56);
-            this.box_serieType.Name = "box_serieType";
-            this.box_serieType.Size = new System.Drawing.Size(178, 21);
-            this.box_serieType.TabIndex = 7;
+            this.Box_Category.FormattingEnabled = true;
+            this.Box_Category.Location = new System.Drawing.Point(84, 56);
+            this.Box_Category.Name = "Box_Category";
+            this.Box_Category.Size = new System.Drawing.Size(178, 21);
+            this.Box_Category.TabIndex = 7;
             // 
             // button_cancel
             // 
@@ -94,7 +90,7 @@
             this.button_cancel.TabIndex = 9;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            this.button_cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
             // button_edit
             // 
@@ -124,7 +120,7 @@
             this.button_save.TabIndex = 12;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.Button_save_Click);
+            this.button_save.Click += new System.EventHandler(this.Button_Save_Click);
             // 
             // box_volumes
             // 
@@ -154,7 +150,7 @@
             this.Controls.Add(this.button_delete);
             this.Controls.Add(this.button_edit);
             this.Controls.Add(this.button_cancel);
-            this.Controls.Add(this.box_serieType);
+            this.Controls.Add(this.Box_Category);
             this.Controls.Add(this.text_serieSynopsis);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.text_serieName);
@@ -176,7 +172,7 @@
         private System.Windows.Forms.TextBox text_serieName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox text_serieSynopsis;
-        private System.Windows.Forms.ComboBox box_serieType;
+        private System.Windows.Forms.ComboBox Box_Category;
         private System.Windows.Forms.Button button_cancel;
         private System.Windows.Forms.Button button_edit;
         private System.Windows.Forms.Button button_delete;

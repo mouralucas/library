@@ -50,6 +50,7 @@
     <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -114,6 +115,12 @@
     </Compile>
     <Compile Include="Forms_Insert\Form_CountryInsert.Designer.cs">
       <DependentUpon>Form_CountryInsert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms_Retrieve\Form_BookRetrieve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms_Retrieve\Form_BookRetrieve.Designer.cs">
+      <DependentUpon>Form_BookRetrieve.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms_Retrieve\Form_CountryRetrieve.cs">
       <SubType>Form</SubType>
@@ -188,6 +195,9 @@
       <DependentUpon>Form_CountryInsert.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms_Retrieve\Form_BookRetrieve.resx">
+      <DependentUpon>Form_BookRetrieve.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms_Retrieve\Form_CountryRetrieve.resx">
       <DependentUpon>Form_CountryRetrieve.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,6 +231,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="newlibrary_prodDataSet.xsc">
+      <DependentUpon>newlibrary_prodDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="newlibrary_prodDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="newlibrary_prodDataSet.xss">
+      <DependentUpon>newlibrary_prodDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="newlibrary_prodDataSet1.xsc">
+      <DependentUpon>newlibrary_prodDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="newlibrary_prodDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="newlibrary_prodDataSet1.xss">
+      <DependentUpon>newlibrary_prodDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -87,7 +87,7 @@ namespace Library.Forms_Insert
             //insert book form return
             if(ReturnBookInsert != null)
             {
-                ReturnBookInsert.UpdateGenreBox();
+                ReturnBookInsert.GetGenreInfo();
             }
 
             conn.CloseConn();

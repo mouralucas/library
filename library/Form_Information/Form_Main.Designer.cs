@@ -50,6 +50,9 @@
             this.genreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buscaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.livroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.slot1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slot4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slot3)).BeginInit();
@@ -210,7 +213,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.insertToolStripMenuItem});
+            this.insertToolStripMenuItem,
+            this.buscaToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -227,48 +231,48 @@
             this.serieToolStripMenuItem});
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
             this.insertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.insertToolStripMenuItem.Text = "Insert";
+            this.insertToolStripMenuItem.Text = "Cadastro";
             // 
             // authorToolStripMenuItem
             // 
             this.authorToolStripMenuItem.Name = "authorToolStripMenuItem";
             this.authorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.authorToolStripMenuItem.Text = "Author";
+            this.authorToolStripMenuItem.Text = "Autor";
             this.authorToolStripMenuItem.Click += new System.EventHandler(this.authorToolStripMenuItem_Click);
             // 
             // bookToolStripMenuItem
             // 
             this.bookToolStripMenuItem.Name = "bookToolStripMenuItem";
             this.bookToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bookToolStripMenuItem.Text = "Book";
+            this.bookToolStripMenuItem.Text = "Livro";
             this.bookToolStripMenuItem.Click += new System.EventHandler(this.bookToolStripMenuItem_Click);
             // 
             // countryToolStripMenuItem
             // 
             this.countryToolStripMenuItem.Name = "countryToolStripMenuItem";
             this.countryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.countryToolStripMenuItem.Text = "Country";
+            this.countryToolStripMenuItem.Text = "País";
             this.countryToolStripMenuItem.Click += new System.EventHandler(this.countryToolStripMenuItem_Click);
             // 
             // publisherToolStripMenuItem
             // 
             this.publisherToolStripMenuItem.Name = "publisherToolStripMenuItem";
             this.publisherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.publisherToolStripMenuItem.Text = "Publisher";
+            this.publisherToolStripMenuItem.Text = "Editora";
             this.publisherToolStripMenuItem.Click += new System.EventHandler(this.publisherToolStripMenuItem_Click);
             // 
             // genreToolStripMenuItem
             // 
             this.genreToolStripMenuItem.Name = "genreToolStripMenuItem";
             this.genreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.genreToolStripMenuItem.Text = "Genre";
+            this.genreToolStripMenuItem.Text = "Genero";
             this.genreToolStripMenuItem.Click += new System.EventHandler(this.genreToolStripMenuItem_Click);
             // 
             // languageToolStripMenuItem
             // 
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
             this.languageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.languageToolStripMenuItem.Text = "Language";
+            this.languageToolStripMenuItem.Text = "Idioma";
             this.languageToolStripMenuItem.Click += new System.EventHandler(this.languageToolStripMenuItem_Click);
             // 
             // serieToolStripMenuItem
@@ -277,6 +281,27 @@
             this.serieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.serieToolStripMenuItem.Text = "Serie";
             this.serieToolStripMenuItem.Click += new System.EventHandler(this.serieToolStripMenuItem_Click);
+            // 
+            // buscaToolStripMenuItem
+            // 
+            this.buscaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autorToolStripMenuItem,
+            this.livroToolStripMenuItem});
+            this.buscaToolStripMenuItem.Name = "buscaToolStripMenuItem";
+            this.buscaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buscaToolStripMenuItem.Text = "Busca";
+            // 
+            // autorToolStripMenuItem
+            // 
+            this.autorToolStripMenuItem.Name = "autorToolStripMenuItem";
+            this.autorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autorToolStripMenuItem.Text = "Autor";
+            // 
+            // livroToolStripMenuItem
+            // 
+            this.livroToolStripMenuItem.Name = "livroToolStripMenuItem";
+            this.livroToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.livroToolStripMenuItem.Text = "Livro";
             // 
             // Form_Main
             // 
@@ -345,5 +370,8 @@
         private System.Windows.Forms.ToolStripMenuItem genreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buscaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem livroToolStripMenuItem;
     }
 }

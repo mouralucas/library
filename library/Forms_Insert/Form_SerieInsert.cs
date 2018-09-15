@@ -22,7 +22,8 @@ namespace Library.Forms_Insert
 
         List<Category> CategoryList = new List<Category>();
 
-        Form ReturnForm;
+        Form ReturnGeneric = null;
+        Form_BookInsert ReturnBookInsert = null;
 
         private bool insertOk = false;
 
@@ -38,9 +39,14 @@ namespace Library.Forms_Insert
         {
             InitializeComponent();
 
-            this.ReturnForm = ReturnForm;       //the form who invoked this form
+            this.ReturnGeneric = ReturnForm;       //the form who invoked this form
 
             Conn.OpenConn();
+        }
+
+        public Form_SerieInsert(Form_BookInsert ReturnBookInsert)
+        {
+
         }
 
         private void Form_SerieInsert_Load(object sender, EventArgs e)
@@ -87,10 +93,16 @@ namespace Library.Forms_Insert
 
         private void Form_SerieInsert_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (ReturnForm != null)
+            if (ReturnGeneric != null)
             {
-                ReturnForm.Visible = true;
+                ReturnGeneric.Visible = true;
             }
+
+            if(ReturnBookInsert != null)
+            {
+                ReturnBookInsert.GetSerieInfo();
+            }
+
             Conn.CloseConn();
         }
 

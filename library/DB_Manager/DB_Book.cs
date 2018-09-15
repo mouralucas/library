@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using Library.Entities;
 
 namespace Library.DB_Manager
 {
     class DB_Book
     {
         /*----- Strings that defines the queries -----*/
-        private string Insert;
-        private string RemoveById;
-        private string Retrieve;
-        private string CountString;
+        private String Insert;
+        private String RemoveById;
+        private String Retrieve;
+        private String CountString;
 
         /*----- Others Variables -----*/
         private int count = -1;
@@ -122,6 +123,11 @@ namespace Library.DB_Manager
                 MessageBox.Show("Error: " + e);
                 return false;
             }
+        }
+
+        public List<Book> SearchAllBooks(MySqlConnection conn)
+        {
+
         }
     }
 }

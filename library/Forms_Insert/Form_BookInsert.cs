@@ -21,25 +21,25 @@ namespace Library.Forms_Insert
         /*---- This call the default image in the AuthorPhoto ----*/
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_BookInsert));
 
-        DB_Author DB_Author = new DB_Author();
-        DB_Language DB_Language = new DB_Language();
-        DB_Publisher DB_Publisher = new DB_Publisher();
-        DB_Genre DB_Genre = new DB_Genre();
-        DB_Book DB_Book = new DB_Book();
-        DB_Serie DB_Serie = new DB_Serie();
-        DB_Category DB_Category = new DB_Category();
+        DB_Author DB_Author         = new DB_Author();
+        DB_Language DB_Language     = new DB_Language();
+        DB_Publisher DB_Publisher   = new DB_Publisher();
+        DB_Genre DB_Genre           = new DB_Genre();
+        DB_Book DB_Book             = new DB_Book();
+        DB_Serie DB_Serie           = new DB_Serie();
+        DB_Category DB_Category     = new DB_Category();
 
         Form ReturnGeneric;
 
-        List<Author> AuthorList = new List<Author>();
-        List<Language> LanguageList = new List<Language>();
-        List<Publisher> PublisherList = new List<Publisher>();
-        List<Genre> GenreList = new List<Genre>();
-        List<Serie> SerieList = new List<Serie>();
-        List<Category> CategoryList = new List<Category>();
+        List<Author> AuthorList         = new List<Author>();
+        List<Language> LanguageList     = new List<Language>();
+        List<Publisher> PublisherList   = new List<Publisher>();
+        List<Genre> GenreList           = new List<Genre>();
+        List<Serie> SerieList           = new List<Serie>();
+        List<Category> CategoryList     = new List<Category>();
 
-        List<int> SelectedAuthors = new List<int>();
-        List<int> SelectedGenres = new List<int>();
+        List<int> SelectedAuthors       = new List<int>();
+        List<int> SelectedGenres        = new List<int>();
 
         Serie volumeUnico;
 
@@ -143,7 +143,13 @@ namespace Library.Forms_Insert
 
         private void Box_Serie_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //int selectedSerie = (int)Box_Serie.SelectedValue;
+            int SelectedSerieId = (int)Box_Serie.SelectedValue;
+            if(SelectedSerieId == 50000)
+            {
+                Form_SerieInsert SerieInsert = new Form_SerieInsert(ReturnBookInsert: this) { Visible = true };
+                return;
+            }
+
             Box_Volume.Items.Clear();
             int v = SerieList.Find(x => x.Serie_id == (int)Box_Serie.SelectedValue).SerieVolumes;
             for (int i = 1; i <= v; i++)
@@ -154,7 +160,7 @@ namespace Library.Forms_Insert
 
         }
 
-        private void Box_Categary_SelectionChangeCommitted(object sender, EventArgs e)
+        private void Box_Category_SelectionChangeCommitted(object sender, EventArgs e)
         {
             SetSerieBox();
             SetAuthorBox();
@@ -164,7 +170,7 @@ namespace Library.Forms_Insert
         private void Box_Author_SelectionChangeCommitted(object sender, EventArgs e)
         {
             int SelectedAuthorId = (int)Box_Author.SelectedValue;
-            String SelectedAuthorName = AuthorList.Find(x => x.Author_id == SelectedAuthorId).AuthorName;
+            
 
             if (SelectedAuthorId == 0)
             {
@@ -179,6 +185,7 @@ namespace Library.Forms_Insert
 
             else if (!SelectedAuthors.Contains(SelectedAuthorId))
             {
+                String SelectedAuthorName = AuthorList.Find(x => x.Author_id == SelectedAuthorId).AuthorName;
                 ListBox_Authors.Items.Add(SelectedAuthorName);
                 SelectedAuthors.Add(SelectedAuthorId);
                 Console.WriteLine();
@@ -392,8 +399,8 @@ namespace Library.Forms_Insert
         private void SetAuthorBox()
         {
             List<Author> aux = AuthorList.FindAll(x => x.AuthorCategory.Category_Id == (int)Box_Category.SelectedValue);
-            aux.Insert(0, new Author() { Author_id = 0, AuthorName = "Author" });
-            aux.Add(new Author() { Author_id = 50000, AuthorName = "Add new" });
+            aux.Insert(0, new Author() { Author_id = 0, AuthorName = "Autor" });
+            aux.Add(new Author() { Author_id = 50000, AuthorName = "Adicionar novo" });
 
             Box_Author.DataSource = aux;
             Box_Author.ValueMember = "Author_id";
@@ -408,7 +415,7 @@ namespace Library.Forms_Insert
             var item = LanguageList.Find(x => x.Language_id == 1);
             LanguageList.Remove(item);
             LanguageList.Insert(0, item);
-            LanguageList.Add(new Language() { Language_id = 50000, LanguageName = "Add New"});
+            LanguageList.Add(new Language() { Language_id = 50000, LanguageName = "Adicionar novo"});
 
             Box_Language.DataSource = null;
             Box_Language.DataSource = LanguageList;
@@ -429,8 +436,8 @@ namespace Library.Forms_Insert
         private void SetPublisherBox()
         {
             List<Publisher> aux = PublisherList.FindAll(x => x.PublisherCategory.Category_Id == (int)Box_Category.SelectedValue);
-            aux.Insert(0, new Publisher() { Publisher_id = 0, PublisherName = "Publisher" });
-            aux.Add(new Publisher() { Publisher_id = 50000, PublisherName = "Add new" });
+            aux.Insert(0, new Publisher() { Publisher_id = 0, PublisherName = "Editora" });
+            aux.Add(new Publisher() { Publisher_id = 50000, PublisherName = "Adicionar nova" });
 
             //Box_Publisher.DataSource = null;
             Box_Publisher.DataSource = aux;
@@ -470,11 +477,18 @@ namespace Library.Forms_Insert
         {
             List<Serie> aux = SerieList.FindAll(x => x.SerieCategory_id == (int)Box_Category.SelectedValue);
             aux.Insert(0, volumeUnico);
+            aux.Add(new Serie() { Serie_id = 50000, SerieName = "Adicionar nova"});
 
             Box_Serie.DataSource = aux;
             Box_Serie.ValueMember = "Serie_id";
             Box_Serie.DisplayMember = "SerieName";
         }
 
+        /*** Eventos de Foco ***/
+        private void Text_Isbn_Enter(object sender, EventArgs e)
+        {
+            Console.WriteLine("Ganhou foco");
+            
+        }
     }
 }

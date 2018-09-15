@@ -110,7 +110,7 @@
             this.Text_Title.Location = new System.Drawing.Point(217, 28);
             this.Text_Title.Name = "Text_Title";
             this.Text_Title.Size = new System.Drawing.Size(250, 20);
-            this.Text_Title.TabIndex = 4;
+            this.Text_Title.TabIndex = 1;
             this.Text_Title.TextChanged += new System.EventHandler(this.Text_Title_TextChanged);
             // 
             // label2
@@ -127,7 +127,7 @@
             this.Text_SublTitle.Location = new System.Drawing.Point(473, 28);
             this.Text_SublTitle.Name = "Text_SublTitle";
             this.Text_SublTitle.Size = new System.Drawing.Size(250, 20);
-            this.Text_SublTitle.TabIndex = 6;
+            this.Text_SublTitle.TabIndex = 2;
             this.Text_SublTitle.TextChanged += new System.EventHandler(this.Text_SublTitle_TextChanged);
             // 
             // Text_OriginalTitle
@@ -135,14 +135,14 @@
             this.Text_OriginalTitle.Location = new System.Drawing.Point(217, 71);
             this.Text_OriginalTitle.Name = "Text_OriginalTitle";
             this.Text_OriginalTitle.Size = new System.Drawing.Size(250, 20);
-            this.Text_OriginalTitle.TabIndex = 7;
+            this.Text_OriginalTitle.TabIndex = 4;
             // 
             // Text_OriginalSubTitle
             // 
             this.Text_OriginalSubTitle.Location = new System.Drawing.Point(473, 71);
             this.Text_OriginalSubTitle.Name = "Text_OriginalSubTitle";
             this.Text_OriginalSubTitle.Size = new System.Drawing.Size(250, 20);
-            this.Text_OriginalSubTitle.TabIndex = 8;
+            this.Text_OriginalSubTitle.TabIndex = 5;
             // 
             // label3
             // 
@@ -150,7 +150,7 @@
             this.label3.Location = new System.Drawing.Point(473, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 9;
+            this.label3.TabIndex = 33;
             this.label3.Text = "Sub-Title";
             // 
             // label4
@@ -168,7 +168,7 @@
             this.CheckBox_SameAsTitle.Location = new System.Drawing.Point(733, 28);
             this.CheckBox_SameAsTitle.Name = "CheckBox_SameAsTitle";
             this.CheckBox_SameAsTitle.Size = new System.Drawing.Size(84, 17);
-            this.CheckBox_SameAsTitle.TabIndex = 11;
+            this.CheckBox_SameAsTitle.TabIndex = 3;
             this.CheckBox_SameAsTitle.Text = "Original Title";
             this.CheckBox_SameAsTitle.UseVisualStyleBackColor = true;
             this.CheckBox_SameAsTitle.CheckedChanged += new System.EventHandler(this.CheckBox_SameAsTitle_CheckedChanged);
@@ -197,7 +197,7 @@
             this.ListBox_Authors.Location = new System.Drawing.Point(217, 142);
             this.ListBox_Authors.Name = "ListBox_Authors";
             this.ListBox_Authors.Size = new System.Drawing.Size(156, 95);
-            this.ListBox_Authors.TabIndex = 17;
+            this.ListBox_Authors.TabIndex = 35;
             // 
             // Box_Author
             // 
@@ -206,7 +206,7 @@
             this.Box_Author.Location = new System.Drawing.Point(217, 113);
             this.Box_Author.Name = "Box_Author";
             this.Box_Author.Size = new System.Drawing.Size(156, 21);
-            this.Box_Author.TabIndex = 18;
+            this.Box_Author.TabIndex = 7;
             this.Box_Author.SelectionChangeCommitted += new System.EventHandler(this.Box_Author_SelectionChangeCommitted);
             // 
             // label7
@@ -225,7 +225,7 @@
             this.Box_Language.Location = new System.Drawing.Point(564, 157);
             this.Box_Language.Name = "Box_Language";
             this.Box_Language.Size = new System.Drawing.Size(109, 21);
-            this.Box_Language.TabIndex = 21;
+            this.Box_Language.TabIndex = 12;
             // 
             // label8
             // 
@@ -247,7 +247,7 @@
             this.Box_Format.Location = new System.Drawing.Point(521, 202);
             this.Box_Format.Name = "Box_Format";
             this.Box_Format.Size = new System.Drawing.Size(129, 21);
-            this.Box_Format.TabIndex = 24;
+            this.Box_Format.TabIndex = 16;
             // 
             // Box_Status
             // 
@@ -261,7 +261,7 @@
             this.Box_Status.Location = new System.Drawing.Point(656, 202);
             this.Box_Status.Name = "Box_Status";
             this.Box_Status.Size = new System.Drawing.Size(167, 21);
-            this.Box_Status.TabIndex = 25;
+            this.Box_Status.TabIndex = 17;
             // 
             // Box_ReadingStatus
             // 
@@ -275,7 +275,7 @@
             this.Box_ReadingStatus.Location = new System.Drawing.Point(521, 245);
             this.Box_ReadingStatus.Name = "Box_ReadingStatus";
             this.Box_ReadingStatus.Size = new System.Drawing.Size(155, 21);
-            this.Box_ReadingStatus.TabIndex = 26;
+            this.Box_ReadingStatus.TabIndex = 19;
             // 
             // Box_Publisher
             // 
@@ -284,7 +284,7 @@
             this.Box_Publisher.Location = new System.Drawing.Point(682, 245);
             this.Box_Publisher.Name = "Box_Publisher";
             this.Box_Publisher.Size = new System.Drawing.Size(200, 21);
-            this.Box_Publisher.TabIndex = 27;
+            this.Box_Publisher.TabIndex = 20;
             // 
             // Box_Serie
             // 
@@ -293,7 +293,7 @@
             this.Box_Serie.Location = new System.Drawing.Point(521, 113);
             this.Box_Serie.Name = "Box_Serie";
             this.Box_Serie.Size = new System.Drawing.Size(308, 21);
-            this.Box_Serie.TabIndex = 30;
+            this.Box_Serie.TabIndex = 9;
             this.Box_Serie.SelectionChangeCommitted += new System.EventHandler(this.Box_Serie_SelectionChangeCommitted);
             // 
             // Box_Genre
@@ -303,7 +303,7 @@
             this.Box_Genre.Location = new System.Drawing.Point(379, 113);
             this.Box_Genre.Name = "Box_Genre";
             this.Box_Genre.Size = new System.Drawing.Size(136, 21);
-            this.Box_Genre.TabIndex = 31;
+            this.Box_Genre.TabIndex = 8;
             this.Box_Genre.SelectionChangeCommitted += new System.EventHandler(this.Box_Genre_SelectionChangeCommitted);
             // 
             // ListBox_Genres
@@ -339,7 +339,7 @@
             this.Text_Edition.Location = new System.Drawing.Point(829, 203);
             this.Text_Edition.Name = "Text_Edition";
             this.Text_Edition.Size = new System.Drawing.Size(53, 20);
-            this.Text_Edition.TabIndex = 35;
+            this.Text_Edition.TabIndex = 18;
             this.Text_Edition.Text = "1";
             this.Text_Edition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_edition_KeyPress);
             // 
@@ -357,7 +357,7 @@
             this.Text_Synopsis.Location = new System.Drawing.Point(217, 289);
             this.Text_Synopsis.Name = "Text_Synopsis";
             this.Text_Synopsis.Size = new System.Drawing.Size(665, 183);
-            this.Text_Synopsis.TabIndex = 37;
+            this.Text_Synopsis.TabIndex = 21;
             this.Text_Synopsis.Text = "";
             // 
             // Text_Observation
@@ -365,7 +365,7 @@
             this.Text_Observation.Location = new System.Drawing.Point(11, 344);
             this.Text_Observation.Name = "Text_Observation";
             this.Text_Observation.Size = new System.Drawing.Size(199, 128);
-            this.Text_Observation.TabIndex = 38;
+            this.Text_Observation.TabIndex = 22;
             this.Text_Observation.Text = "";
             // 
             // label10
@@ -391,7 +391,7 @@
             this.Button_Save.Location = new System.Drawing.Point(733, 478);
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(149, 23);
-            this.Button_Save.TabIndex = 42;
+            this.Button_Save.TabIndex = 23;
             this.Button_Save.Text = "Save";
             this.Button_Save.UseVisualStyleBackColor = true;
             this.Button_Save.Click += new System.EventHandler(this.Button_Transaction_Click);
@@ -420,7 +420,7 @@
             this.Text_Pages.Location = new System.Drawing.Point(521, 158);
             this.Text_Pages.Name = "Text_Pages";
             this.Text_Pages.Size = new System.Drawing.Size(37, 20);
-            this.Text_Pages.TabIndex = 44;
+            this.Text_Pages.TabIndex = 11;
             this.Text_Pages.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_pages_KeyPress);
             // 
             // label13
@@ -503,7 +503,7 @@
             this.Date_ReleaseDate.Name = "Date_ReleaseDate";
             this.Date_ReleaseDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Date_ReleaseDate.Size = new System.Drawing.Size(83, 20);
-            this.Date_ReleaseDate.TabIndex = 54;
+            this.Date_ReleaseDate.TabIndex = 13;
             this.Date_ReleaseDate.Value = new System.DateTime(2018, 9, 3, 0, 0, 0, 0);
             // 
             // Box_Volume
@@ -513,14 +513,14 @@
             this.Box_Volume.Location = new System.Drawing.Point(835, 113);
             this.Box_Volume.Name = "Box_Volume";
             this.Box_Volume.Size = new System.Drawing.Size(47, 21);
-            this.Box_Volume.TabIndex = 55;
+            this.Box_Volume.TabIndex = 10;
             // 
             // Text_CoverPrice
             // 
             this.Text_CoverPrice.Location = new System.Drawing.Point(819, 156);
             this.Text_CoverPrice.Name = "Text_CoverPrice";
             this.Text_CoverPrice.Size = new System.Drawing.Size(63, 20);
-            this.Text_CoverPrice.TabIndex = 23;
+            this.Text_CoverPrice.TabIndex = 15;
             // 
             // Text_Isbn
             // 
@@ -528,7 +528,8 @@
             this.Text_Isbn.Mask = "#############";
             this.Text_Isbn.Name = "Text_Isbn";
             this.Text_Isbn.Size = new System.Drawing.Size(149, 20);
-            this.Text_Isbn.TabIndex = 56;
+            this.Text_Isbn.TabIndex = 6;
+            this.Text_Isbn.Enter += new System.EventHandler(this.Text_Isbn_Enter);
             this.Text_Isbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_isbn_KeyPress);
             // 
             // Box_Currency
@@ -544,7 +545,7 @@
             this.Box_Currency.Location = new System.Drawing.Point(768, 156);
             this.Box_Currency.Name = "Box_Currency";
             this.Box_Currency.Size = new System.Drawing.Size(45, 21);
-            this.Box_Currency.TabIndex = 45;
+            this.Box_Currency.TabIndex = 14;
             // 
             // label21
             // 
@@ -567,8 +568,8 @@
             this.Box_Category.Location = new System.Drawing.Point(11, 28);
             this.Box_Category.Name = "Box_Category";
             this.Box_Category.Size = new System.Drawing.Size(200, 21);
-            this.Box_Category.TabIndex = 58;
-            this.Box_Category.SelectionChangeCommitted += new System.EventHandler(this.Box_Categary_SelectionChangeCommitted);
+            this.Box_Category.TabIndex = 0;
+            this.Box_Category.SelectionChangeCommitted += new System.EventHandler(this.Box_Category_SelectionChangeCommitted);
             // 
             // Form_BookInsert
             // 
@@ -621,11 +622,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Text_OriginalSubTitle);
             this.Controls.Add(this.Text_OriginalTitle);
-            this.Controls.Add(this.Text_SublTitle);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Text_Title);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Book_Cover);
+            this.Controls.Add(this.Text_SublTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form_BookInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -231,26 +231,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="newlibrary_prodDataSet.xsc">
-      <DependentUpon>newlibrary_prodDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="newlibrary_prodDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="newlibrary_prodDataSet.xss">
-      <DependentUpon>newlibrary_prodDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="newlibrary_prodDataSet1.xsc">
-      <DependentUpon>newlibrary_prodDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="newlibrary_prodDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="newlibrary_prodDataSet1.xss">
-      <DependentUpon>newlibrary_prodDataSet1.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

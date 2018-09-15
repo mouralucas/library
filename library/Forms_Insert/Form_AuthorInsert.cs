@@ -70,7 +70,7 @@ namespace Library.Forms_Insert
             Conn.OpenConn();
         }
 
-        /*----- Constructor From Book Inser ------*/
+        /*----- Constructor From Book Insert ------*/
         public Form_AuthorInsert(Form_BookInsert ReturnBookInsert)
         {
             InitializeComponent();
@@ -206,6 +206,7 @@ namespace Library.Forms_Insert
             {
                 ReturnBookInsert.GetAuthorInfo();
             }
+
             Conn.CloseConn();
         }
 

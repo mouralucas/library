@@ -64,7 +64,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1089, 12);
+            this.button1.Location = new System.Drawing.Point(1159, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -97,7 +97,7 @@
             // 
             // Column_Volume
             // 
-            this.Column_Volume.HeaderText = "Volume";
+            this.Column_Volume.HeaderText = "Vol";
             this.Column_Volume.Name = "Column_Volume";
             this.Column_Volume.Width = 40;
             // 

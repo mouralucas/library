@@ -192,7 +192,7 @@ namespace Library.Forms_Insert
             }
             else
             {
-                MessageBox.Show("You Already Selected This Author");
+                MessageBox.Show("Este autor já foi selecionado");
 
             }
         }
@@ -231,7 +231,7 @@ namespace Library.Forms_Insert
             }
             else
             {
-                MessageBox.Show("You Already Selected This Author");
+                MessageBox.Show("Este genero já foi selecionado!");
 
             }
         }

@@ -101,9 +101,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(218, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Title";
+            this.label1.Text = "Título";
             // 
             // Text_Title
             // 
@@ -118,9 +118,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(219, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Original Title";
+            this.label2.Text = "Título Original";
             // 
             // Text_SublTitle
             // 
@@ -149,18 +149,18 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(473, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 33;
-            this.label3.Text = "Sub-Title";
+            this.label3.Text = "Sub-Título";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(473, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.Size = new System.Drawing.Size(95, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Original Sub-Title";
+            this.label4.Text = "Sub-Título Original";
             // 
             // CheckBox_SameAsTitle
             // 
@@ -214,17 +214,17 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(676, 141);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.Size = new System.Drawing.Size(66, 13);
             this.label7.TabIndex = 20;
-            this.label7.Text = "Release Date";
+            this.label7.Text = "Lançamento";
             // 
             // Box_Language
             // 
             this.Box_Language.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Box_Language.FormattingEnabled = true;
-            this.Box_Language.Location = new System.Drawing.Point(564, 157);
+            this.Box_Language.Location = new System.Drawing.Point(578, 157);
             this.Box_Language.Name = "Box_Language";
-            this.Box_Language.Size = new System.Drawing.Size(109, 21);
+            this.Box_Language.Size = new System.Drawing.Size(95, 21);
             this.Box_Language.TabIndex = 12;
             // 
             // label8
@@ -232,9 +232,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(820, 141);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 13);
+            this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 22;
-            this.label8.Text = "Cover Price";
+            this.label8.Text = "Preço";
             // 
             // Box_Format
             // 
@@ -320,7 +320,7 @@
             this.Button_RemoveAuthor.Name = "Button_RemoveAuthor";
             this.Button_RemoveAuthor.Size = new System.Drawing.Size(156, 23);
             this.Button_RemoveAuthor.TabIndex = 33;
-            this.Button_RemoveAuthor.Text = "Remove Author";
+            this.Button_RemoveAuthor.Text = "Remover Autor";
             this.Button_RemoveAuthor.UseVisualStyleBackColor = true;
             this.Button_RemoveAuthor.Click += new System.EventHandler(this.Button_RemoveAuthor_Click);
             // 
@@ -330,7 +330,7 @@
             this.Button_RemoveGenre.Name = "Button_RemoveGenre";
             this.Button_RemoveGenre.Size = new System.Drawing.Size(136, 23);
             this.Button_RemoveGenre.TabIndex = 34;
-            this.Button_RemoveGenre.Text = "Remove Genre";
+            this.Button_RemoveGenre.Text = "Remover Genero";
             this.Button_RemoveGenre.UseVisualStyleBackColor = true;
             this.Button_RemoveGenre.Click += new System.EventHandler(this.Button_RemoveGenre_Click);
             // 
@@ -373,9 +373,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(12, 328);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 13);
+            this.label10.Size = new System.Drawing.Size(70, 13);
             this.label10.TabIndex = 39;
-            this.label10.Text = "Observations";
+            this.label10.Text = "Observações";
             // 
             // label11
             // 
@@ -392,7 +392,7 @@
             this.Button_Save.Name = "Button_Save";
             this.Button_Save.Size = new System.Drawing.Size(149, 23);
             this.Button_Save.TabIndex = 23;
-            this.Button_Save.Text = "Save";
+            this.Button_Save.Text = "Salvar";
             this.Button_Save.UseVisualStyleBackColor = true;
             this.Button_Save.Click += new System.EventHandler(this.Button_Transaction_Click);
             // 
@@ -402,7 +402,7 @@
             this.Button_Cancel.Name = "Button_Cancel";
             this.Button_Cancel.Size = new System.Drawing.Size(149, 23);
             this.Button_Cancel.TabIndex = 41;
-            this.Button_Cancel.Text = "Cancel";
+            this.Button_Cancel.Text = "Sair";
             this.Button_Cancel.UseVisualStyleBackColor = true;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
@@ -411,35 +411,35 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(521, 141);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(37, 13);
+            this.label12.Size = new System.Drawing.Size(45, 13);
             this.label12.TabIndex = 43;
-            this.label12.Text = "Pages";
+            this.label12.Text = "Páginas";
             // 
             // Text_Pages
             // 
             this.Text_Pages.Location = new System.Drawing.Point(521, 158);
             this.Text_Pages.Name = "Text_Pages";
-            this.Text_Pages.Size = new System.Drawing.Size(37, 20);
+            this.Text_Pages.Size = new System.Drawing.Size(51, 20);
             this.Text_Pages.TabIndex = 11;
             this.Text_Pages.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_pages_KeyPress);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(564, 141);
+            this.label13.Location = new System.Drawing.Point(575, 141);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.Size = new System.Drawing.Size(38, 13);
             this.label13.TabIndex = 46;
-            this.label13.Text = "Language";
+            this.label13.Text = "Idioma";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(518, 186);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(39, 13);
+            this.label14.Size = new System.Drawing.Size(45, 13);
             this.label14.TabIndex = 47;
-            this.label14.Text = "Format";
+            this.label14.Text = "Formato";
             // 
             // label15
             // 
@@ -455,18 +455,18 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(522, 229);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(80, 13);
+            this.label16.Size = new System.Drawing.Size(87, 13);
             this.label16.TabIndex = 49;
-            this.label16.Text = "Reading Status";
+            this.label16.Text = "Status de Leitura";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(679, 228);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(50, 13);
+            this.label17.Size = new System.Drawing.Size(40, 13);
             this.label17.TabIndex = 50;
-            this.label17.Text = "Publisher";
+            this.label17.Text = "Editora";
             // 
             // label18
             // 
@@ -475,16 +475,16 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(49, 13);
             this.label18.TabIndex = 51;
-            this.label18.Text = "Author(s)";
+            this.label18.Text = "Autor(es)";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(379, 96);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.Size = new System.Drawing.Size(47, 13);
             this.label19.TabIndex = 52;
-            this.label19.Text = "Genres";
+            this.label19.Text = "Generos";
             // 
             // label20
             // 
@@ -493,7 +493,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(31, 13);
             this.label20.TabIndex = 53;
-            this.label20.Text = "Serie";
+            this.label20.Text = "Série";
             // 
             // Date_ReleaseDate
             // 
@@ -552,9 +552,9 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(9, 11);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(49, 13);
+            this.label21.Size = new System.Drawing.Size(52, 13);
             this.label21.TabIndex = 57;
-            this.label21.Text = "Category";
+            this.label21.Text = "Categoria";
             // 
             // Box_Category
             // 

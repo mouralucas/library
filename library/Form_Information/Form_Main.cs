@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Library.Forms_Insert;
+using Library.Forms_Retrieve;
 using Library.DB_Manager;
 using Library.Entities;
 using Library.Connection;
@@ -22,6 +23,7 @@ namespace Library.Form_Information
 
         List<Author> listAuthors = new List<Author>();
 
+        /*** Forms for insertion ***/
         Form_AuthorInsert Author_insert = null;
         Form_BookInsert Book_insert = null;
         Form_CountryInsert Country_insert = null;
@@ -29,6 +31,9 @@ namespace Library.Form_Information
         Form_GenreInsert Genre_insert = null;
         Form_LanguageInsert LanguageInsert = null;
         Form_SerieInsert SerieInsert = null;
+
+        /*** Forms for retrieve ***/
+        Form_AuthorRetrieve Author_Retrieve = null;
 
         public Form_Main()
         {
@@ -55,13 +60,14 @@ namespace Library.Form_Information
             //slot12.Image = Image.FromStream(new MemoryStream(listAuthors[11].AuthorPhoto));
         }
 
-        private void authorToolStripMenuItem_Click(object sender, EventArgs e)
+        /*** Menus ***/
+        private void AuthorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Author_insert = new Form_AuthorInsert(this) { Visible = true };
             this.Visible = false;
         }
 
-        private void bookToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BookToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Book_insert = new Form_BookInsert(this) { Visible = true };
             this.Visible = false;
@@ -95,6 +101,11 @@ namespace Library.Form_Information
         {
             SerieInsert = new Form_SerieInsert(this) { Visible = true };
             this.Visible = false;
+        }
+
+        private void AutorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Author_Retrieve = new Form_AuthorRetrieve(this) { Visible = true};
         }
     }
 }

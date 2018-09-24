@@ -20,7 +20,9 @@ namespace Library.Forms_Retrieve
         DB_Country db_country = new DB_Country();
         DB_Language db_language = new DB_Language();
         DB_Author dba = new DB_Author();
-        Conn conn = new Conn();
+        Conn Conn = new Conn();
+
+        Form ReturnGeneric = null;
 
         private List<Country> countryList;
         private List<Language> languageList;
@@ -34,12 +36,21 @@ namespace Library.Forms_Retrieve
         public Form_AuthorRetrieve()
         {
             InitializeComponent();
-            conn.OpenConn();
+            Conn.OpenConn();
+        }
+
+        /*** Constructor from Main Form ***/
+        public Form_AuthorRetrieve(Form ReturnForm)
+        {
+            InitializeComponent();
+            Conn.OpenConn();
+
+            this.ReturnGeneric = ReturnForm;
         }
 
         private void Form_AuthorRetrieve_Load(object sender, EventArgs e)
         {
-            countryList = db_country.SearchAllCountries(conn.Connection);
+            countryList = db_country.SearchAllCountries(Conn.Connection);
             foreach (Country c in countryList)
             {
                 if (c.ShowCountry.Equals("Yes"))
@@ -49,7 +60,7 @@ namespace Library.Forms_Retrieve
             }
             box_country.Items.Add("Show All");
 
-            languageList = db_language.SearchAllLanguages(conn.Connection);
+            languageList = db_language.SearchAllLanguages(Conn.Connection);
             foreach (Language l in languageList)
             {
                 if (l.ShowLanguage.Equals("Yes"))
@@ -59,7 +70,7 @@ namespace Library.Forms_Retrieve
             }
             box_language.Items.Add("Show All");
 
-            int count = db_author.Count(conn.Connection);
+            int count = db_author.Count(Conn.Connection);
             if (count > 1)
             {
                 label_authorCount.Text = "There are " + count + " authors registered.";
@@ -80,7 +91,7 @@ namespace Library.Forms_Retrieve
         {
             table_authors.Rows.Clear();
             authorList.Clear();
-            authorList = db_author.ListAllAuthors(conn.Connection);
+            authorList = db_author.ListAllAuthors(Conn.Connection);
 
             //fills the table
             foreach(Author a in authorList)
@@ -106,7 +117,7 @@ namespace Library.Forms_Retrieve
             searchCountry = (box_country.SelectedItem == null) ? -1 : countryList[box_country.SelectedIndex].Country_Id;
             searchLanguage = (box_language.SelectedItem == null) ? -1 : languageList[box_language.SelectedIndex].Language_id;
 
-            authorList = db_author.ListAuthorByAnyField(search_id, searchName, searchCountry, searchLanguage, conn.Connection);
+            authorList = db_author.ListAuthorByAnyField(search_id, searchName, searchCountry, searchLanguage, Conn.Connection);
 
             foreach (Author a in authorList)
             {
@@ -142,7 +153,12 @@ namespace Library.Forms_Retrieve
 
         private void Form_AuthorRetrieve_FormClosing(object sender, FormClosingEventArgs e)
         {
-            conn.CloseConn();
+            if(ReturnGeneric != null)
+            {
+                ReturnGeneric.Visible = true;
+            }
+
+            Conn.CloseConn();
         }
     }
 }

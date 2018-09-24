@@ -226,6 +226,7 @@
             this.Controls.Add(this.text_autor_id);
             this.Controls.Add(this.label1);
             this.Name = "Form_AuthorRetrieve";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search Author";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_AuthorRetrieve_FormClosing);
             this.Load += new System.EventHandler(this.Form_AuthorRetrieve_Load);

@@ -452,6 +452,11 @@ namespace Library.Forms_Insert
             CategoryList.Clear();
             CategoryList = DB_Category.ListAllCategories(Conn.Connection);
 
+            SetCategoryInfo();
+        }
+
+        private void SetCategoryInfo()
+        {
             var Item = CategoryList.Find(x => x.Category_Id == 2);
             CategoryList.Remove(Item);
             CategoryList.Insert(0, Item);

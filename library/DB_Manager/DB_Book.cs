@@ -125,9 +125,6 @@ namespace Library.DB_Manager
             }
         }
 
-        public List<Book> SearchAllBooks(MySqlConnection conn)
-        {
 
-        }
     }
 }

@@ -106,7 +106,7 @@ namespace Library.Forms_Insert
             Conn.CloseConn();
         }
 
-        /*** ***/
+        /*** Combobox Controllers ***/
         public void UpdateCategoryBox()
         {
             CategoryList.Clear();

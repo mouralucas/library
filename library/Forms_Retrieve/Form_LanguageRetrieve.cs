@@ -38,7 +38,7 @@ namespace Library.Forms_Retrieve
 
             foreach(Language l in languageList)
             {
-                table_languages.Rows.Add(l.Language_id, l.LanguageName, l.ShowLanguage);
+                table_languages.Rows.Add(l.Language_Id, l.LanguageName, l.ShowLanguage);
             }
 
             if(languageList.Count != 0)

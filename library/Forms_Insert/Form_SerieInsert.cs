@@ -46,7 +46,11 @@ namespace Library.Forms_Insert
 
         public Form_SerieInsert(Form_BookInsert ReturnBookInsert)
         {
+            InitializeComponent();
 
+            this.ReturnBookInsert = ReturnBookInsert;       
+
+            Conn.OpenConn();
         }
 
         private void Form_SerieInsert_Load(object sender, EventArgs e)

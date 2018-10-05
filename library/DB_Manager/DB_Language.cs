@@ -12,25 +12,25 @@ namespace Library.DB_Manager
     class DB_Language
     {
         /*----- Strings that defines the queries -----*/
-        private string insert;
-        private string update;
-        private string removeByName;
-        private string retrieveAll;
-        private string countString;
+        private string Insert;
+        private string Update;
+        private string RemoveById;
+        private string RetrieveAll;
+        private string CountString;
 
 
         /*----- Others Variables -----*/
         private int count = -1;
 
-        List<Language> languageList = new List<Language>();
-        Language language;
+        List<Language> LanguageList = new List<Language>();
+        Language Language;
 
         public int Count(MySqlConnection conn)
         {
-            countString = "SELECT COUNT(*) FROM languages";
-            MySqlCommand cmd = new MySqlCommand(countString, conn);
+            CountString = "SELECT COUNT(*) FROM languages";
+            MySqlCommand Cmd = new MySqlCommand(CountString, conn);
 
-            count = Convert.ToInt32(cmd.ExecuteScalar());
+            count = Convert.ToInt32(Cmd.ExecuteScalar());
 
             return count;
 
@@ -39,12 +39,12 @@ namespace Library.DB_Manager
         /*----- Insert Query -----*/
         public bool InsertLanguage(string languageName, string showLanguage, MySqlConnection conn)
         {
-            insert = "INSERT INTO languages (languageName, showLanguage, languageDateInsert) " +
+            Insert = "INSERT INTO languages (languageName, showLanguage, languageDateInsert) " +
                 "VALUES (@languageName, @showLanguage, current_timestamp())";
             
             try
             {
-                MySqlCommand cmd = new MySqlCommand(insert, conn);
+                MySqlCommand cmd = new MySqlCommand(Insert, conn);
 
                 cmd.Parameters.Add("@languageName", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@showLanguage", MySqlDbType.Enum);
@@ -54,12 +54,12 @@ namespace Library.DB_Manager
 
                 if(cmd.ExecuteNonQuery() > 0)
                 {
-                    DialogResult dr = MessageBox.Show("Language Inserted Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Language Inserted Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
                 {
-                    DialogResult dr = MessageBox.Show("Error Inserting Language!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error Inserting Language!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }catch(MySqlException e)
@@ -72,7 +72,7 @@ namespace Library.DB_Manager
         /*----- Insert Query -----*/
         public bool UpdateLanguage(int language_id, string languageName, string showLanguage, MySqlConnection conn)
         {
-            update = "UPDATE languages SET " +
+            Update = "UPDATE languages SET " +
                 "languageName = @newLanguageName " +
                 "showLanguage = @newShowLanguage " +
                 "languageDateUpdate = current_timestamp() " +
@@ -80,7 +80,7 @@ namespace Library.DB_Manager
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(update, conn);
+                MySqlCommand cmd = new MySqlCommand(Update, conn);
 
                 cmd.Parameters.Add("@language_id", MySqlDbType.Int32);
                 cmd.Parameters.Add("@newLanguageName", MySqlDbType.VarChar, 45);
@@ -92,12 +92,12 @@ namespace Library.DB_Manager
 
                 if (cmd.ExecuteNonQuery() > 0)
                 {
-                    DialogResult dr = MessageBox.Show("Language Updated Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Language Updated Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
                 {
-                    DialogResult dr = MessageBox.Show("Error Updating Language!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error Updating Language!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
@@ -109,16 +109,16 @@ namespace Library.DB_Manager
         }
 
         /*----- Delete Queries -----*/
-        public bool RemoveLanguageById(string language_id, MySqlConnection conn)
+        public bool RemoveLanguageById(string Language_Id, MySqlConnection Conn)
         {
 
-            removeByName = "DELETE FROM languages WHERE language_id = @language_id";
+            RemoveById = "DELETE FROM languages WHERE language_id = @language_id";
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(removeByName, conn);
+                MySqlCommand cmd = new MySqlCommand(RemoveById, Conn);
                 cmd.Parameters.Add("@language_id", MySqlDbType.Int32);
-                cmd.Parameters["@language_id"].Value = language_id;
+                cmd.Parameters["@language_id"].Value = Language_Id;
 
 
                 if (cmd.ExecuteNonQuery() > 0)
@@ -142,30 +142,30 @@ namespace Library.DB_Manager
         /*----- Search Queries -----*/
         public List<Language> SearchAllLanguages(MySqlConnection conn)
         {
-            retrieveAll = "SELECT * FROM languages ORDER BY languageName";
+            RetrieveAll = "SELECT * FROM languages ORDER BY languageName";
 
-            MySqlCommand Cmd = new MySqlCommand(retrieveAll, conn);
+            MySqlCommand Cmd = new MySqlCommand(RetrieveAll, conn);
             SetLanguageData(Cmd);
-            return languageList;
+            return LanguageList;
         }
 
         private void SetLanguageData(MySqlCommand cmd)
         {
-            MySqlDataReader dataRead = cmd.ExecuteReader();
+            MySqlDataReader DataReader = cmd.ExecuteReader();
 
-            while (dataRead.Read())
+            while (DataReader.Read())
             {
-                language = new Language
+                Language = new Language
                 {
-                    Language_id = Convert.IsDBNull(dataRead["language_id"]) ? -1 : Convert.ToInt32(dataRead["language_id"]),
-                    LanguageName = Convert.IsDBNull(dataRead["languageName"]) ? "" : dataRead["languageName"].ToString(),
-                    ShowLanguage = Convert.IsDBNull(dataRead["showLanguage"]) ? "" : dataRead["showLanguage"].ToString()
+                    Language_Id = Convert.IsDBNull(DataReader["language_id"]) ? -1 : Convert.ToInt32(DataReader["language_id"]),
+                    LanguageName = Convert.IsDBNull(DataReader["languageName"]) ? "" : DataReader["languageName"].ToString(),
+                    ShowLanguage = Convert.IsDBNull(DataReader["showLanguage"]) ? "" : DataReader["showLanguage"].ToString()
                 };
 
-                languageList.Add(language);
+                LanguageList.Add(Language);
             }
 
-            dataRead.Close();
+            DataReader.Close();
         }
     }
 }

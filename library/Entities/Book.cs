@@ -8,11 +8,12 @@ namespace Library.Entities
 {
     class Book
     {
-        public int Book_id { set; get; }
-        public string BookTitle { set; get; }
-        public string BookSubTitle { set; get; }
-        public string BookOriginalTitle { set; get; }
-        public string BookOriginalSubTitle { set; get; }
+        public int Book_Id { set; get; }
+        public Category Category { set; get; }
+        public string Title { set; get; }
+        public string SubTitle { set; get; }
+        public string OriginalTitle { set; get; }
+        public string OriginalSubTitle { set; get; }
         public string Isbn { set; get; }
         public Author Authors { set; get; }
         public Genre Genres { set; get; }
@@ -27,6 +28,7 @@ namespace Library.Entities
         public int Edition { set; get; }
         public string ReadingStatus { set; get; }
         public Publisher Publisher { set; get; }
+        public String Currency { set; get; }
         public byte[] Cover { set; get; }
         public string Synopsis { set; get; }
         public string Observations { set; get; }

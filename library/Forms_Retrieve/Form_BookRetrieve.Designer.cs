@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.table_books = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Table_Books = new System.Windows.Forms.DataGridView();
             this.Column_Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_SubTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,13 +39,14 @@
             this.Column_Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_Format = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_CoverPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.table_books)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Table_Books)).BeginInit();
             this.SuspendLayout();
             // 
-            // table_books
+            // Table_Books
             // 
-            this.table_books.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.table_books.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Table_Books.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Table_Books.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_Author,
             this.Column_Title,
             this.Column_SubTitle,
@@ -57,19 +57,10 @@
             this.Column_Publisher,
             this.Column_Format,
             this.Column_CoverPrice});
-            this.table_books.Location = new System.Drawing.Point(12, 64);
-            this.table_books.Name = "table_books";
-            this.table_books.Size = new System.Drawing.Size(1222, 491);
-            this.table_books.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1159, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Table_Books.Location = new System.Drawing.Point(12, 64);
+            this.Table_Books.Name = "Table_Books";
+            this.Table_Books.Size = new System.Drawing.Size(1222, 491);
+            this.Table_Books.TabIndex = 0;
             // 
             // Column_Author
             // 
@@ -130,24 +121,34 @@
             this.Column_CoverPrice.Name = "Column_CoverPrice";
             this.Column_CoverPrice.Width = 40;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1159, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form_BookRetrieve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 567);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.table_books);
+            this.Controls.Add(this.Table_Books);
             this.Name = "Form_BookRetrieve";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_BookRetrieve";
-            ((System.ComponentModel.ISupportInitialize)(this.table_books)).EndInit();
+            this.Load += new System.EventHandler(this.Form_BookRetrieve_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Table_Books)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView table_books;
+        private System.Windows.Forms.DataGridView Table_Books;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Author;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_Title;

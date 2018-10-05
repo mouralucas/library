@@ -8,7 +8,7 @@ namespace Library.Entities
 {
     class Serie
     {
-        public int Serie_id { set; get; }
+        public int Serie_Id { set; get; }
         public string SerieName { set; get; }
         public int SerieVolumes { set; get; }
         public string SerieCategory { set; get; }

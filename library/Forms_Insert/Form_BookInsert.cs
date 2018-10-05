@@ -146,12 +146,12 @@ namespace Library.Forms_Insert
             int SelectedSerieId = (int)Box_Serie.SelectedValue;
             if(SelectedSerieId == 50000)
             {
-                Form_SerieInsert SerieInsert = new Form_SerieInsert(ReturnBookInsert: this) { Visible = true };
+                Form_SerieInsert SerieInsert = new Form_SerieInsert(this) { Visible = true };
                 return;
             }
 
             Box_Volume.Items.Clear();
-            int v = SerieList.Find(x => x.Serie_id == (int)Box_Serie.SelectedValue).SerieVolumes;
+            int v = SerieList.Find(x => x.Serie_Id == (int)Box_Serie.SelectedValue).SerieVolumes;
             for (int i = 1; i <= v; i++)
             {
                 Box_Volume.Items.Add(i);
@@ -185,7 +185,7 @@ namespace Library.Forms_Insert
 
             else if (!SelectedAuthors.Contains(SelectedAuthorId))
             {
-                String SelectedAuthorName = AuthorList.Find(x => x.Author_id == SelectedAuthorId).AuthorName;
+                String SelectedAuthorName = AuthorList.Find(x => x.Author_Id == SelectedAuthorId).AuthorName;
                 ListBox_Authors.Items.Add(SelectedAuthorName);
                 SelectedAuthors.Add(SelectedAuthorId);
                 Console.WriteLine();
@@ -210,7 +210,7 @@ namespace Library.Forms_Insert
         private void Box_Genre_SelectionChangeCommitted(object sender, EventArgs e)
         {
             int SelectedGenreId = (int)Box_Genre.SelectedValue;
-            String SelectedGenreName = GenreList.Find(x => x.Genre_id == SelectedGenreId).GenreName;
+            String SelectedGenreName = GenreList.Find(x => x.Genre_Id == SelectedGenreId).GenreName;
 
             if (SelectedGenreId == 0)
             {
@@ -377,8 +377,8 @@ namespace Library.Forms_Insert
 
         private void SetGenreBox()
         {
-            GenreList.Insert(0, new Genre() { Genre_id = 0, GenreName = "Genre" });
-            GenreList.Add(new Genre { Genre_id = 50000, GenreName = "Adicionar novo gênero" });
+            GenreList.Insert(0, new Genre() { Genre_Id = 0, GenreName = "Genre" });
+            GenreList.Add(new Genre { Genre_Id = 50000, GenreName = "Adicionar novo gênero" });
 
             Box_Genre.DataSource = null;
             Box_Genre.DataSource = GenreList;
@@ -399,8 +399,8 @@ namespace Library.Forms_Insert
         private void SetAuthorBox()
         {
             List<Author> aux = AuthorList.FindAll(x => x.AuthorCategory.Category_Id == (int)Box_Category.SelectedValue);
-            aux.Insert(0, new Author() { Author_id = 0, AuthorName = "Autor" });
-            aux.Add(new Author() { Author_id = 50000, AuthorName = "Adicionar novo" });
+            aux.Insert(0, new Author() { Author_Id = 0, AuthorName = "Autor" });
+            aux.Add(new Author() { Author_Id = 50000, AuthorName = "Adicionar novo" });
 
             Box_Author.DataSource = aux;
             Box_Author.ValueMember = "Author_id";
@@ -412,10 +412,10 @@ namespace Library.Forms_Insert
             LanguageList.Clear();
             LanguageList = DB_Language.SearchAllLanguages(Conn.Connection);
 
-            var item = LanguageList.Find(x => x.Language_id == 1);
+            var item = LanguageList.Find(x => x.Language_Id == 1);
             LanguageList.Remove(item);
             LanguageList.Insert(0, item);
-            LanguageList.Add(new Language() { Language_id = 50000, LanguageName = "Adicionar novo"});
+            LanguageList.Add(new Language() { Language_Id = 50000, LanguageName = "Adicionar novo"});
 
             Box_Language.DataSource = null;
             Box_Language.DataSource = LanguageList;
@@ -436,8 +436,8 @@ namespace Library.Forms_Insert
         private void SetPublisherBox()
         {
             List<Publisher> aux = PublisherList.FindAll(x => x.PublisherCategory.Category_Id == (int)Box_Category.SelectedValue);
-            aux.Insert(0, new Publisher() { Publisher_id = 0, PublisherName = "Editora" });
-            aux.Add(new Publisher() { Publisher_id = 50000, PublisherName = "Adicionar nova" });
+            aux.Insert(0, new Publisher() { Publisher_Id = 0, PublisherName = "Editora" });
+            aux.Add(new Publisher() { Publisher_Id = 50000, PublisherName = "Adicionar nova" });
 
             //Box_Publisher.DataSource = null;
             Box_Publisher.DataSource = aux;
@@ -482,7 +482,7 @@ namespace Library.Forms_Insert
         {
             List<Serie> aux = SerieList.FindAll(x => x.SerieCategory_id == (int)Box_Category.SelectedValue);
             aux.Insert(0, volumeUnico);
-            aux.Add(new Serie() { Serie_id = 50000, SerieName = "Adicionar nova"});
+            aux.Add(new Serie() { Serie_Id = 50000, SerieName = "Adicionar nova"});
 
             Box_Serie.DataSource = aux;
             Box_Serie.ValueMember = "Serie_id";

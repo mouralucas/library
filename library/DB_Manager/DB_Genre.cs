@@ -13,41 +13,41 @@ namespace Library.DB_Manager
     {
         
         /*----- Strings that defines the queries -----*/
-        private string insert;
-        private string removeById;
-        private string retrieveAll;
-        private string countString;
+        private string Insert;
+        private string RemoveById;
+        private string RetrieveAll;
+        private string CountString;
 
         /*----- Others Variables -----*/
-        private int count = -1;
+        private int Count = -1;
 
         List<Genre> GenreList = new List<Genre>();
-        Genre genre;
+        Genre Genre;
 
-        public int Count(MySqlConnection conn)
+        public int CountRows(MySqlConnection Conn)
         {
-            countString = "SELECT COUNT(*) FROM genres";
-            MySqlCommand cmd = new MySqlCommand(countString, conn);
+            CountString = "SELECT COUNT(*) FROM genres";
+            MySqlCommand Cmd = new MySqlCommand(CountString, Conn);
 
-            count = Convert.ToInt32(cmd.ExecuteScalar());
+            Count = Convert.ToInt32(Cmd.ExecuteScalar());
 
-            return count;
+            return Count;
 
         }
 
         /*----- Insert Query -----*/
-        public bool InsertGenre(string genreName, MySqlConnection conn)
+        public bool InsertGenre(string genreName, MySqlConnection Conn)
         {
-            insert = "INSERT INTO genres (genreName, genreDateInsert) VALUES (@genreName, current_timestamp())";
+            Insert = "INSERT INTO genres (genreName, genreDateInsert) VALUES (@genreName, current_timestamp())";
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(insert, conn);
-                cmd.Parameters.Add("@genreName", MySqlDbType.VarChar, 30);
+                MySqlCommand Cmd = new MySqlCommand(Insert, Conn);
+                Cmd.Parameters.Add("@genreName", MySqlDbType.VarChar, 30);
 
-                cmd.Parameters["@genreName"].Value = genreName;
+                Cmd.Parameters["@genreName"].Value = genreName;
 
-                if (cmd.ExecuteNonQuery() > 0)
+                if (Cmd.ExecuteNonQuery() > 0)
                 {
                     DialogResult dr = MessageBox.Show("Genre Inserted Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
@@ -65,18 +65,18 @@ namespace Library.DB_Manager
         }
 
         /*----- Delete Queries -----*/
-        public bool RemoveGenreByName(string genre_id, MySqlConnection conn)
+        public bool RemoveGenreByName(String Genre_Id, MySqlConnection Conn)
         {
 
-            removeById = "DELETE FROM genres WHERE genre_id = @genre_id";
+            RemoveById = "DELETE FROM genres WHERE genre_id = @genre_id";
             try
             {
-                MySqlCommand cmd = new MySqlCommand(removeById, conn);
+                MySqlCommand Cmd = new MySqlCommand(RemoveById, Conn);
 
-                cmd.Parameters.Add("@genre_id", MySqlDbType.Int16, 11);
-                cmd.Parameters["@genre_id"].Value = genre_id;
+                Cmd.Parameters.Add("@genre_id", MySqlDbType.Int16, 11);
+                Cmd.Parameters["@genre_id"].Value = Genre_Id;
 
-                if (cmd.ExecuteNonQuery() > 0)
+                if (Cmd.ExecuteNonQuery() > 0)
                 {
                     DialogResult dr = MessageBox.Show("Genre Deleted Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
@@ -97,29 +97,29 @@ namespace Library.DB_Manager
         /*----- Search Queries -----*/
         public List<Genre> ListAllGenres(MySqlConnection conn)
         {
-            retrieveAll = "SELECT * FROM genres ORDER BY genreName";
+            RetrieveAll = "SELECT * FROM genres ORDER BY genreName";
 
-            MySqlCommand Cmd = new MySqlCommand(retrieveAll, conn);
+            MySqlCommand Cmd = new MySqlCommand(RetrieveAll, conn);
             SetGenreData(Cmd);
             return GenreList;
         }
 
         private void SetGenreData(MySqlCommand Cmd)
         {
-            MySqlDataReader dataRead = Cmd.ExecuteReader();
-            while (dataRead.Read())
+            MySqlDataReader DataReader = Cmd.ExecuteReader();
+            while (DataReader.Read())
             {
 
-                genre = new Genre()
+                Genre = new Genre()
                 {
-                    Genre_id = Convert.IsDBNull(dataRead["genre_id"]) ? -1 : Convert.ToInt32(dataRead["genre_id"]),
-                    GenreName = Convert.IsDBNull(dataRead["genreName"]) ? "" : dataRead["genreName"].ToString()
+                    Genre_Id = Convert.IsDBNull(DataReader["genre_id"]) ? -1 : Convert.ToInt32(DataReader["genre_id"]),
+                    GenreName = Convert.IsDBNull(DataReader["genreName"]) ? "" : DataReader["genreName"].ToString()
                 };
 
-                GenreList.Add(genre);
+                GenreList.Add(Genre);
             }
 
-            dataRead.Close();
+            DataReader.Close();
         }
     }
 }

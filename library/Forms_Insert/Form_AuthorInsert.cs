@@ -228,10 +228,10 @@ namespace Library.Forms_Insert
             LanguageList.Clear();
             LanguageList = DB_Language.SearchAllLanguages(Conn.Connection);
 
-            var item = LanguageList.Find(x => x.Language_id == 1);
+            var item = LanguageList.Find(x => x.Language_Id == 1);
             LanguageList.Remove(item);
             LanguageList.Insert(0, item);
-            LanguageList.Add(new Language() { Language_id = 50000, LanguageName = "Add New" });
+            LanguageList.Add(new Language() { Language_Id = 50000, LanguageName = "Add New" });
 
             Box_Language.DataSource = LanguageList;
             Box_Language.ValueMember = "Language_id";
@@ -242,7 +242,7 @@ namespace Library.Forms_Insert
         public void UpdateCountryBox()
         {
             CountryList.Clear();
-            CountryList = DB_Country.SearchAllCountries(Conn.Connection);
+            CountryList = DB_Country.ListAll(Conn.Connection);
 
             Box_Country.DataSource = CountryList;
             Box_Country.ValueMember = "Country_Id";

@@ -16,19 +16,19 @@ namespace Library.Forms_Retrieve
 {
     public partial class Form_AuthorRetrieve : Form
     {
-        DB_Author db_author = new DB_Author();
-        DB_Country db_country = new DB_Country();
-        DB_Language db_language = new DB_Language();
-        DB_Author dba = new DB_Author();
         Conn Conn = new Conn();
+
+        DB_Author DB_Author = new DB_Author();
+        DB_Country DB_Country = new DB_Country();
+        DB_Language DB_Language = new DB_Language();
 
         Form ReturnGeneric = null;
 
-        private List<Country> countryList;
-        private List<Language> languageList;
-        private List<Author> authorList = new List<Author>();
+        private List<Country> CountryList;
+        private List<Language> LanguageList;
+        private List<Author> AuthorList = new List<Author>();
 
-        private int search_id;
+        private int Search_id;
         private string searchName;
         private int searchCountry;
         private int searchLanguage;
@@ -50,38 +50,38 @@ namespace Library.Forms_Retrieve
 
         private void Form_AuthorRetrieve_Load(object sender, EventArgs e)
         {
-            countryList = db_country.SearchAllCountries(Conn.Connection);
-            foreach (Country c in countryList)
+            CountryList = DB_Country.ListAll(Conn.Connection);
+            foreach (Country c in CountryList)
             {
                 if (c.ShowCountry.Equals("Yes"))
                 {
-                    box_country.Items.Add(c.CountryName);
+                    Box_Country.Items.Add(c.CountryName);
                 }
             }
-            box_country.Items.Add("Show All");
+            Box_Country.Items.Add("Show All");
 
-            languageList = db_language.SearchAllLanguages(Conn.Connection);
-            foreach (Language l in languageList)
+            LanguageList = DB_Language.SearchAllLanguages(Conn.Connection);
+            foreach (Language l in LanguageList)
             {
                 if (l.ShowLanguage.Equals("Yes"))
                 {
-                    box_language.Items.Add(l.LanguageName);
+                    Box_Language.Items.Add(l.LanguageName);
                 }
             }
-            box_language.Items.Add("Show All");
+            Box_Language.Items.Add("Show All");
 
-            int count = db_author.Count(Conn.Connection);
+            int count = DB_Author.CountRows(Conn.Connection);
             if (count > 1)
             {
-                label_authorCount.Text = "There are " + count + " authors registered.";
+                Label_AuthorCount.Text = "There are " + count + " authors registered.";
             }
             else if (count == 1)
             {
-                label_authorCount.Text = "There is " + count + " author registered.";
+                Label_AuthorCount.Text = "There is " + count + " author registered.";
             }
             else
             {
-                label_authorCount.Text = "There are no registered authors.";
+                Label_AuthorCount.Text = "There are no registered authors.";
             }
 
 
@@ -89,48 +89,48 @@ namespace Library.Forms_Retrieve
 
         private void Button_ListAllAuthorsClick(object sender, EventArgs e)
         {
-            table_authors.Rows.Clear();
-            authorList.Clear();
-            authorList = db_author.ListAllAuthors(Conn.Connection);
+            Table_Authors.Rows.Clear();
+            AuthorList.Clear();
+            AuthorList = DB_Author.ListAllAuthors(Conn.Connection);
 
             //fills the table
-            foreach(Author a in authorList)
+            foreach(Author a in AuthorList)
             {
-                table_authors.Rows.Add(a.Author_id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
+                Table_Authors.Rows.Add(a.Author_Id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
             }
 
             //Enables the button to view and delete an author
-            if (authorList.Count != 0)
+            if (AuthorList.Count != 0)
             {
-                button_detail.Enabled = true;
-                button_delete.Enabled = true;
+                Button_Detail.Enabled = true;
+                Button_Delete.Enabled = true;
             }
         }
 
         private void Button_search_Click(object sender, EventArgs e)
         {
-            table_authors.Rows.Clear();
-            authorList.Clear();
+            Table_Authors.Rows.Clear();
+            AuthorList.Clear();
 
-            search_id = (text_autor_id.Text.Equals("")) ? -1 : Convert.ToInt32(text_autor_id.Text);
-            searchName = text_authorName.Text;
-            searchCountry = (box_country.SelectedItem == null) ? -1 : countryList[box_country.SelectedIndex].Country_Id;
-            searchLanguage = (box_language.SelectedItem == null) ? -1 : languageList[box_language.SelectedIndex].Language_id;
+            Search_id = (Text_Autor_id.Text.Equals("")) ? -1 : Convert.ToInt32(Text_Autor_id.Text);
+            searchName = Text_AuthorName.Text;
+            searchCountry = (Box_Country.SelectedItem == null) ? -1 : CountryList[Box_Country.SelectedIndex].Country_Id;
+            searchLanguage = (Box_Language.SelectedItem == null) ? -1 : LanguageList[Box_Language.SelectedIndex].Language_Id;
 
-            authorList = db_author.ListAuthorByAnyField(search_id, searchName, searchCountry, searchLanguage, Conn.Connection);
+            AuthorList = DB_Author.ListAuthorByAnyField(Search_id, searchName, searchCountry, searchLanguage, Conn.Connection);
 
-            foreach (Author a in authorList)
+            foreach (Author a in AuthorList)
             {
-                table_authors.Rows.Add(a.Author_id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
+                Table_Authors.Rows.Add(a.Author_Id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
             }
 
-            if (authorList.Count != 0)
+            if (AuthorList.Count != 0)
             {
-                button_detail.Enabled = true;
+                Button_Detail.Enabled = true;
             }
             else
             {
-                button_detail.Enabled = false;
+                Button_Detail.Enabled = false;
             }
         }
 
@@ -141,8 +141,8 @@ namespace Library.Forms_Retrieve
 
         private void Button_clean_Click(object sender, EventArgs e)
         {
-            text_autor_id.Text = "";
-            text_authorName.Text = "";
+            Text_Autor_id.Text = "";
+            Text_AuthorName.Text = "";
 
         }
 

@@ -36,7 +36,7 @@ namespace Library.Forms_Retrieve
 
             foreach(Genre g in genreList)
             {
-                table_genres.Rows.Add(g.Genre_id.ToString(), g.GenreName);
+                table_genres.Rows.Add(g.Genre_Id.ToString(), g.GenreName);
             }
 
             if (genreList.Count != 0)
@@ -47,7 +47,7 @@ namespace Library.Forms_Retrieve
 
         private void Form_GenreRetrieve_Load(object sender, EventArgs e)
         {
-            int count = db_genre.Count(conn.Connection);
+            int count = db_genre.CountRows(conn.Connection);
             if(count > 1){
                 label_genresCount.Text = "There are " + count + " genres registered.";
             }

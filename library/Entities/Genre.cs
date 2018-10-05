@@ -8,7 +8,7 @@ namespace Library.Entities
 {
     public class Genre
     {
-        public int Genre_id { set; get; }
+        public int Genre_Id { set; get; }
         public string GenreName { set; get; }
         public DateTime GenreDateInsert { set; get; }
         public DateTime GenreDateUpdate { set; get; }

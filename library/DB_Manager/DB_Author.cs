@@ -18,7 +18,7 @@ namespace Library.DB_Manager
         private string CountString;
 
         /*----- Others Variables -----*/
-        private int count = -1;
+        private int Count = -1;
 
         private List<Author> AuthorList = new List<Author>();
         private Author Author;
@@ -26,14 +26,14 @@ namespace Library.DB_Manager
         private Language Language;
         private Category Category;
 
-        public int Count(MySqlConnection conn)
+        public int CountRows(MySqlConnection conn)
         {
             CountString = "SELECT COUNT(*) FROM authors";
             MySqlCommand Command = new MySqlCommand(CountString, conn);
 
-            count = Convert.ToInt32(Command.ExecuteScalar());
+            Count = Convert.ToInt32(Command.ExecuteScalar());
 
-            return count;
+            return Count;
 
         }
 
@@ -172,7 +172,7 @@ namespace Library.DB_Manager
 
                 Language = new Language
                 {
-                    Language_id = Convert.IsDBNull(DataRead["language_id"]) ? -1 : Convert.ToInt32(DataRead["language_id"]),
+                    Language_Id = Convert.IsDBNull(DataRead["language_id"]) ? -1 : Convert.ToInt32(DataRead["language_id"]),
                     LanguageName = Convert.IsDBNull(DataRead["languageName"]) ? "" : DataRead["languageName"].ToString(),
                     ShowLanguage = Convert.IsDBNull(DataRead["showLanguage"]) ? "" : DataRead["showLanguage"].ToString()
                 };
@@ -186,7 +186,7 @@ namespace Library.DB_Manager
 
                 Author = new Author
                 {
-                    Author_id = Convert.IsDBNull(DataRead["author_id"]) ? -1 : Convert.ToInt32(DataRead["author_id"]),
+                    Author_Id = Convert.IsDBNull(DataRead["author_id"]) ? -1 : Convert.ToInt32(DataRead["author_id"]),
                     AuthorName = Convert.IsDBNull(DataRead["authorName"]) ? "" : DataRead["authorName"].ToString(),
                     AuthorAbout = Convert.IsDBNull(DataRead["authorAbout"]) ? "" : DataRead["authorAbout"].ToString(),
                     AuthorCountry = Country,

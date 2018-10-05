@@ -8,7 +8,7 @@ namespace Library.Entities
 {
     public class Language
     {
-        public int Language_id { set; get; }
+        public int Language_Id { set; get; }
         public string LanguageName { set; get; }
         public string ShowLanguage { set; get; }
         public DateTime LanguageDateInsert { set; get; }

@@ -8,7 +8,7 @@ namespace Library.Entities
 {
     class Publisher
     {
-        public int Publisher_id { set; get; }
+        public int Publisher_Id { set; get; }
         public string PublisherName { set; get; }
         public string PublisherAbout { set; get; }
         public Country PublisherCountry { set; get; }

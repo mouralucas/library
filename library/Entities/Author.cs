@@ -8,7 +8,7 @@ namespace Library.Entities
 {
     public class Author
     {
-        public int Author_id { set; get; }
+        public int Author_Id { set; get; }
         public string AuthorName { set; get; }
         public string AuthorAbout { set; get; }
         public Country AuthorCountry { set; get; }

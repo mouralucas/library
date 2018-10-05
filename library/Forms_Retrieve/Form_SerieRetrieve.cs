@@ -28,7 +28,7 @@ namespace Library.Forms_Retrieve
 
         private void Form_SerieRetrieve_Load(object sender, EventArgs e)
         {
-            int count = db_serie.Count(conn.Connection);
+            int count = db_serie.CountRows(conn.Connection);
             if (count > 1)
             {
                 label_serieCount.Text = "There are " + count + " series registered.";
@@ -51,7 +51,7 @@ namespace Library.Forms_Retrieve
 
             foreach(Serie s in serieList)
             {
-                table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieCategory);
+                table_serie.Rows.Add(s.Serie_Id, s.SerieName, s.SerieVolumes, s.SerieCategory);
             }
 
             //Enables the button to view and delete an author
@@ -71,7 +71,7 @@ namespace Library.Forms_Retrieve
 
             foreach (Serie s in serieList)
             {
-                table_serie.Rows.Add(s.Serie_id, s.SerieName, s.SerieVolumes, s.SerieCategory);
+                table_serie.Rows.Add(s.Serie_Id, s.SerieName, s.SerieVolumes, s.SerieCategory);
             }
         }
 

@@ -37,7 +37,7 @@ namespace Library.Forms_Retrieve
             table_countries.Rows.Clear();
 
             countryList.Clear();
-            countryList = db_country.SearchAllCountries(conn.Connection);
+            countryList = db_country.ListAll(conn.Connection);
 
             foreach(Country c in countryList)
             {
@@ -53,7 +53,7 @@ namespace Library.Forms_Retrieve
 
         private void Form_CountryRetrieve_Load(object sender, EventArgs e)
         {
-            int count = db_country.Count(conn.Connection);
+            int count = db_country.CountRows(conn.Connection);
             if (count > 1)
             {
                 label_countriesCount.Text = "There are " + count + " countries registered.";

@@ -63,7 +63,7 @@ namespace Library.Forms_Insert
 
         private void Form_PublisherInsert_Load(object sender, EventArgs e)
         {
-            countryList = db_country.SearchAllCountries(conn.Connection);
+            countryList = db_country.ListAll(conn.Connection);
             foreach (Country c in countryList)
             {
                 if (c.ShowCountry.Equals("Yes"))

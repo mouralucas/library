@@ -20,7 +20,7 @@ namespace Library.DB_Manager
 
 
         /*----- Others Variables -----*/
-        private int count = -1;
+        private int Count = -1;
 
         private List<Publisher> PublisherList = new List<Publisher>();
 
@@ -28,37 +28,37 @@ namespace Library.DB_Manager
         private Country Country;
         private Category Category;
 
-        public int Count(MySqlConnection conn)
+        public int CountRows(MySqlConnection Conn)
         {
             CountString = "SELECT COUNT(*) FROM publishers";
-            MySqlCommand cmd = new MySqlCommand(CountString, conn);
+            MySqlCommand Command = new MySqlCommand(CountString, Conn);
 
-            count = Convert.ToInt32(cmd.ExecuteScalar());
+            Count = Convert.ToInt32(Command.ExecuteScalar());
 
-            return count;
+            return Count;
         }
 
         /*----- Insert Query -----*/
-        public bool InsertPublisher(string publisherName, string publisherAbout, int country_id, byte[] publisherLogo, MySqlConnection conn)
+        public bool InsertPublisher(String PublisherName, String PublisherAbout, int Country_Id, byte[] PublisherLogo, MySqlConnection Conn)
         {
             Insert = "INSERT INTO publishers (publisherName, publisherAbout, country_id, publisherLogo, publisherDateInsert) " +
                 "VALUES (@publisherName, @publisherAbout, @country_id, @publisherLogo, current_timestamp())";
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(Insert, conn);
+                MySqlCommand Command = new MySqlCommand(Insert, Conn);
 
-                cmd.Parameters.Add("@publisherName", MySqlDbType.VarChar, 45);
-                cmd.Parameters.Add("@publisherAbout", MySqlDbType.MediumText);
-                cmd.Parameters.Add("@country_id", MySqlDbType.Int32);
-                cmd.Parameters.Add("@publisherLogo", MySqlDbType.MediumBlob);
+                Command.Parameters.Add("@publisherName", MySqlDbType.VarChar, 45);
+                Command.Parameters.Add("@publisherAbout", MySqlDbType.MediumText);
+                Command.Parameters.Add("@country_id", MySqlDbType.Int32);
+                Command.Parameters.Add("@publisherLogo", MySqlDbType.MediumBlob);
 
-                cmd.Parameters["@publisherName"].Value = publisherName;
-                cmd.Parameters["@publisherAbout"].Value = publisherAbout;
-                cmd.Parameters["@country_id"].Value = country_id;
-                cmd.Parameters["@publisherLogo"].Value = publisherLogo;
+                Command.Parameters["@publisherName"].Value = PublisherName;
+                Command.Parameters["@publisherAbout"].Value = PublisherAbout;
+                Command.Parameters["@country_id"].Value = Country_Id;
+                Command.Parameters["@publisherLogo"].Value = PublisherLogo;
 
-                if (cmd.ExecuteNonQuery() > 0)
+                if (Command.ExecuteNonQuery() > 0)
                 {
                     DialogResult dr = MessageBox.Show("Publisher Inserted Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
@@ -85,8 +85,8 @@ namespace Library.DB_Manager
                 + "   ON p.category_id = cat.category_id "
                 + "ORDER BY publisherName";
 
-            MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
-            SetPublisherData(Cmd);
+            MySqlCommand Command = new MySqlCommand(Retrieve, Conn);
+            SetPublisherData(Command);
             return PublisherList;
         }
 
@@ -97,51 +97,51 @@ namespace Library.DB_Manager
                 + "WHERE category_id = @category_id "
                 + "ORDER BY publisherName";
 
-            MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
+            MySqlCommand Command = new MySqlCommand(Retrieve, Conn);
 
-            Cmd.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
-            Cmd.Parameters["@category_id"].Value = Category_Id;
+            Command.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
+            Command.Parameters["@category_id"].Value = Category_Id;
 
-            SetPublisherData(Cmd);
+            SetPublisherData(Command);
             return PublisherList;
         }
 
-        private void SetPublisherData(MySqlCommand Cmd)
+        private void SetPublisherData(MySqlCommand Command)
         {
-            MySqlDataReader DataRead = Cmd.ExecuteReader();
+            MySqlDataReader DataReader = Command.ExecuteReader();
 
             PublisherList.Clear();
-            while (DataRead.Read())
+            while (DataReader.Read())
             {
 
                 Country = new Country()
                 {
-                    Country_Id = Convert.IsDBNull(DataRead["country_id"]) ? -1 : Convert.ToInt32(DataRead["country_id"]),
-                    CountryName = Convert.IsDBNull(DataRead["countryName"]) ? "" : DataRead["countryName"].ToString(),
-                    ShowCountry = Convert.IsDBNull(DataRead["showCountry"]) ? "" : DataRead["showCountry"].ToString()
+                    Country_Id = Convert.IsDBNull(DataReader["country_id"]) ? -1 : Convert.ToInt32(DataReader["country_id"]),
+                    CountryName = Convert.IsDBNull(DataReader["countryName"]) ? "" : DataReader["countryName"].ToString(),
+                    ShowCountry = Convert.IsDBNull(DataReader["showCountry"]) ? "" : DataReader["showCountry"].ToString()
                 };
 
                 Category = new Category()
                 {
-                    Category_Id = Convert.IsDBNull(DataRead["category_id"]) ? -1 : Convert.ToInt32(DataRead["category_id"]),
-                    CategoryName = Convert.IsDBNull(DataRead["category"]) ? "" : DataRead["category"].ToString(),
-                    Description = Convert.IsDBNull(DataRead["description"]) ? "" : DataRead["description"].ToString()
+                    Category_Id = Convert.IsDBNull(DataReader["category_id"]) ? -1 : Convert.ToInt32(DataReader["category_id"]),
+                    CategoryName = Convert.IsDBNull(DataReader["category"]) ? "" : DataReader["category"].ToString(),
+                    Description = Convert.IsDBNull(DataReader["description"]) ? "" : DataReader["description"].ToString()
                 };
 
                 Publisher = new Publisher()
                 {
-                    Publisher_id = Convert.IsDBNull(DataRead["publisher_id"]) ? -1 : Convert.ToInt32(DataRead["publisher_id"]),
-                    PublisherName = Convert.IsDBNull(DataRead["publisherName"]) ? "" : DataRead["publisherName"].ToString(),
-                    PublisherAbout = Convert.IsDBNull(DataRead["publisherAbout"]) ? "" : DataRead["publisherAbout"].ToString(),
+                    Publisher_Id = Convert.IsDBNull(DataReader["publisher_id"]) ? -1 : Convert.ToInt32(DataReader["publisher_id"]),
+                    PublisherName = Convert.IsDBNull(DataReader["publisherName"]) ? "" : DataReader["publisherName"].ToString(),
+                    PublisherAbout = Convert.IsDBNull(DataReader["publisherAbout"]) ? "" : DataReader["publisherAbout"].ToString(),
                     PublisherCountry = Country,
                     PublisherCategory = Category,
-                    PublisherLogo = Convert.IsDBNull(DataRead["publisherLogo"]) ? null : (byte[])DataRead["publisherLogo"],
+                    PublisherLogo = Convert.IsDBNull(DataReader["publisherLogo"]) ? null : (byte[])DataReader["publisherLogo"],
                 };
 
                 PublisherList.Add(Publisher);
             }
 
-            DataRead.Close();
+            DataReader.Close();
         }
     }
 }

@@ -13,25 +13,25 @@ namespace Library.DB_Manager
     {
         /*----- Strings that defines the queries -----*/
         private string Insert;
-        private string update;
-        private string removeByName;
+        private string Update;
+        private string RemoveByName;
         private string Retrieve;
-        private string countString;
+        private string CountString;
 
         /*----- Others Variables -----*/
-        private int count = -1;
+        private int Count = -1;
 
         private List<Serie> SerieList = new List<Serie>();
-        private Serie serie;
+        private Serie Serie;
 
-        public int Count(MySqlConnection conn)
+        public int CountRows(MySqlConnection Conn)
         {
-            countString = "SELECT COUNT(*) FROM series";
-            MySqlCommand cmd = new MySqlCommand(countString, conn);
+            CountString = "SELECT COUNT(*) FROM series";
+            MySqlCommand Command = new MySqlCommand(CountString, Conn);
 
-            count = Convert.ToInt32(cmd.ExecuteScalar());
+            Count = Convert.ToInt32(Command.ExecuteScalar());
 
-            return count;
+            return Count;
         }
 
         /*----- Insert Query -----*/
@@ -42,19 +42,19 @@ namespace Library.DB_Manager
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(Insert, Conn);
+                MySqlCommand Command = new MySqlCommand(Insert, Conn);
 
-                cmd.Parameters.Add("@serieName", MySqlDbType.VarChar, 45);
-                cmd.Parameters.Add("@serieVolumes", MySqlDbType.Int32);
-                cmd.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
-                cmd.Parameters.Add("@serieSynopsis", MySqlDbType.MediumText);
+                Command.Parameters.Add("@serieName", MySqlDbType.VarChar, 45);
+                Command.Parameters.Add("@serieVolumes", MySqlDbType.Int32);
+                Command.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
+                Command.Parameters.Add("@serieSynopsis", MySqlDbType.MediumText);
 
-                cmd.Parameters["@serieName"].Value = serieName;
-                cmd.Parameters["@serieVolumes"].Value = serieVolumes;
-                cmd.Parameters["@category_id"].Value = category_id;
-                cmd.Parameters["@serieSynopsis"].Value = serieSynopsis;
+                Command.Parameters["@serieName"].Value = serieName;
+                Command.Parameters["@serieVolumes"].Value = serieVolumes;
+                Command.Parameters["@category_id"].Value = category_id;
+                Command.Parameters["@serieSynopsis"].Value = serieSynopsis;
 
-                if (cmd.ExecuteNonQuery() > 0)
+                if (Command.ExecuteNonQuery() > 0)
                 {
                     DialogResult dr = MessageBox.Show("Serie Inserted Successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
@@ -81,8 +81,8 @@ namespace Library.DB_Manager
         {
             Retrieve = "SELECT * FROM series ORDER BY serieName";
 
-            MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
-            SetSerieData(Cmd);
+            MySqlCommand Command = new MySqlCommand(Retrieve, Conn);
+            SetSerieData(Command);
             return SerieList;
         }
 
@@ -92,37 +92,37 @@ namespace Library.DB_Manager
                 "WHERE category_id = @category_id" +
                 "   or category_id = 1";
 
-            MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
-            Cmd.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
+            MySqlCommand Command = new MySqlCommand(Retrieve, Conn);
+            Command.Parameters.Add("@category_id", MySqlDbType.Int32, 11);
    
-            Cmd.Parameters["@category_id"].Value = Category_Id;
+            Command.Parameters["@category_id"].Value = Category_Id;
 
-            SetSerieData(Cmd);
+            SetSerieData(Command);
             return SerieList;
         }
 
 
-        private void SetSerieData(MySqlCommand Cmd)
+        private void SetSerieData(MySqlCommand Command)
         {
-            MySqlDataReader dataRead = Cmd.ExecuteReader();
+            MySqlDataReader DataReader = Command.ExecuteReader();
 
             SerieList.Clear();
-            while (dataRead.Read())
+            while (DataReader.Read())
             {
-                serie = new Serie
+                Serie = new Serie
                 {
-                    Serie_id = Convert.IsDBNull(dataRead["serie_id"]) ? -1 : Convert.ToInt32(dataRead["serie_id"]),
-                    SerieName = Convert.IsDBNull(dataRead["serieName"]) ? "" : (dataRead["serieName"]).ToString(),
-                    SerieVolumes = Convert.IsDBNull(dataRead["serieVolumes"]) ? -1 : Convert.ToInt32(dataRead["serieVolumes"]),
-                    SerieCategory = Convert.IsDBNull(dataRead["serieCategory"]) ? "" : dataRead["serieCategory"].ToString(),
-                    SerieCategory_id = Convert.IsDBNull(dataRead["category_id"]) ? -1 : Convert.ToInt32(dataRead["category_id"]),
-                    SerieSynopsis = Convert.IsDBNull(dataRead["serieSynopsis"]) ? "" : dataRead["serieSynopsis"].ToString()
+                    Serie_Id = Convert.IsDBNull(DataReader["serie_id"]) ? -1 : Convert.ToInt32(DataReader["serie_id"]),
+                    SerieName = Convert.IsDBNull(DataReader["serieName"]) ? "" : (DataReader["serieName"]).ToString(),
+                    SerieVolumes = Convert.IsDBNull(DataReader["serieVolumes"]) ? -1 : Convert.ToInt32(DataReader["serieVolumes"]),
+                    SerieCategory = Convert.IsDBNull(DataReader["serieCategory"]) ? "" : DataReader["serieCategory"].ToString(),
+                    SerieCategory_id = Convert.IsDBNull(DataReader["category_id"]) ? -1 : Convert.ToInt32(DataReader["category_id"]),
+                    SerieSynopsis = Convert.IsDBNull(DataReader["serieSynopsis"]) ? "" : DataReader["serieSynopsis"].ToString()
                 };
 
-                SerieList.Add(serie);
+                SerieList.Add(Serie);
             }
 
-            dataRead.Close();
+            DataReader.Close();
         }
 
     }

@@ -17,17 +17,17 @@ namespace Library.DB_Manager
         private string CountString;
 
         /*----- Others Variables -----*/
-        private int count = -1;
+        private int Count = -1;
 
         List<Category> CategoryList = new List<Category>();
-        Category category = new Category();
+        Category Category = new Category();
 
-        public int Count(MySqlConnection conn)
+        public int CountRows(MySqlConnection conn)
         {
             CountString = "SELECT COUNT(*) FROM category";
             MySqlCommand Command = new MySqlCommand(CountString, conn);
-            count = Convert.ToInt32(Command.ExecuteScalar());
-            return count;
+            Count = Convert.ToInt32(Command.ExecuteScalar());
+            return Count;
         }
 
         public List<Category> ListAllCategories(MySqlConnection Conn)
@@ -41,22 +41,22 @@ namespace Library.DB_Manager
 
         private void SetCategoryData(MySqlCommand Cmd)
         {
-            MySqlDataReader DataRead = Cmd.ExecuteReader();
+            MySqlDataReader DataReader = Cmd.ExecuteReader();
             CategoryList.Clear();
 
-            while (DataRead.Read())
+            while (DataReader.Read())
             {
-                category = new Category()
+                Category = new Category()
                 {
-                    Category_Id = Convert.IsDBNull(DataRead["category_id"]) ? -1 : Convert.ToInt32(DataRead["category_id"]),
-                    CategoryName = Convert.IsDBNull(DataRead["category"]) ? "" : DataRead["category"].ToString(),
-                    Description = Convert.IsDBNull(DataRead["description"]) ? "" : DataRead["description"].ToString()
+                    Category_Id = Convert.IsDBNull(DataReader["category_id"]) ? -1 : Convert.ToInt32(DataReader["category_id"]),
+                    CategoryName = Convert.IsDBNull(DataReader["category"]) ? "" : DataReader["category"].ToString(),
+                    Description = Convert.IsDBNull(DataReader["description"]) ? "" : DataReader["description"].ToString()
                 };
 
-                CategoryList.Add(category);
+                CategoryList.Add(Category);
             }
 
-            DataRead.Close();
+            DataReader.Close();
         }
     }
 }

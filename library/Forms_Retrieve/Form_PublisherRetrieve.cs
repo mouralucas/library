@@ -30,7 +30,7 @@ namespace Library.Forms_Retrieve
 
         private void Form_PublisherRetrieve_Load(object sender, EventArgs e)
         {
-            countryList = db_country.SearchAllCountries(Conn.Connection);
+            countryList = db_country.ListAll(Conn.Connection);
             foreach (Country c in countryList)
             {
                 if (c.ShowCountry.Equals("Yes"))
@@ -40,7 +40,7 @@ namespace Library.Forms_Retrieve
             }
             box_country.Items.Add("Show All");
 
-            int count = db_publusher.Count(Conn.Connection);
+            int count = db_publusher.CountRows(Conn.Connection);
             if (count > 1)
             {
                 label_publishersCount.Text = "There are " + count + " publishers registered.";
@@ -63,7 +63,7 @@ namespace Library.Forms_Retrieve
 
             foreach(Publisher p in publisherList)
             {
-                table_publishers.Rows.Add(p.Publisher_id, p.PublisherName, p.PublisherCountry.CountryName);
+                table_publishers.Rows.Add(p.Publisher_Id, p.PublisherName, p.PublisherCountry.CountryName);
             }
 
             if(publisherList.Count != 0)

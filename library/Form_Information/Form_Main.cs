@@ -34,6 +34,8 @@ namespace Library.Form_Information
 
         /*** Forms for retrieve ***/
         Form_AuthorRetrieve Author_Retrieve = null;
+        Form_BookRetrieve Book_Retrieve = null;
+        Form_SerieRetrieve Serie_Retrieve = null;
 
         public Form_Main()
         {
@@ -106,6 +108,16 @@ namespace Library.Form_Information
         private void AutorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Author_Retrieve = new Form_AuthorRetrieve(this) { Visible = true};
+        }
+
+        private void SerieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Serie_Retrieve = new Form_SerieRetrieve() { Visible = true };
+        }
+
+        private void livroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Book_Retrieve = new Form_BookRetrieve() { Visible = true };
         }
     }
 }

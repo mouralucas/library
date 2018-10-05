@@ -13,38 +13,38 @@ namespace Library.DB_Manager
     {
 
         /*----- Strings that defines the queries -----*/
-        private string insert;
-        private string removeById;
-        private string retrieveAll;
-        private string countString;
-        private string update;
+        private string Insert;
+        private string RemoveById;
+        private string Retrieve;
+        private string CountString;
+        private string Update;
 
         /*----- Others Variables -----*/
-        private int count = -1;
+        private int Count = -1;
 
-        private List<Country> countryList = new List<Country>();
-        private Country country;
+        private List<Country> CountryList = new List<Country>();
+        private Country Country;
 
-        public int Count(MySqlConnection conn)
+        public int CountRows(MySqlConnection conn)
         {
-            countString = "SELECT COUNT(*) FROM countries";
-            MySqlCommand cmd = new MySqlCommand(countString, conn);
+            CountString = "SELECT COUNT(*) FROM countries";
+            MySqlCommand cmd = new MySqlCommand(CountString, conn);
 
-            count = Convert.ToInt32(cmd.ExecuteScalar());
+            Count = Convert.ToInt32(cmd.ExecuteScalar());
 
-            return count;
+            return Count;
 
         }
 
         /*----- Insert Query -----*/
         public bool InsertCountry(string countryName, string showCountry, byte[] countryFlag, MySqlConnection conn)
         {
-            insert = "INSERT INTO countries (countryName, showCountry, countryFlag, countryDateInsert) " +
+            Insert = "INSERT INTO countries (countryName, showCountry, countryFlag, countryDateInsert) " +
                 "VALUES (@countryName, @showCountry, @countryFlag, current_timestamp())";
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(insert, conn);
+                MySqlCommand cmd = new MySqlCommand(Insert, conn);
 
                 cmd.Parameters.Add("@countryName", MySqlDbType.VarChar, 45);
                 cmd.Parameters.Add("@showCountry", MySqlDbType.Enum);
@@ -76,7 +76,7 @@ namespace Library.DB_Manager
         /*----- Update Query -----*/
         public bool UpdateCountry(int country_id, string newCountryName, string newShowCountry, byte[] newCountryFlag, MySqlConnection conn)
         {
-            update = "UPDATE countries SET " +
+            Update = "UPDATE countries SET " +
                     "countryName = @newCountryName, " +
                     "showCountry = @newShowCountry, " +
                     "countryFlag = @newCountryFlag, " +
@@ -85,7 +85,7 @@ namespace Library.DB_Manager
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(update, conn);
+                MySqlCommand cmd = new MySqlCommand(Update, conn);
 
                 cmd.Parameters.Add("@country_id", MySqlDbType.Int32);
                 cmd.Parameters.Add("@newCountryName", MySqlDbType.VarChar, 45);
@@ -119,11 +119,11 @@ namespace Library.DB_Manager
         public bool RemoveCountryById(string country_id, MySqlConnection conn)
         {
 
-            removeById = "DELETE FROM countries WHERE country_id = @country_id";
+            RemoveById = "DELETE FROM countries WHERE country_id = @country_id";
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(removeById, conn);
+                MySqlCommand cmd = new MySqlCommand(RemoveById, conn);
 
                 cmd.Parameters.Add("@country_id", MySqlDbType.Int16, 11);
                 cmd.Parameters["@country_id"].Value = country_id;
@@ -147,29 +147,29 @@ namespace Library.DB_Manager
         }
 
         /*----- Search Queries -----*/
-        public List<Country> SearchAllCountries(MySqlConnection conn)
+        public List<Country> ListAll(MySqlConnection Conn)
         {
-            retrieveAll = "SELECT * FROM countries ORDER BY countryName";
+            Retrieve = "SELECT * FROM countries ORDER BY countryName";
 
-            MySqlCommand cmd = new MySqlCommand(retrieveAll, conn);
-            MySqlDataReader dataRead = cmd.ExecuteReader();
+            MySqlCommand cmd = new MySqlCommand(Retrieve, Conn);
+            MySqlDataReader DataReader = cmd.ExecuteReader();
 
-            while (dataRead.Read())
+            while (DataReader.Read())
             {
-                country = new Country()
+                Country = new Country()
                 {
-                    Country_Id = Convert.IsDBNull(dataRead["country_id"]) ? -1 : Convert.ToInt32(dataRead["country_id"]),
-                    CountryName = Convert.IsDBNull(dataRead["countryName"]) ? "" : dataRead["countryName"].ToString(),
-                    ShowCountry = Convert.IsDBNull(dataRead["showCountry"]) ? "" : dataRead["showCountry"].ToString(),
-                    CountryFlag = Convert.IsDBNull(dataRead["countryFlag"]) ? null : (byte[])dataRead["countryFlag"]
+                    Country_Id = Convert.IsDBNull(DataReader["country_id"]) ? -1 : Convert.ToInt32(DataReader["country_id"]),
+                    CountryName = Convert.IsDBNull(DataReader["countryName"]) ? "" : DataReader["countryName"].ToString(),
+                    ShowCountry = Convert.IsDBNull(DataReader["showCountry"]) ? "" : DataReader["showCountry"].ToString(),
+                    CountryFlag = Convert.IsDBNull(DataReader["countryFlag"]) ? null : (byte[])DataReader["countryFlag"]
                 };
 
-                countryList.Add(country);
+                CountryList.Add(Country);
             }
 
-            dataRead.Close();
+            DataReader.Close();
 
-            return countryList;
+            return CountryList;
         }
     }
 }

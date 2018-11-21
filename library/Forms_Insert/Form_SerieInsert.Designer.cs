@@ -28,134 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.text_serieName = new System.Windows.Forms.TextBox();
+            this.Text_SerieName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.text_serieSynopsis = new System.Windows.Forms.RichTextBox();
+            this.Text_SerieSynopsis = new System.Windows.Forms.RichTextBox();
             this.Box_Category = new System.Windows.Forms.ComboBox();
             this.button_cancel = new System.Windows.Forms.Button();
-            this.button_edit = new System.Windows.Forms.Button();
-            this.button_delete = new System.Windows.Forms.Button();
-            this.button_save = new System.Windows.Forms.Button();
-            this.box_volumes = new System.Windows.Forms.ComboBox();
-            this.text_id = new System.Windows.Forms.TextBox();
+            this.Button_Transaction = new System.Windows.Forms.Button();
+            this.Text_Volumes = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Id";
             // 
             // text_serieName
             // 
-            this.text_serieName.Location = new System.Drawing.Point(69, 30);
-            this.text_serieName.Name = "text_serieName";
-            this.text_serieName.Size = new System.Drawing.Size(273, 20);
-            this.text_serieName.TabIndex = 2;
+            this.Text_SerieName.Location = new System.Drawing.Point(15, 30);
+            this.Text_SerieName.Name = "text_serieName";
+            this.Text_SerieName.Size = new System.Drawing.Size(229, 20);
+            this.Text_SerieName.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 12);
+            this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Name";
             // 
-            // text_serieSynopsis
+            // Text_SerieSynopsis
             // 
-            this.text_serieSynopsis.Location = new System.Drawing.Point(13, 83);
-            this.text_serieSynopsis.Name = "text_serieSynopsis";
-            this.text_serieSynopsis.Size = new System.Drawing.Size(330, 182);
-            this.text_serieSynopsis.TabIndex = 6;
-            this.text_serieSynopsis.Text = "";
+            this.Text_SerieSynopsis.Location = new System.Drawing.Point(15, 57);
+            this.Text_SerieSynopsis.Name = "Text_SerieSynopsis";
+            this.Text_SerieSynopsis.Size = new System.Drawing.Size(419, 182);
+            this.Text_SerieSynopsis.TabIndex = 6;
+            this.Text_SerieSynopsis.Text = "";
             // 
             // Box_Category
             // 
+            this.Box_Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Box_Category.FormattingEnabled = true;
-            this.Box_Category.Location = new System.Drawing.Point(84, 56);
+            this.Box_Category.Location = new System.Drawing.Point(318, 30);
             this.Box_Category.Name = "Box_Category";
-            this.Box_Category.Size = new System.Drawing.Size(178, 21);
+            this.Box_Category.Size = new System.Drawing.Size(114, 21);
             this.Box_Category.TabIndex = 7;
             // 
             // button_cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(12, 271);
+            this.button_cancel.Location = new System.Drawing.Point(15, 245);
             this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(78, 23);
+            this.button_cancel.Size = new System.Drawing.Size(102, 23);
             this.button_cancel.TabIndex = 9;
-            this.button_cancel.Text = "Cancel";
+            this.button_cancel.Text = "Voltar";
             this.button_cancel.UseVisualStyleBackColor = true;
             this.button_cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
-            // button_edit
+            // Button_Transaction
             // 
-            this.button_edit.Enabled = false;
-            this.button_edit.Location = new System.Drawing.Point(96, 271);
-            this.button_edit.Name = "button_edit";
-            this.button_edit.Size = new System.Drawing.Size(78, 23);
-            this.button_edit.TabIndex = 10;
-            this.button_edit.Text = "Edit";
-            this.button_edit.UseVisualStyleBackColor = true;
+            this.Button_Transaction.Location = new System.Drawing.Point(318, 245);
+            this.Button_Transaction.Name = "Button_Transaction";
+            this.Button_Transaction.Size = new System.Drawing.Size(114, 23);
+            this.Button_Transaction.TabIndex = 12;
+            this.Button_Transaction.Text = "Salvar";
+            this.Button_Transaction.UseVisualStyleBackColor = true;
+            this.Button_Transaction.Click += new System.EventHandler(this.Button_Save_Click);
             // 
-            // button_delete
+            // Text_Volumes
             // 
-            this.button_delete.Enabled = false;
-            this.button_delete.Location = new System.Drawing.Point(180, 271);
-            this.button_delete.Name = "button_delete";
-            this.button_delete.Size = new System.Drawing.Size(78, 23);
-            this.button_delete.TabIndex = 11;
-            this.button_delete.Text = "Delete";
-            this.button_delete.UseVisualStyleBackColor = true;
+            this.Text_Volumes.Location = new System.Drawing.Point(250, 30);
+            this.Text_Volumes.Name = "Text_Volumes";
+            this.Text_Volumes.Size = new System.Drawing.Size(62, 20);
+            this.Text_Volumes.TabIndex = 13;
             // 
-            // button_save
+            // label3
             // 
-            this.button_save.Location = new System.Drawing.Point(265, 271);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(78, 23);
-            this.button_save.TabIndex = 12;
-            this.button_save.Text = "Save";
-            this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.Button_Save_Click);
-            // 
-            // box_volumes
-            // 
-            this.box_volumes.FormattingEnabled = true;
-            this.box_volumes.Location = new System.Drawing.Point(13, 56);
-            this.box_volumes.Name = "box_volumes";
-            this.box_volumes.Size = new System.Drawing.Size(65, 21);
-            this.box_volumes.TabIndex = 13;
-            this.box_volumes.Text = "Volumes";
-            // 
-            // text_id
-            // 
-            this.text_id.Enabled = false;
-            this.text_id.Location = new System.Drawing.Point(13, 30);
-            this.text_id.Name = "text_id";
-            this.text_id.ReadOnly = true;
-            this.text_id.Size = new System.Drawing.Size(50, 20);
-            this.text_id.TabIndex = 1;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(247, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Volumes";
             // 
             // Form_SerieInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 307);
-            this.Controls.Add(this.box_volumes);
-            this.Controls.Add(this.button_save);
-            this.Controls.Add(this.button_delete);
-            this.Controls.Add(this.button_edit);
+            this.ClientSize = new System.Drawing.Size(444, 277);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.Text_Volumes);
+            this.Controls.Add(this.Button_Transaction);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.Box_Category);
-            this.Controls.Add(this.text_serieSynopsis);
+            this.Controls.Add(this.Text_SerieSynopsis);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.text_serieName);
-            this.Controls.Add(this.text_id);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Text_SerieName);
             this.Name = "Form_SerieInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert Series";
@@ -167,17 +131,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox text_serieName;
+        private System.Windows.Forms.TextBox Text_SerieName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox text_serieSynopsis;
+        private System.Windows.Forms.RichTextBox Text_SerieSynopsis;
         private System.Windows.Forms.ComboBox Box_Category;
         private System.Windows.Forms.Button button_cancel;
-        private System.Windows.Forms.Button button_edit;
-        private System.Windows.Forms.Button button_delete;
-        private System.Windows.Forms.Button button_save;
-        private System.Windows.Forms.ComboBox box_volumes;
-        private System.Windows.Forms.TextBox text_id;
+        private System.Windows.Forms.Button Button_Transaction;
+        private System.Windows.Forms.TextBox Text_Volumes;
+        private System.Windows.Forms.Label label3;
     }
 }

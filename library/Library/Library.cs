@@ -16,7 +16,7 @@ namespace Library
         [STAThread]
         static void Main()
         {
-            MessageBox.Show("Verificar a Base de Dados conectada antes de realizar testes!", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Verificar a Base de Dados conectada antes de realizar testes!", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form_Main());

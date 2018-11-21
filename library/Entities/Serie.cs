@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Entities
 {
-    class Serie
+    public class Serie
     {
         public int Serie_Id { set; get; }
         public string SerieName { set; get; }

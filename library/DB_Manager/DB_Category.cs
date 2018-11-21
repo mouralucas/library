@@ -30,7 +30,7 @@ namespace Library.DB_Manager
             return Count;
         }
 
-        public List<Category> ListAllCategories(MySqlConnection Conn)
+        public List<Category> ListAll(MySqlConnection Conn)
         {
             Retrieve = "SELECT * FROM category ORDER BY category";
 

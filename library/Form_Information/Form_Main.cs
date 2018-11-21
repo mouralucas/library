@@ -46,7 +46,7 @@ namespace Library.Form_Information
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-            listAuthors = db_author.ListAllAuthors(Conn.Connection);
+            listAuthors = db_author.ListAll(Conn.Connection);
 
             //slot1.Image = Image.FromStream(new MemoryStream(listAuthors[0].AuthorPhoto));
             //slot2.Image = Image.FromStream(new MemoryStream(listAuthors[1].AuthorPhoto));

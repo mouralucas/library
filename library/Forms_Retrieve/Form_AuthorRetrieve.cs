@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Library.Forms_Insert;
 using Library.Connection;
 using Library.DB_Manager;
 using Library.Entities;
@@ -20,18 +21,13 @@ namespace Library.Forms_Retrieve
 
         DB_Author DB_Author = new DB_Author();
         DB_Country DB_Country = new DB_Country();
-        DB_Language DB_Language = new DB_Language();
+        DB_Category DB_Category = new DB_Category();
 
         Form ReturnGeneric = null;
 
-        private List<Country> CountryList;
-        private List<Language> LanguageList;
-        private List<Author> AuthorList = new List<Author>();
-
-        private int Search_id;
-        private string searchName;
-        private int searchCountry;
-        private int searchLanguage;
+        private List<Country> List_Countries = new List<Country>();
+        private List<Category> List_Categories = new List<Category>();
+        private List<Author> List_Authors = new List<Author>();
 
         public Form_AuthorRetrieve()
         {
@@ -50,25 +46,9 @@ namespace Library.Forms_Retrieve
 
         private void Form_AuthorRetrieve_Load(object sender, EventArgs e)
         {
-            CountryList = DB_Country.ListAll(Conn.Connection);
-            foreach (Country c in CountryList)
-            {
-                if (c.ShowCountry.Equals("Yes"))
-                {
-                    Box_Country.Items.Add(c.CountryName);
-                }
-            }
-            Box_Country.Items.Add("Show All");
-
-            LanguageList = DB_Language.SearchAllLanguages(Conn.Connection);
-            foreach (Language l in LanguageList)
-            {
-                if (l.ShowLanguage.Equals("Yes"))
-                {
-                    Box_Language.Items.Add(l.LanguageName);
-                }
-            }
-            Box_Language.Items.Add("Show All");
+            GetCountryData();
+            GetCategoryData();
+            GetAuthorData();
 
             int count = DB_Author.CountRows(Conn.Connection);
             if (count > 1)
@@ -83,49 +63,80 @@ namespace Library.Forms_Retrieve
             {
                 Label_AuthorCount.Text = "There are no registered authors.";
             }
+        }
 
+        /*** Comboboxes ***/
+        private void Box_Country_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SetAuthorTable(List_Authors.FindAll(x => x.AuthorCountry.Country_Id == (int)Box_Country.SelectedValue));
+        }
+
+        private void Box_Category_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SetAuthorTable(List_Authors.FindAll(x => x.AuthorCategory.Category_Id == (int)Box_Category.SelectedValue));
+        }
+
+        /*** Textboxes event ***/
+        private void Text_AuthorName_TextChanged(object sender, EventArgs e)
+        {
+            if (Text_AuthorName.Text.Length == 0)
+            {
+                SetAuthorTable(List_Authors);
+            }
+            else
+            {
+                SetAuthorTable(List_Authors.FindAll(x => x.AuthorName.ToLower().Contains(Text_AuthorName.Text.ToLower())));
+            }
+        }
+
+        /*** Buttons ***/
+        private void Button_Search_Click(object sender, EventArgs e)
+        {
 
         }
 
-        private void Button_ListAllAuthorsClick(object sender, EventArgs e)
+        private void Button_Detail_Click(object sender, EventArgs e)
         {
-            Table_Authors.Rows.Clear();
-            AuthorList.Clear();
-            AuthorList = DB_Author.ListAllAuthors(Conn.Connection);
+            Form_AuthorInsert Author_Insert = null;
+            int SelectedRow = Table_Authors.CurrentRow.Index;
 
-            //fills the table
-            foreach(Author a in AuthorList)
+            if (SelectedRow < List_Authors.Count)
             {
-                Table_Authors.Rows.Add(a.Author_Id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
-            }
-
-            //Enables the button to view and delete an author
-            if (AuthorList.Count != 0)
-            {
-                Button_Detail.Enabled = true;
-                Button_Delete.Enabled = true;
+                Author a = List_Authors.Find(x => x.Author_Id.ToString() == Table_Authors.Rows[Table_Authors.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                Author_Insert = new Form_AuthorInsert(this, a) { Visible = true };
             }
         }
 
-        private void Button_search_Click(object sender, EventArgs e)
+        private void Button_Clean_Click(object sender, EventArgs e)
         {
-            Table_Authors.Rows.Clear();
-            AuthorList.Clear();
+            Text_AuthorName.Text = "";
+        }
 
-            Search_id = (Text_Autor_id.Text.Equals("")) ? -1 : Convert.ToInt32(Text_Autor_id.Text);
-            searchName = Text_AuthorName.Text;
-            searchCountry = (Box_Country.SelectedItem == null) ? -1 : CountryList[Box_Country.SelectedIndex].Country_Id;
-            searchLanguage = (Box_Language.SelectedItem == null) ? -1 : LanguageList[Box_Language.SelectedIndex].Language_Id;
+        private void Button_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-            AuthorList = DB_Author.ListAuthorByAnyField(Search_id, searchName, searchCountry, searchLanguage, Conn.Connection);
-
-            foreach (Author a in AuthorList)
+        /*** Closing events ***/
+        private void Form_AuthorRetrieve_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (ReturnGeneric != null)
             {
-                Table_Authors.Rows.Add(a.Author_Id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorLanguage.LanguageName);
+                ReturnGeneric.Visible = true;
             }
 
-            if (AuthorList.Count != 0)
+            Conn.CloseConn();
+        }
+
+        /*** Table operations ***/
+        public void GetAuthorData()
+        {
+            List_Authors.Clear();
+            List_Authors = DB_Author.ListAll(Conn.Connection);
+
+            if (List_Authors.Count > 0)
             {
+                SetAuthorTable(List_Authors);
                 Button_Detail.Enabled = true;
             }
             else
@@ -134,31 +145,44 @@ namespace Library.Forms_Retrieve
             }
         }
 
-        private void Button_detail_Click(object sender, EventArgs e)
+        private void SetAuthorTable(List<Author> List)
         {
-
-        }
-
-        private void Button_clean_Click(object sender, EventArgs e)
-        {
-            Text_Autor_id.Text = "";
-            Text_AuthorName.Text = "";
-
-        }
-
-        private void Button_cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Form_AuthorRetrieve_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(ReturnGeneric != null)
+            Table_Authors.Rows.Clear();
+            foreach (Author a in List)
             {
-                ReturnGeneric.Visible = true;
+                Table_Authors.Rows.Add(a.Author_Id, a.AuthorName, a.AuthorCountry.CountryName, a.AuthorCategory.CategoryName);
             }
+        }
 
-            Conn.CloseConn();
+        /*** Comboboxes Setup ***/
+        public void GetCountryData()
+        {
+            List_Countries.Clear();
+            List_Countries = DB_Country.ListAll(Conn.Connection);
+            SetCountryBox();
+        }
+
+        private void SetCountryBox()
+        {
+            Box_Country.DataSource = null;
+            Box_Country.DataSource = List_Countries;
+            Box_Country.DisplayMember = "CountryName";
+            Box_Country.ValueMember = "Country_Id";
+        }
+
+        public void GetCategoryData()
+        {
+            List_Categories.Clear();
+            List_Categories = DB_Category.ListAll(Conn.Connection);
+            SetCategoryBox();
+        }
+
+        private void SetCategoryBox()
+        {
+            Box_Category.DataSource = null;
+            Box_Category.DataSource = List_Categories;
+            Box_Category.DisplayMember = "CategoryName";
+            Box_Category.ValueMember = "Category_Id";
         }
     }
 }

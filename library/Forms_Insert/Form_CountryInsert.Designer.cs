@@ -89,7 +89,7 @@
             this.button_save.TabIndex = 7;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            this.button_save.Click += new System.EventHandler(this.Button_Save_Click);
             // 
             // button_cancel
             // 

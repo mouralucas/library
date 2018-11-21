@@ -99,7 +99,7 @@ namespace Library.Forms_Insert
             conn.OpenConn();
         }
 
-        private void button_save_Click(object sender, EventArgs e)
+        private void Button_Save_Click(object sender, EventArgs e)
         {
             if (text_countryName.Text.Equals(""))
             {

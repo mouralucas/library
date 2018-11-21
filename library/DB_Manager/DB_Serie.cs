@@ -35,7 +35,7 @@ namespace Library.DB_Manager
         }
 
         /*----- Insert Query -----*/
-        public bool InsertPublisher(string serieName, int serieVolumes, int category_id, string serieSynopsis, MySqlConnection Conn)
+        public bool InsertSerie(string serieName, int serieVolumes, int category_id, string serieSynopsis, MySqlConnection Conn)
         {
             Insert = "INSERT INTO series (serieName, serieVolumes, category_id, serieSynopsis, serieDateInsert) " +
                 "VALUES (@serieName, @serieVolumes, @category_id, @serieSynopsis, current_timestamp())";

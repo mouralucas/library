@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Library.Connection;
 using Library.Entities;
 using Library.DB_Manager;
+using Library.Forms_Retrieve;
 
 namespace Library.Forms_Insert
 {
@@ -27,6 +28,7 @@ namespace Library.Forms_Insert
 
         Form ReturnGeneric = null;
         Form_BookInsert ReturnBookInsert = null;
+        Form_AuthorRetrieve ReturnAuthorRetrieve = null;
 
         private List<Country> CountryList = new List<Country>();
         private List<Language> LanguageList = new List<Language>();
@@ -35,70 +37,116 @@ namespace Library.Forms_Insert
         private bool InsertOk = false;
         private byte[] ImageBytes;
 
+        /*** Update Variables ***/
+        private int CurrentAuthor_Id;
+        private String OldAuthorName;
+        private String OldAuthorAbout;
+        private int OldAuthorCountry_Id;
+        private int OldAuthorCategory_Id;
+        private Byte[] OldAuthorPhoto;
+
+
+
         /*
         O = insert
         1 = update
         */
         private int TransactionType = 0;
 
+        /*** Default Constructor ***/
         public Form_AuthorInsert()
         {
             InitializeComponent();
+            Conn.OpenConn();
+            LoadData();
 
             /*---- Get the default image ----*/
             MemoryStream ms = new MemoryStream();
-            picture_author.Image.Save(ms, picture_author.Image.RawFormat);
+            Picture_Author.Image.Save(ms, Picture_Author.Image.RawFormat);
             ImageBytes = ms.ToArray();
             ms.Close();
-
-            Conn.OpenConn();
         }
 
-        /*----- Constructor From Main Form ------*/
+        /****** Constructor from Main Form ******/
         public Form_AuthorInsert(Form returnForm)
         {
             InitializeComponent();
+            Conn.OpenConn();
+            LoadData();
 
             this.ReturnGeneric = returnForm;      
 
             /*---- Get the default image ----*/
             MemoryStream ms = new MemoryStream();
-            picture_author.Image.Save(ms, picture_author.Image.RawFormat);
+            Picture_Author.Image.Save(ms, Picture_Author.Image.RawFormat);
             ImageBytes = ms.ToArray();
             ms.Close();
-
-            Conn.OpenConn();
         }
 
-        /*----- Constructor From Book Insert ------*/
+        /****** Constructor from Book Insert ******/
         public Form_AuthorInsert(Form_BookInsert ReturnBookInsert)
         {
             InitializeComponent();
+            Conn.OpenConn();
+            LoadData();
+
             this.ReturnBookInsert = ReturnBookInsert;
 
             /*---- Get the default image ----*/
             MemoryStream ms = new MemoryStream();
-            picture_author.Image.Save(ms, picture_author.Image.RawFormat);
+            Picture_Author.Image.Save(ms, Picture_Author.Image.RawFormat);
             ImageBytes = ms.ToArray();
             ms.Close();
-
-            Conn.OpenConn();
         }
 
+        /****** Constructor for Update ******/
+        public Form_AuthorInsert(Form_AuthorRetrieve ReturnAuthorRetrieve, Author EditAuthor)
+        {
+            InitializeComponent();
+            Conn.OpenConn();
+            LoadData();
+
+            this.TransactionType = 1;
+            this.ReturnAuthorRetrieve = ReturnAuthorRetrieve;
+            Button_Transaction.Text = "Atualizar";
+
+            this.CurrentAuthor_Id = EditAuthor.Author_Id;
+            this.OldAuthorName = EditAuthor.AuthorName;
+            this.OldAuthorAbout = EditAuthor.AuthorAbout;
+            this.OldAuthorCountry_Id = EditAuthor.AuthorCountry.Country_Id;
+            this.OldAuthorCategory_Id = EditAuthor.AuthorCategory.Category_Id;
+            this.OldAuthorPhoto = EditAuthor.AuthorPhoto;
+
+            Text_AuthorName.Text = OldAuthorName;
+            Text_AuthorAbout.Text = OldAuthorAbout;
+            Box_Country.SelectedValue = OldAuthorCountry_Id;
+            Box_Category.SelectedValue = OldAuthorCategory_Id;
+            Picture_Author.Image = Image.FromStream(new MemoryStream(OldAuthorPhoto));
+
+
+        }
+
+        public void LoadData()
+        {
+            GetCountryData();
+            GetCategoryData();
+        }
 
         private void Form_AuthorInsert_Load(object sender, EventArgs e)
         {
-
-            UpdateCountryBox();
-            UpdateLanguageBox();
-            UpdateCategoryBox();
+            //GetCountryData();
+            //GetCategoryData();
         }
 
-        private void Button_Save_Click(object sender, EventArgs e)
+        private void Button_Transaction_Click(object sender, EventArgs e)
         {
             if(TransactionType == 0)
             {
                 SaveTransaction();
+            }
+            else if(TransactionType == 1)
+            {
+                UpdateTransaction();
             }
             else
             {
@@ -109,18 +157,7 @@ namespace Library.Forms_Insert
 
         private void Box_Country_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //if (Box_Country.SelectedIndex == Box_Country.Items.Count - 1)
-            //{
-            //    Box_Country.Items.Clear();
-            //    Box_Country.Items.Add("Country");
-            //    foreach (Country c in CountryList)
-            //    {
-            //        Box_Country.Items.Add(c.CountryName);
-            //    }
-            //    Box_Country.Items.Add("--");
-            //    Box_Country.SelectedIndex = -1;
-            //    Box_Country.Text = "Country";
-            //}
+
         }
 
         private void Box_Language_SelectionChangeCommitted(object sender, EventArgs e)
@@ -146,51 +183,18 @@ namespace Library.Forms_Insert
 
             if (open.ShowDialog() == DialogResult.OK)
             {
-                picture_author.Image = Image.FromFile(open.FileName);                // display image in picture box 
+                Picture_Author.Image = Image.FromFile(open.FileName);                // display image in picture box 
 
                 /*---- Convert the image to a byte array ----*/
                 MemoryStream ms = new MemoryStream();
-                picture_author.Image.Save(ms, picture_author.Image.RawFormat);
+                Picture_Author.Image.Save(ms, Picture_Author.Image.RawFormat);
                 ImageBytes = ms.ToArray();
                 ms.Close();
             }
         }
 
-        private void SaveTransaction()
-        {
-            if (Box_Country.SelectedIndex < 0 || Box_Language.SelectedIndex < 0)
-            {
-                MessageBox.Show("You Must Select a Country and a Language!", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (text_authorName.Text.Equals(""))
-            {
-                MessageBox.Show("You Must Enter a Name!", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                InsertOk = DB_Author.InsertAuthor(text_authorName.Text,
-                    text_authorAbout.Text,
-                    (int)Box_Country.SelectedValue,
-                    (int)Box_Language.SelectedValue,
-                    (int)Box_Category.SelectedValue,
-                    ImageBytes,
-                    Conn.Connection);
-
-                if (InsertOk)
-                {
-                    text_authorName.Clear();
-                    text_authorAbout.Clear();
-                    Box_Country.SelectedIndex = -1;
-                    Box_Country.Text = "Country";
-                    Box_Language.SelectedIndex = -1;
-                    Box_Language.Text = "Language";
-                    Box_Category.SelectedIndex = 0;
-                    picture_author.Image = ((System.Drawing.Image)(resources.GetObject("picture_author.Image")));
-                }
-            }
-        }
-
-        private void Button_cancel_Click(object sender, EventArgs e)
+        /*** Closing form operations ***/
+        private void Button_Back_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -202,48 +206,83 @@ namespace Library.Forms_Insert
                 ReturnGeneric.Visible = true;
             }
 
-            if(ReturnBookInsert != null)
+            if (ReturnBookInsert != null)
             {
-                ReturnBookInsert.GetAuthorInfo();
+                ReturnBookInsert.GetAuthorData();
+            }
+
+            if(ReturnAuthorRetrieve != null)
+            {
+                ReturnAuthorRetrieve.GetAuthorData();
             }
 
             Conn.CloseConn();
         }
 
+        /*** Transaction Operations ***/
+        private void SaveTransaction()
+        {
+            if (Box_Country.SelectedIndex < 0)
+            {
+                MessageBox.Show("Você deve escolher um País", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (Text_AuthorName.Text.Equals(""))
+            {
+                MessageBox.Show("Digite o nome!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                InsertOk = DB_Author.InsertAuthor(Text_AuthorName.Text,
+                    Text_AuthorAbout.Text,
+                    (int)Box_Country.SelectedValue,
+                    (int)Box_Category.SelectedValue,
+                    ImageBytes,
+                    Conn.Connection);
 
-        /*** Combobox Operations ***/
-        public void UpdateCategoryBox()
+                if (InsertOk)
+                {
+                    Text_AuthorName.Clear();
+                    Text_AuthorAbout.Clear();
+                    Box_Country.SelectedIndex = -1;
+                    Box_Country.Text = "Country";
+                    Box_Category.SelectedIndex = 0;
+                    Picture_Author.Image = ((System.Drawing.Image)(resources.GetObject("picture_author.Image")));
+                }
+            }
+        }
+        
+        private void UpdateTransaction()
+        {
+
+        }
+
+        /*** Comboboxes Setup ***/
+        public void GetCategoryData()
         {
             CategoryList.Clear();
-            CategoryList = DB_Category.ListAllCategories(Conn.Connection);
+            CategoryList = DB_Category.ListAll(Conn.Connection);
+            SetCategoryBox();
+        }
 
+        private void SetCategoryBox()
+        {
+            Box_Category.DataSource = null;
             Box_Category.DataSource = CategoryList;
             Box_Category.ValueMember = "Category_Id";
             Box_Category.DisplayMember = "CategoryName";
-
         }
-
-        public void UpdateLanguageBox()
-        {
-            LanguageList.Clear();
-            LanguageList = DB_Language.SearchAllLanguages(Conn.Connection);
-
-            var item = LanguageList.Find(x => x.Language_Id == 1);
-            LanguageList.Remove(item);
-            LanguageList.Insert(0, item);
-            LanguageList.Add(new Language() { Language_Id = 50000, LanguageName = "Add New" });
-
-            Box_Language.DataSource = LanguageList;
-            Box_Language.ValueMember = "Language_id";
-            Box_Language.DisplayMember = "LanguageName";
-
-        }
-
-        public void UpdateCountryBox()
+       
+        public void GetCountryData()
         {
             CountryList.Clear();
             CountryList = DB_Country.ListAll(Conn.Connection);
+            SetCountryBox();
 
+        }
+
+        private void SetCountryBox()
+        {
+            Box_Country.DataSource = null;
             Box_Country.DataSource = CountryList;
             Box_Country.ValueMember = "Country_Id";
             Box_Country.DisplayMember = "CountryName";

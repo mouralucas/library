@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Library.Forms_Insert;
 using Library.Connection;
 using Library.DB_Manager;
 using Library.Entities;
@@ -18,7 +19,7 @@ namespace Library.Forms_Retrieve
         Conn conn = new Conn();
         DB_Serie db_serie = new DB_Serie();
 
-        private List<Serie> serieList = new List<Serie>();
+        private List<Serie> List_Series = new List<Serie>();
 
         public Form_SerieRetrieve()
         {
@@ -28,6 +29,8 @@ namespace Library.Forms_Retrieve
 
         private void Form_SerieRetrieve_Load(object sender, EventArgs e)
         {
+            GetSerieData();
+
             int count = db_serie.CountRows(conn.Connection);
             if (count > 1)
             {
@@ -43,41 +46,68 @@ namespace Library.Forms_Retrieve
             }
         }
 
-        private void Button_retrieveAll_Click(object sender, EventArgs e)
+        /*** Textboxes event ***/
+        private void Text_SerieName_TextChanged(object sender, EventArgs e)
         {
-            table_serie.Rows.Clear();
-            serieList.Clear();
-            serieList = db_serie.ListAllSeries(conn.Connection);
-
-            foreach(Serie s in serieList)
+            if (Text_SerieName.Text.Length == 0)
             {
-                table_serie.Rows.Add(s.Serie_Id, s.SerieName, s.SerieVolumes, s.SerieCategory);
+                SetSerieTable(List_Series);
             }
-
-            //Enables the button to view and delete an author
-            if (serieList.Count != 0)
+            else
             {
-                button_detail.Enabled = true;
-                button_delete.Enabled = true;
-            }
-
-        }
-
-        private void Button_Search_Click(object sender, EventArgs e)
-        {
-            table_serie.Rows.Clear();
-            serieList.Clear();
-            serieList = db_serie.ListSeriesByCategory(1, conn.Connection);
-
-            foreach (Serie s in serieList)
-            {
-                table_serie.Rows.Add(s.Serie_Id, s.SerieName, s.SerieVolumes, s.SerieCategory);
+                SetSerieTable(List_Series.FindAll(x => x.SerieName.ToLower().Contains(Text_SerieName.Text.ToLower())));
             }
         }
 
+        /*** Buttons ***/
+        private void Button_Detail_Click(object sender, EventArgs e)
+        {
+            Form_SerieInsert Serie_Insert = null;
+            int SelectedRow = Table_Serie.CurrentRow.Index;
+
+            if(SelectedRow > 0)
+            {
+                Serie s = List_Series.Find(x => x.Serie_Id.ToString() == Table_Serie.Rows[Table_Serie.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                Serie_Insert = new Form_SerieInsert(this, s) { Visible = true};
+            }
+        }
+
+        /*** Table operations ***/
+        public void GetSerieData()
+        {
+            List_Series.Clear();
+            List_Series = db_serie.ListAllSeries(conn.Connection);
+
+            if (List_Series.Count > 0)
+            {
+                SetSerieTable(List_Series);
+                Button_Detail.Enabled = true;
+            }
+            else
+            {
+                Button_Detail.Enabled = false;
+            }
+        }
+
+        private void SetSerieTable(List<Serie> List)
+        {
+            Table_Serie.Rows.Clear();
+            foreach (Serie s in List)
+            {
+                Table_Serie.Rows.Add(s.Serie_Id, s.SerieName, s.SerieVolumes, s.SerieCategory);
+            }
+        }
+
+        /*** Closing events ***/
         private void Form_SerieRetrieve_FormClosing(object sender, FormClosingEventArgs e)
         {
             conn.CloseConn();
+        }
+
+        /*** Comboboxes setup ***/
+        public void GetCategory()
+        {
+
         }
     }
 }

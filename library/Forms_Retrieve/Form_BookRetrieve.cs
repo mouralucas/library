@@ -30,6 +30,7 @@ namespace Library.Forms_Retrieve
         private void Form_BookRetrieve_Load(object sender, EventArgs e)
         {
             BookList = DB_Book.ListAll(Conn.Connection);
+            Table_Books.Rows.Clear();
             foreach (Book b in BookList)
             {
                 Table_Books.Rows.Add(b.Authors.AuthorName, b.Title, b.SubTitle, b.Serie.SerieName, b.Volume, b.Pages, b.Isbn, b.Publisher.PublisherName,

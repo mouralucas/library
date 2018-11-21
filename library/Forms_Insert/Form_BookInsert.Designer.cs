@@ -341,7 +341,7 @@
             this.Text_Edition.Size = new System.Drawing.Size(53, 20);
             this.Text_Edition.TabIndex = 18;
             this.Text_Edition.Text = "1";
-            this.Text_Edition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_edition_KeyPress);
+            this.Text_Edition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Text_Edition_KeyPress);
             // 
             // label9
             // 

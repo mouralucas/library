@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.table_countries = new System.Windows.Forms.DataGridView();
+            this.Table_Countries = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Show = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,20 +43,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label_countriesCount = new System.Windows.Forms.Label();
             this.button_delete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.table_countries)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Table_Countries)).BeginInit();
             this.SuspendLayout();
             // 
             // table_countries
             // 
-            this.table_countries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.table_countries.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Table_Countries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Table_Countries.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Country,
             this.Show});
-            this.table_countries.Location = new System.Drawing.Point(12, 77);
-            this.table_countries.Name = "table_countries";
-            this.table_countries.Size = new System.Drawing.Size(331, 254);
-            this.table_countries.TabIndex = 25;
+            this.Table_Countries.Location = new System.Drawing.Point(12, 77);
+            this.Table_Countries.Name = "table_countries";
+            this.Table_Countries.Size = new System.Drawing.Size(331, 254);
+            this.Table_Countries.TabIndex = 25;
             // 
             // Id
             // 
@@ -95,7 +95,7 @@
             this.button_edit.TabIndex = 23;
             this.button_edit.Text = "View";
             this.button_edit.UseVisualStyleBackColor = true;
-            this.button_edit.Click += new System.EventHandler(this.button_edit_Click);
+            this.button_edit.Click += new System.EventHandler(this.Button_Edit_Click);
             // 
             // button_clean
             // 
@@ -114,7 +114,7 @@
             this.button_retrieveAll.TabIndex = 21;
             this.button_retrieveAll.Text = "Retrieve All";
             this.button_retrieveAll.UseVisualStyleBackColor = true;
-            this.button_retrieveAll.Click += new System.EventHandler(this.button_retrieveAll_Click);
+            this.button_retrieveAll.Click += new System.EventHandler(this.Button_ListAll_Click);
             // 
             // button_cancel
             // 
@@ -125,7 +125,7 @@
             this.button_cancel.TabIndex = 20;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            this.button_cancel.Click += new System.EventHandler(this.Button_Back_Click);
             // 
             // text_name
             // 
@@ -186,7 +186,7 @@
             this.Controls.Add(this.button_delete);
             this.Controls.Add(this.label_countriesCount);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.table_countries);
+            this.Controls.Add(this.Table_Countries);
             this.Controls.Add(this.button_search);
             this.Controls.Add(this.button_edit);
             this.Controls.Add(this.button_clean);
@@ -199,7 +199,7 @@
             this.Text = "Country Search";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_CountryRetrieve_FormClosing);
             this.Load += new System.EventHandler(this.Form_CountryRetrieve_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.table_countries)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Table_Countries)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,7 +207,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView table_countries;
+        private System.Windows.Forms.DataGridView Table_Countries;
         private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.Button button_edit;
         private System.Windows.Forms.Button button_clean;

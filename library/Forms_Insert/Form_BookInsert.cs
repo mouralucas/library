@@ -90,7 +90,7 @@ namespace Library.Forms_Insert
         private void Form_BookInsert_Load(object sender, EventArgs e)
         {
             GetCategoryInfo();
-            GetAuthorInfo();
+            GetAuthorData();
             GetGenreInfo();
             GetLanguageInfo();
             GetPublisherInfo();            
@@ -263,6 +263,7 @@ namespace Library.Forms_Insert
             }
         }
 
+        /*** Closing events ***/
         private void Form_BookInsert_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -352,7 +353,7 @@ namespace Library.Forms_Insert
         }
 
         /*** Validadores dos campos ***/
-        private void Text_edition_KeyPress(object sender, KeyPressEventArgs e)
+        private void Text_Edition_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != 8;
         }
@@ -367,7 +368,7 @@ namespace Library.Forms_Insert
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != 8;
         }
 
-        /*** Combobox Operations ***/
+        /*** Combobox setup ***/
         public void GetGenreInfo()
         {
             GenreList.Clear();
@@ -388,10 +389,10 @@ namespace Library.Forms_Insert
             Box_Genre.SelectedIndex = 0;
         }
 
-        public void GetAuthorInfo()
+        public void GetAuthorData()
         {
             AuthorList.Clear();
-            AuthorList = DB_Author.ListAllAuthors(Conn.Connection);
+            AuthorList = DB_Author.ListAll(Conn.Connection);
             SetAuthorBox();
 
         }
@@ -450,7 +451,7 @@ namespace Library.Forms_Insert
         public void GetCategoryInfo()
         {
             CategoryList.Clear();
-            CategoryList = DB_Category.ListAllCategories(Conn.Connection);
+            CategoryList = DB_Category.ListAll(Conn.Connection);
 
             SetCategoryInfo();
         }

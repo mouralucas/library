@@ -77,7 +77,7 @@ namespace Library.DB_Manager
          0 - Search All
          1 - Search for any parameter
         */
-        public List<Serie> ListAllSeries(MySqlConnection Conn)
+        public List<Serie> ListAll(MySqlConnection Conn)
         {
             Retrieve = "SELECT * FROM series ORDER BY serieName";
 

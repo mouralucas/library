@@ -167,7 +167,8 @@ namespace Library.DB_Manager
                 "INNER JOIN genres g " +
                 "   ON g.genre_id = bg.genre_id " +
                 "INNER JOIN languages l " +
-                "   ON b.language = l.language_id";
+                "   ON b.language = l.language_id " +
+                "ORDER BY b.book_id";
 
             MySqlCommand Cmd = new MySqlCommand(Retrieve, Conn);
             return SetBooks(Cmd);

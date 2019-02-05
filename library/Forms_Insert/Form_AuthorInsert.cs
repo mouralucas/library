@@ -253,7 +253,20 @@ namespace Library.Forms_Insert
         
         private void UpdateTransaction()
         {
+            if(Text_AuthorName.Text.Length == 0)
+            {
+                MessageBox.Show("O nome do autor deve ser preenchido!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                if((Text_AuthorName.Equals(OldAuthorName)) 
+                    && ((int)Box_Country.SelectedValue == OldAuthorCountry_Id)
+                    && ((int)Box_Category.SelectedValue == OldAuthorCategory_Id)
+                    && (Text_AuthorAbout.Equals(OldAuthorAbout)))
+                {
 
+                }
+            }
         }
 
         /*** Comboboxes Setup ***/

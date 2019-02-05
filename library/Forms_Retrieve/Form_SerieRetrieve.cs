@@ -16,22 +16,22 @@ namespace Library.Forms_Retrieve
 {
     public partial class Form_SerieRetrieve : Form
     {
-        Conn conn = new Conn();
-        DB_Serie db_serie = new DB_Serie();
+        Conn Conn = new Conn();
+        DB_Serie DB_Serie = new DB_Serie();
 
         private List<Serie> List_Series = new List<Serie>();
 
         public Form_SerieRetrieve()
         {
             InitializeComponent();
-            conn.OpenConn();
+            Conn.OpenConn();
         }
 
         private void Form_SerieRetrieve_Load(object sender, EventArgs e)
         {
             GetSerieData();
 
-            int count = db_serie.CountRows(conn.Connection);
+            int count = DB_Serie.CountRows(Conn.Connection);
             if (count > 1)
             {
                 label_serieCount.Text = "There are " + count + " series registered.";
@@ -76,7 +76,7 @@ namespace Library.Forms_Retrieve
         public void GetSerieData()
         {
             List_Series.Clear();
-            List_Series = db_serie.ListAllSeries(conn.Connection);
+            List_Series = DB_Serie.ListAll(Conn.Connection);
 
             if (List_Series.Count > 0)
             {
@@ -101,7 +101,7 @@ namespace Library.Forms_Retrieve
         /*** Closing events ***/
         private void Form_SerieRetrieve_FormClosing(object sender, FormClosingEventArgs e)
         {
-            conn.CloseConn();
+            Conn.CloseConn();
         }
 
         /*** Comboboxes setup ***/

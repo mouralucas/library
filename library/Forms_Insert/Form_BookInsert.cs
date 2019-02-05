@@ -473,7 +473,7 @@ namespace Library.Forms_Insert
         public void GetSerieInfo()
         {
             SerieList.Clear();
-            SerieList = DB_Serie.ListAllSeries(Conn.Connection);
+            SerieList = DB_Serie.ListAll(Conn.Connection);
             volumeUnico = SerieList.Find(x => x.SerieCategory_id == 1);
             SetSerieBox();
 
